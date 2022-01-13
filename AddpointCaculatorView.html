@@ -1,76 +1,61 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1" />
 	<meta name="format-detection" content="telephone=no" />
+	<!-- ##### 모달 추가한 부분 -->
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- ##### 모달 추가한 부분 -->
 	<link rel="icon" type="image/ico" href="https://static.applyhome.co.kr/images/kabhom/common/favicon.ico" />
 	<link rel="apple-touch-icon" href="https://static.applyhome.co.kr/images/kabhom/common/phone.png"/>
-	<link rel="shortcut icon" href="https://static.applyhome.co.kr/images/kabhom/common/phone.png"/> 
-	
-	<link rel="stylesheet" type="text/css" href="/css/kabhom/main/hom.css"/>	
-	<link rel="stylesheet" type="text/css" href="/css/kabhom/main/scrap/virtual.css"/>
-	
-	
-	<link rel="stylesheet" type="text/css" href="/css/kabhom/main/leftMenu.css"/>
+	<link rel="shortcut icon" href="https://static.applyhome.co.kr/images/kabhom/common/phone.png"/>
+
+	<link rel="stylesheet" type="text/css" href="css/kabhom/main/hom.css"/>
+	<link rel="stylesheet" type="text/css" href="css/kabhom/main/scrap/virtual.css"/>
+
+
+	<link rel="stylesheet" type="text/css" href="css/kabhom/main/leftMenu.css"/>
 	<!-- 배너 슬라이드 추가링크 -->
-	<link rel="stylesheet" href="/css/kabhom/main/vendors/swiper.min.css">
-    <script src="/js/kabhom/plugin/swiper.min.js"></script>
-   
+	<link rel="stylesheet" href="css/kabhom/main/vendors/swiper.min.css">
+    <script src="js/kabhom/plugin/swiper.min.js"></script>
+
 	<title>청약홈 | 청약가점계산</title>
-	
-	
+
+
 	<!-- 운영일 경우에만 -->
-	
+
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-143621263-1"></script>
-	
-	
+
+
 	<script>
 	  window.dataLayer = window.dataLayer || [];
 	  function gtag(){dataLayer.push(arguments);}
 	  gtag('js', new Date());
-	
+
 	  gtag('config', 'UA-143621263-1');
 	</script>
-	
+
 	<script src="https://static.applyhome.co.kr/js/kabhom/plugin/jquery.3.1.1.min.js"></script>
 	<script src="https://static.applyhome.co.kr/js/kabhom/plugin/jquery-ui.min.js"></script>
 	<script src="/js/kabhom/main/site.js"></script>
-	
+
 	<!-- 성능제어 Netfunnel, 키보드보안 -->
 	<script src="/js/kabhom/com/com.js"></script>
-	
+
 	<!-- 성능제어 Netfunnel -->
 	<script src="https://static.applyhome.co.kr/netfunnel/netfunnel.js"></script>
 	<script src="https://static.applyhome.co.kr/netfunnel/netfunnel_skin.js"></script>
-	
+
 	<script>
 	document.domain = "applyhome.co.kr";
-	
+
 	window.onpageshow = function(event) {
 		if(event.persisted) {
-			
+
 			window.location.reload(true);
 		}
 	}
@@ -78,7 +63,7 @@
 		if(gfn_isMobile()) {
 			$('#divTab').css("display","none");
 		}
-		
+
 		var gnbTree = $("#gnbTree > li > button");
 		$(gnbTree).on("click", function() {
 				 $(this).parents("li").siblings("li").children("ul").slideUp();
@@ -87,18 +72,18 @@
 				 $(this).addClass("on");
 		 });
 	});
-	
-		
+
+
 		var strPopupYn = 'N';
-		
-		
+
+
 		if(window.name == "iframeDialog" && strPopupYn == 'Y')
 		{
 			parent.document.location.href = "/co/coz/selectCrtfctLoginView.do";
 		}
 
 		$(function(){
-			 
+
 			 /**
 			 * Description	: 상단 lnb_wrap setting
 			 */
@@ -108,16 +93,16 @@
 				$navi.append($("#menu"+umid).next("ul").clone());
 				$navi.find('a').removeAttr('id');
 			}
-			
-			
+
+
 			var strMenuId = "menu" + $("#naviUl li").eq(1).data('mid');
 			$('#gnb #' + strMenuId).addClass('lnb_active');
-			
+
 
 
 		});
-		
-	// Form input을 name=value 형식의 object로 변환	
+
+	// Form input을 name=value 형식의 object로 변환
 	$.fn.formToObject = function() {
 		var obj = null;
 		try {
@@ -136,23 +121,23 @@
 			return obj;
 		}
 	};
-	
+
 	function formToString(form) {
 		var formData = new FormData($form);
-		
+
 		var object = {};
 		formData.forEach(function(value, key){
 		    object[key] = value;
 		});
 		var json = JSON.stringify(object);
 	}
-	
+
 	function fn_openPopup(url, title) {
 //	    if(gfn_isMobile() == false) {
 	        window.open(url, title);
 //	    }
 	}
-	
+
 	</script>
 </head>
 <body>
@@ -174,10 +159,10 @@
 			<div class="h_top_menu_wrap">
 				<ul class="h_top_menu">
 
-	
+
 					<li><a href="javascript:$net.href('/co/cob/selectSubscrptBnkbSbscrbDesc.do');"><i class="xi-user-o"></i> 마이페이지</a></li>
-	
-	
+
+
 
 				</ul>
 			</div>
@@ -390,7 +375,7 @@
 					<li><a href="javascript:$net.href('/co/coz/selectCrtfctCopyView.do');">- 공동인증서 관리</a></li>
 					<li><a href="http://remote.kais.kr" target="_blank">- 원격연결</a></li>
 				</ul>
-				
+
 				<div class="webbanner">
 					  <div class="swiper-container">
                         <div class="swiper-wrapper" style="height: auto; text-align: center">
@@ -423,14 +408,14 @@
 					<a href="javascript:$net.href('/co/coa/selectMainView.do');" class="apply2">청약Home</a>
 					<a href="javascript:$net.href('/kabbnk/cn/cna/selectMainView.do');" class="bank2">은행 담당자</a>
 					<a href="javascript:$net.href('/kabbiz/cm/cma/selectMainView.do');" class="busi2">사업주체</a>
-				</div>	
+				</div>
 			</div>
 		</div>
 		<div class="gnb_bg"></div>
 	</div>
 	<div class="body_bg"></div>
 
-	
+
 	<div id="sitemap">
 		<div class="guide">
 			<div class="site_box">
@@ -440,41 +425,41 @@
 			</div>
 		</div>
 	</div>
-	
+
 
 	<div id="content" class="sub_content">
 		<div class="sub_visu apply">
 			<div class="sub_visu_box">
 				<div class="sub_visu_txt">
 					<h5>
-				
-					
+
+
 						모집공고단지 청약연습
-					
-					
-				
+
+
+
 					</h5>
 					<p>50여년간 우리나라 부동산 가치의 기준을 세워 온 한국부동산원 주택청약 서비스입니다.</p>
-					
+
 					<div class="lnb_wrap">
 						<ul class="lnb_box" id="naviUl">
 							<li><a href="javascript:$net.href('/co/coa/selectMainView.do');"><i class="xi-home"></i><span class="blind">홈으로</span></a></li>
 							<li class="mo_none" data-mid="100122"><i class="xi-angle-right-thin"></i> 모집공고단지 청약연습</li>
-					
-						
-						
+
+
+
 							<li class="" data-mid="100125" data-umid="100122">
 								<i class="xi-angle-right-thin"></i> 청약가점계산기
 							</li>
-						
-						
-						
+
+
+
 						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
-		
+
 <!-- 배너 슬라이드 추가 스크립트 -->
     <script>
     var swiper = new Swiper('.swiper-container',{
@@ -524,48 +509,48 @@ height:auto
 						<select name="sel_00" id="sel_00" class="select_sel" data-active="explan01">
 							<option value="">무주택기간선택</option>
 							<option value="-1">유주택</option>
-                            
+
 							<option value="0">유주택, 30세미만 미혼인 무주택(0점)</option>
-                            
+
 							<option value="2">1년 미만(2점)</option>
-                            
+
 							<option value="4">1년 이상～2년 미만(4점)</option>
-                            
+
 							<option value="6">2년 이상～3년 미만(6점)</option>
-                            
+
 							<option value="8">3년 이상～4년 미만(8점)</option>
-                            
+
 							<option value="10">4년 이상～5년 미만(10점)</option>
-                            
+
 							<option value="12">5년 이상～6년 미만(12점)</option>
-                            
+
 							<option value="14">6년 이상～7년 미만(14점)</option>
-                            
+
 							<option value="16">7년 이상～8년 미만(16점)</option>
-                            
+
 							<option value="18">8년 이상～9년 미만(18점)</option>
-                            
+
 							<option value="20">9년 이상～10년 미만(20점)</option>
-                            
+
 							<option value="22">10년 이상～11년 미만(22점)</option>
-                            
+
 							<option value="24">11년 이상～12년 미만(24점)</option>
-                            
+
 							<option value="26">12년 이상～13년 미만(26점)</option>
-                            
+
 							<option value="28">13년 이상～14년 미만(28점)</option>
-                            
+
 							<option value="30">14년 이상～15년 미만(30점)</option>
-                            
+
 							<option value="32">15년 이상(32점)</option>
-                            
+
 						</select>
 					</p>
 				</dd>
 			</dl>
 			<button type="button" class="cnt_q_btn" data-active="explan01">
 				<p>상세보기</p>
-				<img src="/images/kabhom/sub/cnt_q_up.png" alt="설명 접기">
+				<img src="images/kabhom/sub/cnt_q_up.png" alt="설명 접기">
 			</button>
 		</div>
 		<div class="line_box explan01" style="display:none;">
@@ -630,21 +615,21 @@ height:auto
 							<p class="select_st radios w_auto mt_10">
 								<select name="suportFamilyCo" id="sel_01" class="select_sel" data-active="explan02">
 									<option value="">인원선택</option>
-									
+
 										<option value="0" data-score="5">0명</option>
-									
+
 										<option value="1" data-score="10">1명</option>
-									
+
 										<option value="2" data-score="15">2명</option>
-									
+
 										<option value="3" data-score="20">3명</option>
-									
+
 										<option value="4" data-score="25">4명</option>
-									
+
 										<option value="5" data-score="30">5명</option>
-									
+
 										<option value="6" data-score="35">6명 이상</option>
-									
+
 								</select>
 							</p>
 						</li>
@@ -653,21 +638,21 @@ height:auto
 							<p class="select_st radios w_auto mt_10">
 								<select name="suportFamilyCo" id="sel_02" class="select_sel" data-active="explan02">
 									<option value="">인원선택</option>
-									
+
 										<option value="0">0명</option>
-									
+
 										<option value="1">1명</option>
-									
+
 										<option value="2">2명</option>
-									
+
 										<option value="3">3명</option>
-									
+
 										<option value="4">4명</option>
-									
+
 										<option value="5">5명</option>
-									
+
 										<option value="6">6명 이상</option>
-									
+
 								</select>
 							</p>
 						</li>
@@ -676,21 +661,21 @@ height:auto
 							<p class="select_st radios w_auto mt_10">
 								<select name="suportFamilyCo" id="sel_03" class="select_sel" data-active="explan02">
 									<option value="">인원선택</option>
-									
+
 										<option value="0">0명</option>
-									
+
 										<option value="1">1명</option>
-									
+
 										<option value="2">2명</option>
-									
+
 										<option value="3">3명</option>
-									
+
 										<option value="4">4명</option>
-									
+
 										<option value="5">5명</option>
-									
+
 										<option value="6">6명 이상</option>
-									
+
 								</select>
 							</p>
 						</li>
@@ -700,7 +685,7 @@ height:auto
 			</dl>
 			<button type="button" class="cnt_q_btn" data-active="explan02">
 				<p>상세보기</p>
-				<img src="/images/kabhom/sub/cnt_q_up.png" alt="설명 접기">
+				<img src="images/kabhom/sub/cnt_q_up.png" alt="설명 접기">
 			</button>
 		</div>
 		<div class="line_box explan02" style="display:none">
@@ -769,13 +754,13 @@ height:auto
 				<dd>
 					<b>청약통장</b>
 					<span>최초 청약통장 가입일을 입력해주세요.</span>
-					
-						
-						
+
+
+
 							<input type="text" id="disa_inp" class="disa_inp" value="" placeholder="ex) 2009-05-26" data-active="explan03" readonly>
-						
-						
-					
+
+
+
 				</dd>
                 <dd>
                     <b>&nbsp;</b>
@@ -785,7 +770,7 @@ height:auto
 			</dl>
 			<button type="button" class="cnt_q_btn" data-active="explan03">
 				<p>상세보기</p>
-				<img src="/images/kabhom/sub/cnt_q_up.png" alt="설명 접기">
+				<img src="images/kabhom/sub/cnt_q_up.png" alt="설명 접기">
 			</button>
 		</div>
 		<div class="line_box explan03" style="display:none" data-stde="2022-01-13" data-pbat="N">
@@ -799,81 +784,117 @@ height:auto
 				<p class="mt_10">입주자모집공고일 현재 입주자저축 가입자의 가입기간을 기준으로하며, 입주자저축의 종류, 금액, 가입자 명의변경을 한 경우에도 최초 가입일을 기준으로 가입기간을 산정합니다.</p>
 				<p>청약통장 가입일은 청약통장 가입은행에서 조회된 자료로 통장가입기간에 따른 가점은 자동계산됩니다.</p>
 				<p>미성년자로서 가입한 기간이 2년을 초과하면 2년만 인정 (주택공급에 관한 규칙 제10조 제6항)</p>
-				
+
 			</div>
 			<div class="blind">
 				<label for="svingsSbscrbPd">청약가입기간</label>
 				<select name="svingsSbscrbPd" id="svingsSbscrbPd" class="select_sel">
-					
+
 						<option value="1">6월 미만</option>
-					
+
 						<option value="2">6월 이상 ~ 1년 미만</option>
-					
+
 						<option value="3">1년 이상 ~ 2년 미만</option>
-					
+
 						<option value="4">2년 이상 ~ 3년 미만</option>
-					
+
 						<option value="5">3년 이상 ~ 4년 미만</option>
-					
+
 						<option value="6">4년 이상 ~ 5년 미만</option>
-					
+
 						<option value="7">5년 이상 ~ 6년 미만</option>
-					
+
 						<option value="8">6년 이상 ~ 7년 미만</option>
-					
+
 						<option value="9">7년 이상 ~ 8년 미만</option>
-					
+
 						<option value="10">8년 이상 ~ 9년 미만</option>
-					
+
 						<option value="11">9년 이상 ~ 10년 미만</option>
-					
+
 						<option value="12">10년 이상 ~ 11년 미만</option>
-					
+
 						<option value="13">11년 이상 ~ 12년 미만</option>
-					
+
 						<option value="14">12년 이상 ~ 13년 미만</option>
-					
+
 						<option value="15">13년 이상 ~ 14년 미만</option>
-					
+
 						<option value="16">14년 이상 ~ 15년 미만</option>
-					
+
 						<option value="17">15년 이상</option>
-					
+
 				</select>
 			</div>
 		</div>
-		
-		
+
+
 	</div>
 
 	<div class="btn_box">
 		<button type="button" class="btn_cancel">선택초기화</button>
-		
-			
-			
-				<button type="button" class="btn_submit" id="brnCalPop">가점 계산하기</button>
-			
-		
+
+
+				<!-- #####모달 추가
+					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+			-->
+				<button type="button" class="btn_submit" id="brnCalPop" data-bs-toggle="modal" data-bs-target="#myModal">가점 계산하기</button>
+
+
 	</div>
 </div>
+<!-- #####모달 추가 -->
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">청약가점점수 확인</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+				<div class="line_content">
+					<b class="line_tit">무주택기간(최고32점)</b>
+					<p class="disa_result" id="subscribeDe">1년 이상 ~ 2년 미만(4점)</p>
+	        <b class="line_tit">부양가족수(최고35점)</b>
+	        <p class="disa_result" id="subscribeIdnPre">6명 이상</p>
+					<b class="line_tit mt_10">청약통장 가입기간(최고17점)</b>
+					<p class="disa_result" id="subscribePd">6월 미만</p>
+				</div>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+				<h4 class="modal-title">청약가점 총점</h4>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- #####모달 추가 -->
 <script>
 
 var explanation = {
 	hide : function($obj) {
 		$obj.removeClass('cnt_q_on');
-		$obj.children('img').attr('src', '/images/kabhom/sub/cnt_q_up.png');
+		$obj.children('img').attr('src', 'images/kabhom/sub/cnt_q_up.png');
 		$('.' + $obj.data('active')).hide();
 	}
 	, show : function($obj) {
 		$obj.addClass('cnt_q_on');
-		$obj.children('img').attr('src', '/images/kabhom/sub/cnt_q_down.png');
+		$obj.children('img').attr('src', 'images/kabhom/sub/cnt_q_down.png');
 		$('.' + $obj.data('active')).show();
 	}
 }
 
 var validation = {
 	checkCustomVal : function() {
-	
+
 		if ( $('#sel_00').val() === '' ) {
 			alert('무주택기간을 선택해 주십시오.');
 			validation.moveScroll($('#sel_00').offset().top - 50);
@@ -910,10 +931,10 @@ var validation = {
 			validation.moveScroll($('#sel_00').offset().top - 50);
 			return false;
 		}
-		
+
 		return true;
 	}
-	
+
 	, moveScroll : function(top) {
 		$( 'body,html' ).animate({
 			scrollTop : top
@@ -924,10 +945,10 @@ var validation = {
 
 function getDiffMonth (strDate1, strDate2) {
 	var result = 0;
-	
+
 	var convDate1 = strDate1.replace(/-/gi, "");
 	var convDate2 = strDate2.replace(/-/gi, "");
-	
+
 	if (convDate1.length == 8 && convDate2.length == 8) {
          var sYYYY = convDate1.substring(0, 4);
          var sMM = convDate1.substring(4, 6);
@@ -940,7 +961,7 @@ function getDiffMonth (strDate1, strDate2) {
          dYear = parseInt(eYYYY) - parseInt(sYYYY);
          dMonth = parseInt(eMM) - parseInt(sMM);
          dDay = parseInt(eDD) - parseInt(sDD);
-         
+
          if (dDay < 0) {
              dMonth--;
          }
@@ -961,63 +982,63 @@ function getAnotherDate(orgDate, period) {
 	var dateStr = new Date(orgDate);
 	dateStr = dateStr.setFullYear(dateStr.getFullYear() + period);
 	dateStr = new Date(dateStr);
-	
+
     var year = dateStr.getFullYear();
-    
+
     var month = dateStr.getMonth() + 1;
     month = month < 10 ? '0' + month : month
-    		
+
     var day = dateStr.getDate();
     day = day < 10 ? '0' + day : day
-    
+
     var returnDate = year + '-' + month + '-' + day;
 	return returnDate;
 }
 
 var calculate = {
 	subscribePd : function($obj) {
-		
-		
-		
-		var stDe = $('.explan03').data('stde');    
-		var sbscDe = $('#disa_inp').val();         
-		var idnPre = $('#idn_pre').val()           
-		var adultDe = "";                          
-		
+
+
+
+		var stDe = $('.explan03').data('stde');
+		var sbscDe = $('#disa_inp').val();
+		var idnPre = $('#idn_pre').val()
+		var adultDe = "";
+
 		if (idnPre.length == 10) {
-			adultDe = getAnotherDate(idnPre, 19); 
+			adultDe = getAnotherDate(idnPre, 19);
 		}
-		
+
 		var preAdultMM = 0;
 		var adultMM = 0;
-		
-		
+
+
 		if (sbscDe.length > 0 && adultDe.length > 0) {
 			preAdultMM = getDiffMonth(sbscDe, adultDe);
-			
-			
+
+
 			if (preAdultMM < 0) {
 				preAdultMM = 0;
 			}
 			else if (preAdultMM > 24) {
 				preAdultMM = 24;
-			} 
+			}
 		}
-		
+
 		if (preAdultMM > 0) {
-			
-			adultMM = getDiffMonth(adultDe, stDe); 
+
+			adultMM = getDiffMonth(adultDe, stDe);
 		} else {
-			
-			adultMM = getDiffMonth(sbscDe, stDe); 
+
+			adultMM = getDiffMonth(sbscDe, stDe);
 		}
-		
-        
+
+
         var totalMM = preAdultMM + adultMM;
-        
+
         var yearDif = parseInt(totalMM / 12);
         var monthDif = totalMM % 12;
-        
+
 		if ( yearDif < 1 && monthDif < 6 ) {
 			$('#svingsSbscrbPd option').eq(0).prop('selected', true);
 		} else if ( yearDif < 1 && monthDif >= 6 ) {
@@ -1039,7 +1060,7 @@ var calculate = {
 
         $('#subscribeDe').text(sbscDe);
         $('#subscribeIdnPre').text(idnPre);
-	        
+
 		subscribePdNm = $('#svingsSbscrbPd option:selected').text();
 		subscribePdScore = parseInt($('#svingsSbscrbPd').val());
 		$('#subscribePd').text('');
@@ -1054,32 +1075,32 @@ var calculate = {
 		if(fmCnt > 6) {
 			fmCnt = 6;
 		}
-		
+
 		$fmObj = $("#sel_01 option[value='"+fmCnt+"']");
 		var rtn = {
 				 "headCnt" 	: fmCnt
 				,"headCntNm": $fmObj.text()
 				, "point" 	: $fmObj.data("score")
-			}; 
+			};
 		return rtn;
 	}
 }
 
 $(function() {
-	
+
 	$('#brnCalPop').on('click', function() {
 
 		if ( !validation.checkCustomVal() ) {
 			return ;
 		}
-		
-		
+
+
 		var bhmlsPd = $('#sel_00').val();
-		
+
 		if(bhmlsPd == '-1') bhmlsPd = '0';
 		bhmlsPd = parseInt(bhmlsPd);
-		
-		
+
+
 		var suportSumCo = parseInt( $('.suport_fm input:checked').val() );
 		$('.suport_fm select').each(function() {
 			suportSumCo += parseInt( $(this).val() );
@@ -1088,10 +1109,10 @@ $(function() {
 			suportSumCo = 6;
 		}
 		var suportSumSc = $("#sel_01 option[value='"+suportSumCo+"']").data("score");
-		
+
 		var addpntFrm = $('<form/>', {name:'addpntFrm', id:'addpntFrm'});
 		$('.btn_box').after(addpntFrm);
-		
+
 		addpntFrm.append( $('<input/>', {type:'hidden', name:'bhmlsPdCd', id:'bhmlsPdCd', value:$('#sel_00').val()}) );
 		addpntFrm.append( $('<input/>', {type:'hidden', name:'bhmlsPdSc', id:'bhmlsPdSc', value:bhmlsPd}) );
 		addpntFrm.append( $('<input/>', {type:'hidden', name:'bhmlsPdNm', id:'bhmlsPdNm', value:$('#sel_00 option:selected').text()}) );
@@ -1100,24 +1121,24 @@ $(function() {
 		addpntFrm.append( $('<input/>', {type:'hidden', name:'subscribePdCd', id:'subscribePdCd', value:$('#svingsSbscrbPd').val()}) );
 		addpntFrm.append( $('<input/>', {type:'hidden', name:'subscribePdSc', id:'subscribePdSc', value:parseInt($('#svingsSbscrbPd').val())}) );
 		addpntFrm.append( $('<input/>', {type:'hidden', name:'subscribePdNm', id:'subscribePdNm', value:$('#svingsSbscrbPd option:selected').text()}) );
-		
+
 		var oPopupOptions = new Object();
-		
+
 		oPopupOptions.title = "청약가점점수 확인";
 		oPopupOptions.url = "/ap/apg/calculateAddpntView.do";
 		oPopupOptions.height = "620";
 		oPopupOptions.resizable = false;
 		oPopupOptions.clazz ='pop_w_700';
 		oPopupOptions.formId = "addpntFrm";
-		
+
 		$pop.dialog(oPopupOptions);
-		
+
 		if($('#addpntFrm')){
 			$('#addpntFrm').remove();
 		}
-	});	
-	
-	
+	});
+
+
 	$('.btn_cancel').on('click',function() {
 		$('.cnt_question p select').val('');
 		$('.radio_st2 input').prop('checked', false);
@@ -1127,19 +1148,19 @@ $(function() {
 		$('.line_box').hide();
 		explanation.hide($('.cnt_q_btn'));
 		validation.moveScroll($('#subContent').offset().top);
-		
+
 		$('.radio_st2 input').prop('disabled', false);
 		$('.select_st select').prop('disabled', false);
 	});
-	
-	
+
+
 	$('.cnt_question').on('click', '.radio_st2 label, .select_sel, .disa_inp', function() {
 		$(".cnt_qu_active").removeClass();
 		$(this).parents('.cnt_question').children('dl').addClass('cnt_qu_active');
 		explanation.show( $('button[data-active="' + $(this).data('active') +'"]') );
 	});
-	
-	
+
+
 	$('.cnt_question').on('click', '.cnt_q_btn', function() {
 		if ( $(this).attr('class') === 'cnt_q_btn' ) {
 			explanation.show($(this));
@@ -1149,8 +1170,8 @@ $(function() {
 			$(this).parents('.cnt_question').next('.line_box').attr('tabindex','')
 		}
 	});
-	
-	
+
+
 	$('.suport_fm').on('change', '.radio_st2 input:radio, .select_st select', function() {
 		if ( $('.suport_fm input:radio').is(':checked') && $('.suport_fm select option:selected[value=""]').length === 0 ) {
 			var rtn = calculate.familyPoint();
@@ -1166,10 +1187,10 @@ $(function() {
 				$('#suportSum').append(familyPointNm);
 			}
 		}
-		
+
 	});
-	
-	
+
+
 	$('#disa_inp').on('keyup', function() {
 		if ( this.value.length >= 10 && $validate.checkYYYYMMDD($(this).val().replace(/[^0-9]/g, "")) != '' ) {
 			if ( isNaN(Date.parse($(this).val())) || ($(this).val() > $('.explan03').data('stde')) ) {
@@ -1180,9 +1201,9 @@ $(function() {
 				calculate.subscribePd( $(this) );
 			}
 		}
-		
+
 	});
-	
+
 	$('#disa_inp').on('change', function() {
 		if ( isNaN(Date.parse($(this).val())) || ($(this).val() > $('.explan03').data('stde')) ) {
 			alert("청약통장 가입일이 올바르지 않습니다.");
@@ -1193,7 +1214,7 @@ $(function() {
 		}
 	});
 
-    
+
     $('#idn_pre').on('keyup', function() {
         if ( this.value.length >= 10 && $validate.checkYYYYMMDD($(this).val().replace(/[^0-9]/g, "")) != '' ) {
             if ( isNaN(Date.parse($(this).val())) || ($(this).val() > $('.explan03').data('stde')) ) {
@@ -1204,9 +1225,9 @@ $(function() {
                 calculate.subscribePd( $(this) );
             }
         }
-        
+
     });
-    
+
     $('#idn_pre').on('change', function() {
         if ( isNaN(Date.parse($(this).val())) || ($(this).val() > $('.explan03').data('stde')) ) {
             alert("생년월일 형식이 올바르지 않습니다.");
@@ -1216,24 +1237,24 @@ $(function() {
             calculate.subscribePd( $(this) );
         }
     });
-	
-	
-	
+
+
+
 	$('#bhmlsPd').on('click', function() {
 		var oPopupOptions = new Object();
-		
+
 		oPopupOptions.title = "무주택기간 계산";
 		oPopupOptions.url = "/ap/apg/calculateBhmlsPdView.do";
 		oPopupOptions.height = "620";
 		oPopupOptions.resizable = false;
 		oPopupOptions.clazz ='pop_w_900';
-		
+
 		$pop.dialog(oPopupOptions);
-		
+
 		$('.popBody').attr('tabindex','1').focus();
 	});
-	
-	
+
+
 	$(".btnPopWord").click(function(){
 		var pId = $(this).data("popword");
 		var pTit = "";
@@ -1244,8 +1265,8 @@ $(function() {
 		}
 		gfn_popupWordDc(pId, pTit);
 	});
-	
-	
+
+
 	$(".btnPop").click(function(){
 		var pId = $(this).data("popid");
 		var pTit = "";
@@ -1272,7 +1293,7 @@ $(function() {
 		monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
 		monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
 	});
-	
+
     $("#idn_pre").datepicker({
         dateFormat: "yy-mm-dd",
         changeMonth: true,
@@ -1288,7 +1309,7 @@ $(function() {
         monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
         monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
     });
-	
+
     $('#sel_00').on('change', function() {
     	var selected = this.value;
     	if(selected == '0') {
@@ -1320,11 +1341,11 @@ $(function() {
 	</div>
 </div>
 
-	
+
 <script>
 	var gvPgmId = "APG01M01";
 </script>
-<script src="/js/kabhom/com/hom.core.js"></script>
-<script src="/js/kabhom/util/hom.all.js"></script>
+<script src="js/kabhom/com/hom.core.js"></script>
+<script src="js/kabhom/util/hom.all.js"></script>
 </body>
 </html>

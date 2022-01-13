@@ -6,50 +6,50 @@
 	<meta name="format-detection" content="telephone=no" />
 	<link rel="icon" type="image/ico" href="https://static.applyhome.co.kr/images/kabhom/common/favicon.ico" />
 	<link rel="apple-touch-icon" href="https://static.applyhome.co.kr/images/kabhom/common/phone.png"/>
-	<link rel="shortcut icon" href="https://static.applyhome.co.kr/images/kabhom/common/phone.png"/> 
-	
-	<link rel="stylesheet" type="text/css" href="css/kabhom/main/hom.css"/>	
+	<link rel="shortcut icon" href="https://static.applyhome.co.kr/images/kabhom/common/phone.png"/>
+
+	<link rel="stylesheet" type="text/css" href="css/kabhom/main/hom.css"/>
 	<link rel="stylesheet" type="text/css" href="css/kabhom/main/scrap/virtual.css"/>
-	
-	
+
+
 	<link rel="stylesheet" type="text/css" href="css/kabhom/main/leftMenu.css"/>
 	<!-- 배너 슬라이드 추가링크 -->
 	<link rel="stylesheet" href="css/kabhom/main/vendors/swiper.min.css">
     <script src="js/kabhom/plugin/swiper.min.js"></script>
-   
+
 	<title>청약홈 | APT 무순위 청약취소</title>
-	
-	
+
+
 	<!-- 운영일 경우에만 -->
-	
+
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-143621263-1"></script>
-	
-	
+
+
 	<script>
 	  window.dataLayer = window.dataLayer || [];
 	  function gtag(){dataLayer.push(arguments);}
 	  gtag('js', new Date());
-	
+
 	  gtag('config', 'UA-143621263-1');
 	</script>
-	
+
 	<script src="https://static.applyhome.co.kr/js/kabhom/plugin/jquery.3.1.1.min.js"></script>
 	<script src="https://static.applyhome.co.kr/js/kabhom/plugin/jquery-ui.min.js"></script>
 	<script src="js/kabhom/main/site.js"></script>
-	
+
 	<!-- 성능제어 Netfunnel, 키보드보안 -->
 	<script src="js/kabhom/com/com.js"></script>
-	
+
 	<!-- 성능제어 Netfunnel -->
 	<script src="https://static.applyhome.co.kr/netfunnel/netfunnel.js"></script>
 	<script src="https://static.applyhome.co.kr/netfunnel/netfunnel_skin.js"></script>
-	
+
 	<script>
 	document.domain = "applyhome.co.kr";
-	
+
 	window.onpageshow = function(event) {
 		if(event.persisted) {
-			
+
 			window.location.reload(true);
 		}
 	}
@@ -57,7 +57,7 @@
 		if(gfn_isMobile()) {
 			$('#divTab').css("display","none");
 		}
-		
+
 		var gnbTree = $("#gnbTree > li > button");
 		$(gnbTree).on("click", function() {
 				 $(this).parents("li").siblings("li").children("ul").slideUp();
@@ -66,18 +66,18 @@
 				 $(this).addClass("on");
 		 });
 	});
-	
-		
+
+
 		var strPopupYn = 'N';
-		
-		
+
+
 		if(window.name == "iframeDialog" && strPopupYn == 'Y')
 		{
 			parent.document.location.href = "/co/coz/selectCrtfctLoginView.do";
 		}
 
 		$(function(){
-			 
+
 			 /**
 			 * Description	: 상단 lnb_wrap setting
 			 */
@@ -87,16 +87,16 @@
 				$navi.append($("#menu"+umid).next("ul").clone());
 				$navi.find('a').removeAttr('id');
 			}
-			
-			
+
+
 			var strMenuId = "menu" + $("#naviUl li").eq(1).data('mid');
 			$('#gnb #' + strMenuId).addClass('lnb_active');
-			
+
 
 
 		});
-		
-	// Form input을 name=value 형식의 object로 변환	
+
+	// Form input을 name=value 형식의 object로 변환
 	$.fn.formToObject = function() {
 		var obj = null;
 		try {
@@ -115,23 +115,23 @@
 			return obj;
 		}
 	};
-	
+
 	function formToString(form) {
 		var formData = new FormData($form);
-		
+
 		var object = {};
 		formData.forEach(function(value, key){
 		    object[key] = value;
 		});
 		var json = JSON.stringify(object);
 	}
-	
+
 	function fn_openPopup(url, title) {
 //	    if(gfn_isMobile() == false) {
 	        window.open(url, title);
 //	    }
 	}
-	
+
 	</script>
 </head>
 <body>
@@ -153,11 +153,11 @@
 			<div class="h_top_menu_wrap">
 				<ul class="h_top_menu">
 
-	
-	
+
+
 					<li><a href="javascript:$net.href('/co/coz/procesCrtfctLogout.do');"><i class="xi-unlock-o"></i> 로그아웃</a></li>
 					<li><a href="javascript:NetFunnel.href('/co/cob/selectSubscrptBnkbSbscrbDesc.do', 'ACT_05');"><i class="xi-user-o"></i> 마이페이지</a></li>
-	
+
 
 				</ul>
 			</div>
@@ -370,7 +370,7 @@
 					<li><a href="javascript:$net.href('/co/coz/selectCrtfctCopyView.do');">- 공동인증서 관리</a></li>
 					<li><a href="http://remote.kais.kr" target="_blank">- 원격연결</a></li>
 				</ul>
-				
+
 				<div class="webbanner">
 					  <div class="swiper-container">
                         <div class="swiper-wrapper" style="height: auto; text-align: center">
@@ -403,14 +403,14 @@
 					<a href="javascript:$net.href('/co/coa/selectMainView.do');" class="apply2">청약Home</a>
 					<a href="javascript:$net.href('/kabbnk/cn/cna/selectMainView.do');" class="bank2">은행 담당자</a>
 					<a href="javascript:$net.href('/kabbiz/cm/cma/selectMainView.do');" class="busi2">사업주체</a>
-				</div>	
+				</div>
 			</div>
 		</div>
 		<div class="gnb_bg"></div>
 	</div>
 	<div class="body_bg"></div>
 
-	
+
 	<div id="sitemap">
 		<div class="guide">
 			<div class="site_box">
@@ -420,40 +420,40 @@
 			</div>
 		</div>
 	</div>
-	
+
 
 	<div id="content" class="sub_content">
 		<div class="sub_visu apply">
 			<div class="sub_visu_box">
 				<div class="sub_visu_txt">
 					<h5>
-				
-					
+
+
 						청약신청
-					
-					
-				
+
+
+
 					</h5>
 					<p>50여년간 우리나라 부동산 가치의 기준을 세워 온 한국부동산원 주택청약 서비스입니다.</p>
-					
+
 					<div class="lnb_wrap">
 						<ul class="lnb_box" id="naviUl">
 							<li><a href="javascript:$net.href('/co/coa/selectMainView.do');"><i class="xi-home"></i><span class="blind">홈으로</span></a></li>
 							<li class="mo_none" data-mid="634"><i class="xi-angle-right-thin"></i> 청약신청</li>
-					
-						
+
+
 							<li class="mo_none" data-mid="639" data-umid="634"><i class="xi-angle-right-thin"></i> APT</li>
-							
-						
-						
-						
-						
+
+
+
+
+
 						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
-		
+
 <!-- 배너 슬라이드 추가 스크립트 -->
     <script>
     var swiper = new Swiper('.swiper-container',{
@@ -476,27 +476,27 @@
 
 <script>
 	$(document).ready(function(){
-	    
+
 	    $('#li2').addClass('active').children('a').append('<b class="blind">현재 선택된 분류</b>');
 	});
 
 	/**
 	 * 설명		: 페이징 함수
 	 * 사용방식	: fn_link_page(pageNo)
-	 * 주의		: 
-	 * 리턴		: 
+	 * 주의		:
+	 * 리턴		:
 	 */
 	function fn_link_page(pageNo)
 	{
 		$('#pageIndex').val(pageNo);
 		$net.submit("detailForm", "/ap/apa/selectAptRemndrHshldSubscrptCanclList.do");
 	}
-	
+
 	/**
 	 * 설명		: APT 무순위/잔여세대 청약 신청 내역 상세 보기
 	 * 사용방식	: fn_selectDetail(strHouseManageNo, strPblancNo, strRceptNo)
-	 * 주의		: 
-	 * 리턴		: 
+	 * 주의		:
+	 * 리턴		:
 	 */
 	function fn_selectDetail(strHouseManageNo, strPblancNo, strRceptNo, strSubscrptRankCode, strHouseName, strHoseType)
 	{
@@ -505,10 +505,10 @@
 			$('#rceptNo').val(strRceptNo);
 	        $('#houseName').val(strHouseName);
 	        $('#houseType').val(strHoseType);
-			
+
 			$net.submit("detailForm", "/ap/apa/selectAptRemndrHshldSubscrptCanclDetail.do");
 	}
-	
+
     /**
      * 이슈번호 : HOM-9
      * 기능     : 청약취소 버튼 클릭 이벤트
@@ -524,9 +524,9 @@
         $('#rceptNo').val(strRceptNo);
         $('#houseName').val(strHouseName);
         $('#houseType').val(strHoseType);
-        
+
         $net.submit("detailForm", "/ap/apa/selectAptRemndrHshldSubscrptCanclDetail.do");
-    }	
+    }
 </script>
 
 <form name="detailForm" id="detailForm" method="POST">
@@ -536,15 +536,15 @@
 	<input type="hidden" name="rceptNo" 		id="rceptNo" />
 	<input type="hidden" name="houseName"       id="houseName" />
 	<input type="hidden" name="houseType"       id="houseType" />
-    
+
     <input type="hidden" name="retUrl"          id="retUrl"  value="/ap/apa/selectAptRemndrHshldSubscrptCanclList.do"/>
-	
+
 </form>
 
 		<div class="sub_content_box" id="subContent">
-		
-            
-            
+
+
+
 
 
             <div class="tab_wrap">
@@ -590,7 +590,7 @@
 
 <script>
 //<![CDATA[
-	
+
 	/**
 	 * 설명		: APT 1,2순위 경쟁률 팝업화면을 호출한다.
 	 * 사용방식	: fn_selectCompetitionRate(strHouseManageNo, strPblancNo, strHouseNm)
@@ -600,16 +600,16 @@
 		if($('#pbRsFrm')){
 			$('#pbRsFrm').remove();
 		}
-		
+
 		var pbDeFrm = $('<form/>', {name:'pbRsFrm', id:'pbRsFrm'});
-		
+
 		$('body').append(pbDeFrm);
 		pbDeFrm.append( $('<input/>', {type:'hidden', name:'houseManageNo', id:'houseManageNo', value:strHouseManageNo}));
 		pbDeFrm.append( $('<input/>', {type:'hidden', name:'pblancNo', id:'pblancNo', value:strPblancNo}));
 		pbDeFrm.append( $('<input/>', {type:'hidden', name:'houseNm', id:'houseNm', value:strHouseNm}));
-		
+
 		var oPopupOptions = new Object();
-		
+
 		oPopupOptions.title = "청약접수 경쟁률";
 		//oPopupOptions.url = "/ai/aia/selectAPTCompetitionPopup.do"; // 1,2 순위
 		oPopupOptions.url = "/ai/aia/selectAPTRemndrCompetitionPopup.do"; // 무순위
@@ -617,11 +617,11 @@
 		oPopupOptions.resizable = false;
 		oPopupOptions.formId = "pbRsFrm";
 		oPopupOptions.clazz ='pop_w_900';
-		
+
 		$pop.dialog(oPopupOptions);
 	}
-	
-	
+
+
 //]]>
 </script>
 				<table class="tbl_st list_tbl_st tbl_center mTbl type23">
@@ -650,15 +650,15 @@
 					</thead>
 					<tbody>
 
-	
-	
+
+
 						<tr>
                             <td colspan="8" class="list_none">
 								<b class="color_blue">[접수내역 없음]</b>
 								<p class="mt_5">무순위/잔여세대 청약신청 내역이 없습니다. 다시 한번 확인하신 후 이용하여 주시기 바랍니다.</p>
 							</td>
 						</tr>
-	
+
 
 					</tbody>
 				</table>
@@ -675,7 +675,7 @@
 					</div>
 				</div>
 			</div>
-			
+
 		</div>
 
 
@@ -695,11 +695,11 @@
 	</div>
 </div>
 
-	
+
 <script>
 	var gvPgmId = "APA03M05";
 </script>
-<script src="/js/kabhom/com/hom.core.js"></script>
-<script src="/js/kabhom/util/hom.all.js"></script>
+<script src="js/kabhom/com/hom.core.js"></script>
+<script src="js/kabhom/util/hom.all.js"></script>
 </body>
 </html>
