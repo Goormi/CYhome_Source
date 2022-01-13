@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+* {
+    box-sizing: border-box
+}
+
+.addrPop{
+    width: 100%; height:auto; overflow: auto;padding: 10px
+}
+
+.addrPop .addrpop_sch{
+    text-align: center
+}
+
+.addrPop table.tbl_addr{
+    width: 100%;
+    table-layout: fixed;
+    border-spacing: 0;
+    border-bottom: 1px solid #c9c9c9;
+    border-top: 2px solid #0e4eb2!important;
+}
+
+.addrPop table.tbl_addr th{    
+    font-size: 0.9rem;
+    padding: 3px;
+    word-break: keep-all;
+}
+.addrPop table.tbl_addr td{
+    color: #666;
+    font-size: 0.9rem;
+    text-align: center;
+    
+}
+
+.addrPop table.tbl_addr a{
+    display: block
+}
+.addrPop .paging_wrap{
+    margin: 12px auto
+}
+.addrPop .addrpop_sch input::placeholder{
+    color: #000
+}
+.addrPop .detail table th,
+.addrPop .detail table td{
+    font-size: 1rem;
+    height: 50px !important;
+}
+
+.addrPop .detail table td input[type="text"]{
+    width: 100%;
+    border: 1px solid #c9c9c9;
+    height:30px
+}
+
+
