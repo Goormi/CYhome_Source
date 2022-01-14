@@ -26,3 +26,4 @@ node_modules/
 *.log
 package-lock.json
 package.json
+server/config/database.js
