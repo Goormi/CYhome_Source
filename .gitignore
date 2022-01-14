@@ -21,3 +21,8 @@ doc/**/*.pdf
 
 # key file?
 secret.js
+
+node_modules/
+*.log
+package-lock.json
+package.json
