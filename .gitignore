@@ -20,3 +20,4 @@ doc/*.txt
 doc/**/*.pdf
 
 # key file?
+secret.js
