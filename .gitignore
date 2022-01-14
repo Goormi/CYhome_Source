@@ -25,6 +25,4 @@ secret.js
 node_modules/
 *.log
 .env
-package-lock.json
-package.json
 server/config/database.js
