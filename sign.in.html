@@ -41,7 +41,7 @@ button:hover {
 }
 
 img.avatar {
-  width: 30%;
+  width: 10%;
   /*border-radius: 50%;*/
 }
 
@@ -67,7 +67,9 @@ span.psw {
 </style>
 </head>
 <body>
-
+  <a class="navbar-brand" href="main.home.html" style="width:200px; margin:0px; padding:0px;">
+    <img src="images\logo_v1.png" style="width:10%;" alt="Logo">
+  </a>
 <h2>Login Form</h2>
 
 <form action="/action_page.php" method="post">
@@ -82,7 +84,7 @@ span.psw {
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw" required>
 
-    <button type="submit" onclick = "location.href = 'main.home.html' ">Login</button>
+    <button type="submit" >Login</button>
     <label>
       <input type="checkbox" checked="checked" name="remember" > Remember me
     </label>
