@@ -1,19 +1,19 @@
-import userdb from "./config/userDatabase.js";
-import router from "./routes/index.js"
-import dotenv from "dotenv";
-import express from "express";
-const app = express();
-import cookieParser from "cookie-parser";
-import bodyParse from "body-parser";
-import cors from "cors";
+const userdb = require('../server/config/userDatabase.js');
+const router = require('../server/routes/index.js');
+const dotenv = require('dotenv');
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
+const app = express();
 dotenv.config();
 
 // express 설정
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors({ credentials:true, origin:'http://localhost:3000' }));
-// app.use(bodyParser.json());
+app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(router);
 
@@ -21,12 +21,11 @@ app.get('/',(req,res) => {
     res.send('Root');
 });
 
-/*
 //mysql connection
-import mysql from "mysql";
-import dbconfig from "./config/database"; // 데이터베이스 설정파일 경로
+const mysql = require('mysql');
+const dbconfig = require('../server/config/database'); // 데이터베이스 설정파일 경로
 const connection = mysql.createPool(dbconfig);
-*/
+
 // 방법 1. Server 단에서 모든 쿼리를 기재하고 수행한다.
 
 // 예시 - 하나의 URL(/test) 당 하나의 쿼리 처리

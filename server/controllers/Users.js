@@ -1,8 +1,8 @@
-import Users from "../models/UserModel.js";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+const Users = require('../models/UserModel.js');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
-export const getUsers = async(req, res) => {
+exports.getUsers = async(req, res) => {
     try {
         const users = await Users.findAll({
             attributes:['id','name','email']
@@ -13,7 +13,7 @@ export const getUsers = async(req, res) => {
     }
 }
 
-export const Register = async(req, res) => {
+exports.Register = async(req, res) => {
     const { name, email, password, confPassword } = req.body;
     if(password !== confPassword) return res.status(400).json({msg: "Password dan Confirm Password tidak cocok"});
     const salt = await bcrypt.genSalt();
@@ -30,7 +30,7 @@ export const Register = async(req, res) => {
     }
 }
 
-export const Login = async(req, res) => {
+exports.Login = async(req, res) => {
     try {
         const user = await Users.findAll({
             where:{
@@ -70,7 +70,7 @@ export const Login = async(req, res) => {
     }
 }
 
-export const Logout = async(req, res) => {
+exports.Logout = async(req, res) => {
     const refreshToken = req.cookies.refreshToken;
     if(!refreshToken) return res.sendStatus(204);
     const user = await Users.findAll({

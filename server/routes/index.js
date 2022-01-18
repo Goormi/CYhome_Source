@@ -1,7 +1,9 @@
-import express from "express";
-import { getUsers, Register, Login, Logout } from "../controllers/Users.js";
-import { verifyToken } from "../middleware/VerifyToken.js";
-import { refreshToken } from "../controllers/RefreshToken.js";
+const express = require('express');
+const { getUsers, Register, Login, Logout } = require('../controllers/Users.js');
+const { verifyToken } = require('../middleware/VerifyToken.js');
+const { refreshToken } = require('../controllers/RefreshToken.js');
+
+const userdb = require('../config/userDatabase.js');
 
 const router = express.Router();
 
@@ -11,4 +13,4 @@ router.post('/login', Login);
 router.get('/token', refreshToken);
 router.delete('/logout', Logout);
 
-export default router;
+module.exports = router;
