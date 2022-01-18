@@ -69,6 +69,9 @@ span.psw {
   }
 }
 </style>
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
   <a class="navbar-brand" href="main.home.html" style="width:200px; margin:0px; padding:0px;">
@@ -103,6 +106,61 @@ span.psw {
     <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
   </div>
 </form>
+
+<div id="mydiv"> </div>
+
+<script type="text/babel">
+  const Auth = async (tmp) => {
+    tmp.preventDefault();
+    try {
+        await axios.post('http://localhost:30020/login', {
+            email: email,
+            password: password
+        });
+        console.log("success")
+        location.href="main.home.html";
+    } catch (error) {
+        if (error.response) {
+            console.log("err");
+        }
+    }
+  }
+
+  class Hello extends React.Component {
+    constructor(props) {
+    super(props);
+    this.state = { email: '', password: '', msg: '' };
+    this.handleInputChange = this.handleInputChange.bind(this);
+    }
+
+    handleInputChange(event) {
+      const target = event.target;
+
+      this.setState({
+        email: target.email, password: target.password, msg: target.msg
+      });
+    }
+
+    handleSubmit(event) {
+      alert('A email was submitted: ' + this.state.email + 'pw' + this.state.password);
+      event.preventDefault();
+    }
+
+    render() {
+      return (
+        <form onSubmit={this.handleSubmit}>
+          <p className="has-text-centered">{this.state.msg}</p>
+          <label className="label">Email or Username</label>
+          <input type="text" className="input" placeholder="Username" value={this.state.email} onChange={this.handleInputChange} />
+          <label className="label">Password</label>
+          <input type="password" className="input" placeholder="******" value={this.state.password} onChange={this.handleInputChange} />
+          <button type="button"  className="button">Login</button>
+        </form>
+      );
+    }
+  }
+    ReactDOM.render(<Hello />, document.getElementById('mydiv'))
+</script>
 
 </body>
 </html>
