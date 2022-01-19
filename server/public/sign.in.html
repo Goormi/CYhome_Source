@@ -92,28 +92,18 @@ span.psw {
     <label for="password"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="password" required>
 
-    <button type="submit" onclick="postLoginData()">Login</button>
+    <button type="submit" >Login</button>
+  </form>
     <label>
       <input type="checkbox" checked="checked" name="remember" > Remember me
     </label>
   </div>
-  </form>
+ 
   <div class="container" style="background-color:#f1f1f1">
     <button type="button" class="cancelbtn" onclick = "location.href = 'main.home.html' ">Cancel</button>
     <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
   </div>
 
- <!--<script>
-    function postLoginData(){
-      const data = {
-        id : document.querySelector("input[name='id']").value,
-        password : document.querySelector("input[name='password']").value
-      }
-      console.log(data)
-      axios.get('http://localhost:30020/login', data)
-      .then(data => console.log(data.data))
-    }
-  </script>-->
 
 </form>
 
