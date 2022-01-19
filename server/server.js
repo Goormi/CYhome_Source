@@ -12,7 +12,7 @@ dotenv.config();
 // express 설정
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors({ credentials:true, origin:'http://localhost:3000' }));
+app.use(cors());
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(router);
