@@ -89,7 +89,7 @@ span.psw {
     <h2>Login Form</h2>
   </div>
 
-  <div class="container">
+  <div class="container"><!--
     <label for="uname"><b>Username</b></label>
     <input type="text" placeholder="Enter Username" name="uname" required>
 
@@ -104,9 +104,8 @@ span.psw {
 
   <div class="container" style="background-color:#f1f1f1">
     <button type="button" class="cancelbtn" onclick = "location.href = 'main.home.html' ">Cancel</button>
-    <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
+     <span class="psw">Forgot <a href="#">password?</a></span> -->
   </div>
-</form>
 
 <div id="mydiv"> </div>
 
@@ -142,7 +141,7 @@ span.psw {
               password: this.state.password
           });
           console.log(this.state.email)
-          //location.href="main.home.html";
+          window.location.href = "main.home.html?email=" + this.state.email;
       } catch (error) {
         console.log("!" + error);
       }
@@ -150,7 +149,7 @@ span.psw {
 
     render() {
       return (
-        <form onSubmit={this.handleSubmit} method="post">
+        <form onSubmit={this.handleSubmit} >
           <p className="has-text-centered">{this.state.msg}</p>
           <label className="label">Email or Username</label>
           <input type="text" className="input" placeholder="Username" value={this.state.email} onChange={this.handleInputChangeEmail} />

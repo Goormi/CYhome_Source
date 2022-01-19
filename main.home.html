@@ -44,6 +44,12 @@
     color: #1abc9c !important;
   }
   </style>
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"> </script>
+  <script src="jwt-decode.js"></script>
+
 </head>
 <body>
 
@@ -77,6 +83,7 @@
   <a href="do_apply_start.html" class="btn btn-default btn-lg">
     청약 신청하기
   </a>
+  <div id="mydiv"></div>
 </div>
 
 
@@ -84,6 +91,66 @@
 <footer class="container-fluid bg-4 text-center">
   <p>Bootstrap Theme Made By <a href="https://www.w3schools.com">www.w3schools.com</a></p>
 </footer>
+
+<script type="text/babel">
+  const state = { email: '', token: '', expire: ''};
+  const refreshToken = async () => {
+    $(document).ready(function () {
+            var val = location.href.substr(
+                location.href.lastIndexOf('=') + 1
+            );
+            console.log('val : ' + val);
+        });
+      console.log("ref")
+      try {
+        console.log("res1")
+          const response = axios.get('http://localhost:30020/token');
+          console.log(response)
+          state.token = response.data.accessToken
+          console.log("res3")
+          const decoded = jwt_decode(response.data.accessToken);
+          state.email = decoded.email
+          state.expire = decoded.exp
+      } catch (error) {
+        console.log("!!" + error)
+          if (error.response) {
+              console.log("??" + error.response)
+          }
+      }
+  }
+  const axiosJWT = axios.create();
+  axiosJWT.interceptors.request.use(async (config) => {
+      console.log("jwt")
+      const currentDate = new Date();
+      if (expire * 1000 < currentDate.getTime()) {
+          const response = await axios.get('http://localhost:30020/token');
+          config.headers.Authorization = `Bearer ${response.data.accessToken}`;
+          state.token = response.data.accessToken
+          const decoded = jwt_decode(response.data.accessToken);
+          state.email = decoded.email
+          state.expire = decoded.exp
+      }
+      return config;
+  }, (error) => {
+      return Promise.reject(error);
+  });
+
+  refreshToken();
+
+  function tick() {
+  const element = (
+    <div>
+      <h1>Hello, world!</h1>
+      <h2>It is {new Date().toLocaleTimeString()}.</h2>
+      <h1>Hello, {state.email}</h1>
+    </div>
+  );
+  // highlight-next-line
+  ReactDOM.render(element, document.getElementById('mydiv'));
+  }
+  setInterval(tick, 1000);
+</script>
+
 
 </body>
 </html>
