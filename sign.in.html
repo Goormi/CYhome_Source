@@ -53,14 +53,14 @@ img.avatar {
   padding: 16px;
 }
 
-span.psw {
+span.password {
   float: right;
   padding-top: 16px;
 }
 
 /* Change styles for span and cancel button on extra small screens */
 @media screen and (max-width: 300px) {
-  span.psw {
+  span.password {
      display: block;
      float: none;
   }
@@ -69,6 +69,10 @@ span.psw {
   }
 }
 </style>
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
   <a class="navbar-brand" href="main.home.html" style="width:200px; margin:0px; padding:0px;">
@@ -76,7 +80,6 @@ span.psw {
   </a>
 <h2>Login Form</h2>
 
-<form action="/action_page.php" method="post">
   <div class="imgcontainer">
     <!-- <img src="images\logo_v1.svg" alt="Avatar" class="avatar" style="width:200px; margin:10px; padding:10px;"> -->
 
@@ -86,13 +89,13 @@ span.psw {
   </div>
 
   <div class="container">
-    <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
+    <label for="email"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="email" required>
 
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <label for="password"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" required>
 
-    <button type="submit" >Login</button>
+    <button type="submit" onclick="postLoginData()" >Login</button>
     <label>
       <input type="checkbox" checked="checked" name="remember" > Remember me
     </label>
@@ -100,9 +103,19 @@ span.psw {
 
   <div class="container" style="background-color:#f1f1f1">
     <button type="button" class="cancelbtn" onclick = "location.href = 'main.home.html' ">Cancel</button>
-    <!-- <span class="psw">Forgot <a href="#">password?</a></span> -->
+    <!-- <span class="password">Forgot <a href="#">password?</a></span> -->
   </div>
-</form>
+
+  <script>
+    function postLoginData(){
+      const data = {
+        email : document.querySelector("input[name='email']").value,
+        password : document.querySelector("input[name='password']").value
+      }
+      console.log(data)
+      axios.post('http://localhost:30020/login', data)
+    }
+  </script>
 
 </body>
 </html>
