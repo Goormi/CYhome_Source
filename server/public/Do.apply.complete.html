@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1" />
+	<meta name="format-detection" content="telephone=no" />
+	<link rel="icon" type="image/ico" href="https://static.applyhome.co.kr/images/kabhom/common/favicon.ico" />
+	<link rel="apple-touch-icon" href="https://static.applyhome.co.kr/images/kabhom/common/phone.png"/>
+	<link rel="shortcut icon" href="https://static.applyhome.co.kr/images/kabhom/common/phone.png"/>
+
+	<link rel="stylesheet" type="text/css" href="css/kabhom/main/hom.css"/>
+	<link rel="stylesheet" type="text/css" href="css/kabhom/main/scrap/virtual.css"/>
+
+
+	<link rel="stylesheet" type="text/css" href="css/kabhom/main/leftMenu.css"/>
+	<!-- 배너 슬라이드 추가링크 -->
+	<link rel="stylesheet" href="css/kabhom/main/vendors/swiper.min.css">
+    <script src="js/kabhom/plugin/swiper.min.js"></script>
+
+	<title>청약홈 | 청약가상체험</title>
+
+
+	<!-- 운영일 경우에만 -->
+
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-143621263-1"></script>
+
+
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-143621263-1');
+	</script>
+
+	<script src="https://static.applyhome.co.kr/js/kabhom/plugin/jquery.3.1.1.min.js"></script>
+	<script src="https://static.applyhome.co.kr/js/kabhom/plugin/jquery-ui.min.js"></script>
+	<script src="js/kabhom/main/site.js"></script>
+
+	<!-- 성능제어 Netfunnel, 키보드보안 -->
+	<script src="js/kabhom/com/com.js"></script>
+
+	<!-- 성능제어 Netfunnel -->
+	<script src="https://static.applyhome.co.kr/netfunnel/netfunnel.js"></script>
+	<script src="https://static.applyhome.co.kr/netfunnel/netfunnel_skin.js"></script>
+
+	<script>
+	document.domain = "applyhome.co.kr";
+
+	window.onpageshow = function(event) {
+		if(event.persisted) {
+
+			window.location.reload(true);
+		}
+	}
+	$(document).ready(function() {
+		if(gfn_isMobile()) {
+			$('#divTab').css("display","none");
+		}
+
+		var gnbTree = $("#gnbTree > li > button");
+		$(gnbTree).on("click", function() {
+				 $(this).parents("li").siblings("li").children("ul").slideUp();
+				 $(this).parents("li").siblings("li").children("button").removeClass("on");
+				 $(this).siblings("ul").slideToggle();
+				 $(this).addClass("on");
+		 });
+	});
+
+
+		var strPopupYn = 'N';
+
+
+		if(window.name == "iframeDialog" && strPopupYn == 'Y')
+		{
+			parent.document.location.href = "/co/coz/selectCrtfctLoginView.do";
+		}
+
+		$(function(){
+
+			 /**
+			 * Description	: 상단 lnb_wrap setting
+			 */
+			$navi = $("#naviUl li").last();
+			var umid = $navi.data("umid");
+			if(umid != null) {
+				$navi.append($("#menu"+umid).next("ul").clone());
+				$navi.find('a').removeAttr('id');
+			}
+
+
+			var strMenuId = "menu" + $("#naviUl li").eq(1).data('mid');
+			$('#gnb #' + strMenuId).addClass('lnb_active');
+
+
+
+		});
+
+	// Form input을 name=value 형식의 object로 변환
+	$.fn.formToObject = function() {
+		var obj = null;
+		try {
+			if (this[0].tagName && this[0].tagName.toUpperCase() == "FORM") {
+				var arr = this.serializeArray();
+				if(arr) {
+					obj = {};
+					$.each(arr, function(){
+						obj[this.name] = this.value;
+					})
+				}
+			}
+		} catch (e) {
+			alert(e.message);
+		} finally {
+			return obj;
+		}
+	};
+
+	function formToString(form) {
+		var formData = new FormData($form);
+
+		var object = {};
+		formData.forEach(function(value, key){
+		    object[key] = value;
+		});
+		var json = JSON.stringify(object);
+	}
+
+	function fn_openPopup(url, title) {
+//	    if(gfn_isMobile() == false) {
+	        window.open(url, title);
+//	    }
+	}
+
+	</script>
+</head>
+<body>
+  <div id="content" class="sub_content">
+		<div class="sub_visu apply">
+			<div class="sub_visu_box">
+				<div class="sub_visu_txt">
+					<h5>
+
+
+						모집공고단지 청약연습
+
+
+
+					</h5>
+					<p>50여년간 우리나라 부동산 가치의 기준을 세워 온 한국부동산원 주택청약 서비스입니다.</p>
+
+					<div class="lnb_wrap">
+						<ul class="lnb_box" id="naviUl">
+							<li><a href="javascript:$net.href('/co/coa/selectMainView.do');"><i class="xi-home"></i><span class="blind">홈으로</span></a></li>
+							<li class="mo_none" data-mid="100122"><i class="xi-angle-right-thin"></i> 모집공고단지 청약연습</li>
+
+
+
+							<li class="" data-mid="100126" data-umid="100122">
+								<i class="xi-angle-right-thin"></i> 청약가상체험
+							</li>
+
+
+
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+<!-- 배너 슬라이드 추가 스크립트 -->
+    <script>
+    var swiper = new Swiper('.swiper-container',{
+        autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+        },
+        spaceBetween: 30,
+        effect: 'fade',
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+  </script>
+		<div class="sub_content_box" id="subContent">
+			<div class="imagine_info">
+				<dl>
+					<dt>
+						<img src="https://static.applyhome.co.kr/images/kabhom/sub/imagin_bg01.png" alt="청약체험 이미지">
+					</dt>
+					<dd>
+						<em>청약신청이 완료되었습니다.</em>
+						<p>실제 청약이 아닌 <span class="color_blue">가상 체험</span>입니다. 유의하십시오.</p>
+					</dd>
+				</dl>
+			</div>
+			<div class="apply_result_chk">
+				<h5 class="sub_sub_tit mb_10"> 청약신청 내역 </h5>
+				<table class="tbl_st only_tbl_tb mt_10 mTbl type04">
+					<caption class="blind"> 청약신청 내역이 나와있는 테이블입니다.</caption>
+					<colgroup>
+						<col style="width:20%">
+						<col style="width:30%">
+						<col style="width:20%">
+						<col style="width:30%">
+					</colgroup>
+					<tbody>
+						<tr>
+
+
+
+									<tr>
+		                                <th scope="row">성명</th>
+		                                <td>YOUR NAME</td>
+										<th scope="row" class="iemNm" data-no="3">거주구분</th>
+										<td class="iemVal" data-no="3">해당지역</td>
+		                            </tr>
+
+
+						<tr>
+							<th scope="row">주민등록번호</th>
+							<td>YYMMDD-*******</td>
+							<th scope="row">연락처</th>
+							<td>000-0000-0000</td>
+						</tr>
+						<tr>
+							<th scope="row" class="iemNm" data-no="1">주택명</th>
+							<td class="iemVal" data-no="1">청약가상체험(민영주택)</td>
+							<th scope="row">청약신청일</th>
+							<td>20YY년 MM월 DD일</td>
+						</tr>
+						<tr>
+							<th scope="row" class="iemNm" data-no="2">주택형</th>
+							<td class="iemVal" data-no="2">TYPE_TEXT/FLOAT</td>
+							<th scope="row" class="iemNm" data-no="5">최하층 우선배정</th>
+							<td class="iemVal" data-no="5">해당사항 없음</td>
+						</tr>
+
+						<tr>
+							<th scope="row" class="iemNm" data-no="6">청약신청순위</th>
+							<td class="iemVal" data-no="6">1순위</td>
+							<th scope="row" class="iemNm" data-no="7">주택처분서약</th>
+							<td class="iemVal" data-no="7">해당사항없음</td>
+						</tr>
+
+
+
+
+						<tr>
+							<th scope="row" class="iemNm" data-no="4">장기복무군인 신청</th>
+							<td colspan="3" class="iemVal" data-no="4">해당사항 없음</td>
+						</tr>
+
+
+
+					</tbody>
+				</table>
+			<!-- ## 가점제청약 (일반공급 가점제, 특별공급 노부모부양 민간) start-->
+
+				<table class="tbl_st only_tbl_tb tbl_center mt_30 mTbl type12">
+						<caption class="blind">가점제 청약신청 내역이 나와있는 테이블입니다.</caption>
+						<colgroup>
+							<col style="width:25%">
+							<col style="width:25%">
+							<col style="width:30%">
+							<col style="width:auto">
+						</colgroup>
+						<thead>
+							<tr>
+								<th scope="col" colspan="2">구분</th>
+								<th scope="col">선택항목</th>
+								<th scope="col">점수</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="rowgroup" rowspan="3">가점항목</th>
+								<td>무주택기간(최고32점)</td>
+								<td>유주택, 30세미만 미혼인 무주택</td>
+								<td>0점</td>
+							</tr>
+							<tr>
+								<td>부양가족수(최고35점)</td>
+								<td>1명</td>
+								<td>10점</td>
+							</tr>
+							<tr>
+								<td>청약통장 가입기간(최고17점)</td>
+								<td>6월 미만</td>
+								<td>1점</td>
+							</tr>
+							<tr class="tbl_total mTotal">
+								<th scope="row" colspan="2">총점</th>
+								<td class="br_none"></td>
+								<td><b class="color_blue">11</b><small class="xsmall">/ 84점</small></td>
+							</tr>
+						</tbody>
+				</table>
+				<ul class="inde_txt">
+					<li>* 주택형 = 주거전용면적(type이 있는 경우 type 포함)</li>
+				</ul>
+
+			<!-- 노부모부양 end ## -->
+
+
+			<!-- ## 이전기관 start-->
+
+			<!-- 이전기관 end ## -->
+
+
+			</div>
+			<div class="btn_box">
+				<button type="button" class="btn_submit" id="btnHome" onclick = "location.href = 'main.home.html' ">홈으로</button>
+				<button type="button" class="btn_submit" id="btnHomePrct" onclick = "location.href = 'do_apply_start.html' ">다시하기</button>
+			</div>
+		</div>
+<script>
+
+	$(function(){
+		gfn_hideCmmnProgressBar();
+
+
+
+
+			$("#btnSubmitPre").on("click", function()
+			{
+
+				$net.href("");
+			});
+
+			$("#btnSubmitNext").on("click", function()
+			{
+				$net.href("");
+			});
+
+
+
+	});
+
+</script>
+
+
+
+
+	</div>
+<div id="divForPopup"></div>
+
+
+<div class="loding_wrap" id="commonProgressBar">
+	<div class="lod_wrap_box">
+		<div class="lod_box">
+			<i class="xi-spinner-2 xi-spin"></i>
+			<p>처리중입니다.</p>
+		</div>
+	</div>
+</div>
+
+
+<script>
+	var gvPgmId = "APR00R06";
+</script>
+<script src="js/kabhom/com/hom.core.js"></script>
+<script src="js/kabhom/util/hom.all.js"></script>
+</body>
+</html>
