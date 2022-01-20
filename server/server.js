@@ -30,15 +30,26 @@ app.use(bodyParser.json());
 app.use('/', router);
 app.use('/public', static(path.join(__dirname, 'public')));
 
+const ejs = require('ejs');
+const fs = require('fs');
+const mainPage = fs.readFileSync('./mainhome.ejs', 'utf8');
+
 app.get('/',(req,res) => {
     console.log('/process/product 호출됨 // session : ' + req.session.user);
     if (req && req.session && req.session.user) {
       console.log(req.session.user.email);
+      var page = ejs.render(mainPage, {
+        title: "Temporary Title",
+        email_data: req.session.user.email,
+    });
+    res.send(page);
       res.redirect('/public/main.home.html');
     } else {
       res.redirect('/public/sign.in.html');
     }
 });
+
+
 
 router.route('/process/login').post(async (req, res) => {
     try{
