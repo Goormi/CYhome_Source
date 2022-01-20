@@ -15,7 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="css/kabhom/main/leftMenu.css"/>
 	<!-- 배너 슬라이드 추가링크 -->
 	<link rel="stylesheet" href="css/kabhom/main/vendors/swiper.min.css">
-    <script src="js/kabhom/plugin/swiper.min.js"></script>
+  <script src="js/kabhom/plugin/swiper.min.js"></script>
 
 	<title>청약홈 | 청약가상체험</title>
 
@@ -132,6 +132,7 @@
 	}
 
 	</script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
   <div id="content" class="sub_content">
@@ -365,5 +366,20 @@
 </script>
 <!-- <script src="js/kabhom/com/hom.core.js"></script>
 <script src="js/kabhom/util/hom.all.js"></script> -->
+
+<script>
+const callUser = async() => {
+  try{
+    return await axios.get('http://localhost:30020/session_user');
+  } catch (error) {console.log(error)}
+}
+const sessionUser = () => {
+  const user = callUser().then(response => {
+  if(response.data.email){console.log(response.data.email)}
+  }).catch(error => {console.log(error)})
+};
+sessionUser();
+
+</script>
 </body>
 </html>
