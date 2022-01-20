@@ -38,14 +38,13 @@
 	<script src="js/kabhom/main/site.js"></script>
 
 	<!-- 성능제어 Netfunnel, 키보드보안 -->
-	<script src="js/kabhom/com/com.js"></script>
+	<!-- <script src="js/kabhom/com/com.js"></script> -->
 
 	<!-- 성능제어 Netfunnel -->
 	<script src="https://static.applyhome.co.kr/netfunnel/netfunnel.js"></script>
 	<script src="https://static.applyhome.co.kr/netfunnel/netfunnel_skin.js"></script>
 
 	<script>
-	document.domain = "applyhome.co.kr";
 
 	window.onpageshow = function(event) {
 		if(event.persisted) {
@@ -54,9 +53,9 @@
 		}
 	}
 	$(document).ready(function() {
-		if(gfn_isMobile()) {
-			$('#divTab').css("display","none");
-		}
+		// if(gfn_isMobile()) {
+		// 	$('#divTab').css("display","none");
+		// }
 
 		var gnbTree = $("#gnbTree > li > button");
 		$(gnbTree).on("click", function() {
@@ -216,7 +215,7 @@
 
 									<tr>
 		                                <th scope="row">성명</th>
-		                                <td>YOUR NAME</td>
+		                                <td>YOUR NAME HERE</td>
 										<th scope="row" class="iemNm" data-no="3">거주구분</th>
 										<td class="iemVal" data-no="3">해당지역</td>
 		                            </tr>
@@ -322,7 +321,7 @@
 <script>
 
 	$(function(){
-		gfn_hideCmmnProgressBar();
+		// gfn_hideCmmnProgressBar();
 
 
 
@@ -364,7 +363,7 @@
 <script>
 	var gvPgmId = "APR00R06";
 </script>
-<script src="js/kabhom/com/hom.core.js"></script>
-<script src="js/kabhom/util/hom.all.js"></script>
+<!-- <script src="js/kabhom/com/hom.core.js"></script>
+<script src="js/kabhom/util/hom.all.js"></script> -->
 </body>
 </html>

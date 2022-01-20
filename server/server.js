@@ -30,21 +30,12 @@ app.use(bodyParser.json());
 app.use('/', router);
 app.use('/public', static(path.join(__dirname, 'public')));
 
-const ejs = require('ejs');
-const fs = require('fs');
-const mainPage = fs.readFileSync('./mainhome.ejs', 'utf8');
-
 app.get('/',(req,res) => {
-    console.log('/process/product 호출됨 // session : ' + req.session.user);
     if (req && req.session && req.session.user) {
-      console.log(req.session.user.email);
-      var page = ejs.render(mainPage, {
-        title: "Temporary Title",
-        email_data: req.session.user.email,
-    });
-    res.send(page);
+      console.log('/process/product 호출됨 // session : ' + req.session.user.email);
       res.redirect('/public/main.home.html');
     } else {
+      console.log('/process/product 호출됨 // session : ' + req.session.user);
       res.redirect('/public/sign.in.html');
     }
 });
@@ -124,7 +115,35 @@ const userauthdb = async function(){
       console.error(error);
   }
 }
-    userauthdb();
+userauthdb();
+
+//mysql connection
+const mysql = require('mysql');
+const dbconfig = require('../server/config/database'); // 데이터베이스 설정파일 경로
+const connection = mysql.createPool(dbconfig);
+
+// 방법 2. Front 단에서 쿼리를 Server단에 보낸다.
+
+// 예시 - 하나의 URL(/connect_db)로데이터베이스 호출
+app.post('/connect_db', (req, res) => {
+    req.setTimeout(0) // 시간 제한 없음
+    connection.query(req.body.query ,
+        (error, rows) => {
+            if (error) {console.log(error);}
+            else{
+                res.send(rows);
+            }
+        });
+});
+app.get('/session_user', (req, res) => {
+  if(req && req.session && req.session.user){
+      console.log(req.session.user);
+      res.send(req.session.user);
+  }
+  else{
+      console.log('로그인 상태 아님');
+  }
+});
 
 // 30020 서버 포트
 app.listen(30020, async (err) => {

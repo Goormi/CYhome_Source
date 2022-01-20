@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <style>
   body {
     font: 20px Montserrat, sans-serif;
@@ -84,6 +85,21 @@
 <footer class="container-fluid bg-4 text-center">
   <p>Bootstrap Theme Made By <a href="https://www.w3schools.com">www.w3schools.com</a></p>
 </footer>
+
+<script>
+const callUser = async() => {
+  try{
+    return await axios.get('http://localhost:30020/session_user');
+  } catch (error) {console.log(error)}
+}
+const sessionUser = () => {
+  const user = callUser().then(response => {
+  if(response.data.email){console.log(response.data.email)}
+  }).catch(error => {console.log(error)})
+};
+sessionUser();
+
+</script>
 
 </body>
 </html>
