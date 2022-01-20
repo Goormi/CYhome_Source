@@ -44,6 +44,7 @@ exports.Login = async(req, res) => {
         console.log(userId);
         const name = user[0].name;
         const email = user[0].email;
+
         const accessToken = jwt.sign({userId, name, email}, process.env.ACCESS_TOKEN_SECRET,{
             expiresIn: '20s'
         });
@@ -60,11 +61,8 @@ exports.Login = async(req, res) => {
           res.status(404).json({msg:"update error"});
         }
 
-        res.cookie('refreshToken', refreshToken,{
-            httpOnly: true,
-            maxAge: 24 * 60 * 60 * 1000
-        });
-        res.json({ accessToken });
+        res.json({ refreshToken });
+        console.log("success")
     } catch (error) {
         res.status(404).json({msg:"Email not found"});
     }
