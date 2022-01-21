@@ -141,12 +141,12 @@
 	</script>
 </head>
 <body>
-  <div id="content" class="sub_content">
+  <div id="" class="sub_content">
 		<div class="sub_visu apply">
 			<div class="sub_visu_box">
 				<div class="sub_visu_txt">
-					<h5> 모집공고단지 청약연습 </h5>
-					<p>50여년간 우리나라 부동산 가치의 기준을 세워 온 한국부동산원 주택청약 서비스입니다.</p>
+					<h5> 모집공고단지 청약신청 </h5>
+					<p>주택청약 서비스입니다.</p>
 					<div class="lnb_wrap">
 						<ul class="lnb_box" id="naviUl">
 							<li><a href="main.home.html"><i class="xi-home"></i><span class="blind">홈으로</span></a></li>
@@ -216,7 +216,8 @@
 					constructor(props){
 						super(props);
 						this.state = {
-							data : [11,2,2]
+							data : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], // Data Limit = 30
+							index : null
 						}
 						this.callAPT = this.callAPT.bind(this);
 						this.callView = this.callView.bind(this);
@@ -227,8 +228,32 @@
 						this.callAPT();
 					}
 
-					moveLocation(){
-						location.href = 'do_apply_type_select.html'
+					moveLocation(e){
+						var index = e.target.value
+/*						var form = document.createElement("form");
+						var parm = new Array();
+						var input = new Array();
+				
+						form.action = 'do_apply_type_select.html';
+						form.method = "post";
+				
+				
+						parm.push( ['sido', this.state.data[index].sido] );
+						parm.push( ['houseNm', this.state.data[index].houseNm] );
+						parm.push( ['houseManageNo', this.state.data[index].houseManageNo] );
+				
+				
+						for (var i = 0; i < parm.length; i++) {
+							input[i] = document.createElement("input");
+							input[i].setAttribute("type", "hidden");
+							input[i].setAttribute('name', parm[i][0]);
+							input[i].setAttribute("value", parm[i][1]);
+							form.appendChild(input[i]);
+						}
+						document.body.appendChild(form);
+						form.submit();
+*/						
+						location.href = `do_apply_type_select.html?houseManageNo=${this.state.data[index].houseManageNo}`
 					}
 
 					async callAPT(){
@@ -246,7 +271,7 @@
 
 					callView(){
 						return this.state.data.map((value, index) =>
-						<div className="radio_lg" data-pbno={"2021000908"+index.toString()} data-hmno={"2021000908"+index.toString()} tabIndex="0">
+						<div className="radio_lg" data-pbno={"2021000908"+index.toString()} data-hmno={"2021000908"+index.toString()} tabIndex="0" key={index}>
 							<input type="hidden" name="hidRank" id={"hidRank2021000908"+index.toString()} value="1"/>
 							<input type="hidden" name="hidHmNo" id={"hidHmNo2021000908"+index.toString()} value={"2021000908"+index.toString()}/>
 							<input type="hidden" name="hidRNo" id={"hidRNo2021000908"+index.toString()} value=""/>
@@ -262,7 +287,7 @@
 								</b>
 							</label>
 							<span className="btn_box2">
-								<button type="button" className="btn_submit popOpen" data-pop="notes" onClick = {this.moveLocation}>다음</button>
+								<button type="button" className="btn_submit popOpen" data-pop="notes" value={index} onClick = {(e) => this.moveLocation(e)}>다음</button>
 							</span>
 						</div>
 						)
