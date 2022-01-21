@@ -417,20 +417,67 @@ const callAPTty = async() => {
 		.then((response) => {
 			dataAPTty = response.data[0].houseTy
 			console.log(dataAPTty)
-			var tmpTy = dataAPTty.split(",")[0]
+			const tmpTy = dataAPTty.split(",")[0]
 			document.querySelector("#tyAPT").innerText = `${tmpTy}`
 		}).catch(err => {console.log(err)});
 }
-callAPTty();
+callAPTty()
+
 var date = new Date();
 year = date.getFullYear();
 month = date.getMonth() + 1;
 day = date.getDate();
 document.querySelector("#today").innerHTML = year + "년 " + month + "월 " + day + "일"
-
-
+var applyDay = `${year}-${month >= 10 ? month : '0' + month}-${day >= 10 ? day : '0' + day}`
 
 // DB insert
+const insertApply = async() => {
+	// 내부 함수 1차 - houseTy
+	await axios.post('http://localhost:30020/connect_db', {
+		query: `SELECT * FROM api_apt_type_details WHERE houseManageNo = ${houseManageNo};`	})
+		.then((response) => {
+			dataAPTty = response.data[0].houseTy
+			const tmpTy = dataAPTty.split(",")[0]
+			// 내부 함수 2차 - houseNm
+			let tmpHouseNm = async() => {
+				await axios.post('http://localhost:30020/connect_db', {
+					query: `SELECT * FROM api_apt WHERE houseManageNo = ${houseManageNo};`	})
+					.then((response) => {
+						houseNm = response.data[0].houseNm
+						// 내부 함수 3차 - email
+						let tmpUser = () => {
+						  const user = callUser().then(response => {
+							  if(response.data.email){
+									var email = response.data.email
+									// 내부 함수 4차 - numApply
+									let tmpNum = async() =>{
+										await axios.post('http://localhost:30020/connect_db', {
+											query: `SELECT * FROM applications WHERE email = '${email}' ;`})
+											.then((response) => {
+												let lengthData = response.data.length
+												console.log("$$" + tmpTy + "$$" + houseNm + "$$" + email + "$$" + lengthData + "$$" + applyDay)
+												// 드디어 INSERT
+												let insertData = async() => {
+													await axios.post('http://localhost:30020/connect_db', {
+														query: `INSERT INTO applications(email, numApply, houseNm, houseTy, applyDay) values ('${email}', ${lengthData + 1}, '${houseNm}', '${tmpTy}', '${applyDay}');`
+													}).then((response) => {
+														console.log(response)
+													}).catch(err => console.log(err))
+												}
+												insertData()
+											}).catch(err => {console.log(err)});
+									}
+									tmpNum()
+								}
+							})
+						}
+					tmpUser()
+				}).catch(err => {console.log(err)});
+			}
+			tmpHouseNm()
+		}).catch(err => {console.log(err)});
+}
+insertApply();
 </script>
 </body>
 </html>
