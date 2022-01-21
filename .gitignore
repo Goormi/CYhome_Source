@@ -25,4 +25,3 @@ secret.js
 node_modules/
 *.log
 .env
-server/config/database.js
