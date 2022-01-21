@@ -212,7 +212,7 @@
 
 									<tr>
 		                                <th scope="row">성명</th>
-		                                <td>YOUR NAME HERE</td>
+		                                <td id = email>YOUR NAME HERE</td>
 										<th scope="row" class="iemNm" data-no="3">거주구분</th>
 										<td class="iemVal" data-no="3">해당지역</td>
 		                            </tr>
@@ -226,13 +226,13 @@
 						</tr>
 						<tr>
 							<th scope="row" class="iemNm" data-no="1">주택명</th>
-							<td class="iemVal" data-no="1">청약가상체험(민영주택)</td>
+							<td class="iemVal" data-no="1" id = nameAPT>청약가상체험(민영주택)</td>
 							<th scope="row">청약신청일</th>
-							<td>20YY년 MM월 DD일</td>
+							<td id = today>20YY년 MM월 DD일</td>
 						</tr>
 						<tr>
 							<th scope="row" class="iemNm" data-no="2">주택형</th>
-							<td class="iemVal" data-no="2">TYPE_TEXT/FLOAT</td>
+							<td class="iemVal" data-no="2" id = tyAPT>TYPE_TEXT/FLOAT</td>
 							<th scope="row" class="iemNm" data-no="5">최하층 우선배정</th>
 							<td class="iemVal" data-no="5">해당사항 없음</td>
 						</tr>
@@ -277,17 +277,17 @@
 							<tr>
 								<th scope="rowgroup" rowspan="3">가점항목</th>
 								<td>무주택기간(최고32점)</td>
-								<td>유주택, 30세미만 미혼인 무주택</td>
+								<td id = period_nohome>유주택, 30세미만 미혼인 무주택</td>
 								<td>0점</td>
 							</tr>
 							<tr>
 								<td>부양가족수(최고35점)</td>
-								<td>1명</td>
+								<td id = num_dependents>1명</td>
 								<td>10점</td>
 							</tr>
 							<tr>
 								<td>청약통장 가입기간(최고17점)</td>
-								<td>6월 미만</td>
+								<td id = period_subscription>6월 미만</td>
 								<td>1점</td>
 							</tr>
 							<tr class="tbl_total mTotal">
@@ -362,8 +362,8 @@
 </script>
 <!-- <script src="js/kabhom/com/hom.core.js"></script>
 <script src="js/kabhom/util/hom.all.js"></script> -->
-
 <script>
+// 신청 내역 출력
 const callUser = async() => {
   try{
     return await axios.get('http://localhost:30020/session_user');
@@ -371,11 +371,61 @@ const callUser = async() => {
 }
 const sessionUser = () => {
   const user = callUser().then(response => {
-  if(response.data.email){console.log(response.data.email)}
+  if(response.data.email){
+		console.log(response.data.email)
+		// 가산점 출력
+		const callUserInfo = async() => {
+			await axios.post('http://localhost:30020/connect_db', {
+				query: `SELECT * FROM test WHERE email = "${response.data.email}";`	})
+				.then((response) => {
+					period_nohome = response.data[0].period_nohome
+					num_dependents = response.data[0].num_dependents
+					period_subscription = response.data[0].period_subscription
+					document.querySelector("#period_nohome").innerText = `${period_nohome} 년 동안 무주택`
+					document.querySelector("#num_dependents").innerText = `${num_dependents} 명`
+					document.querySelector("#period_subscription").innerText = `${period_subscription} 년 미만`
+				}).catch(err => {console.log(err)});
+		}
+		callUserInfo();
+
+		document.querySelector("#email").innerText = `${response.data.email}`
+	}
   }).catch(error => {console.log(error)})
 };
 sessionUser();
 
+const houseManageNo = '2021000930';
+var dataAPT = {}, dataAPTty = {};
+const callAPT = async() => {
+	await axios.post('http://localhost:30020/connect_db', {
+		query: `SELECT * FROM api_apt WHERE houseManageNo = ${houseManageNo};`	})
+		.then((response) => {
+			dataAPT = response.data[0].houseNm
+			console.log(dataAPT)
+			document.querySelector("#nameAPT").innerText = `${dataAPT}`
+		}).catch(err => {console.log(err)});
+}
+callAPT();
+const callAPTty = async() => {
+	await axios.post('http://localhost:30020/connect_db', {
+		query: `SELECT * FROM api_apt_type_details WHERE houseManageNo = ${houseManageNo};`	})
+		.then((response) => {
+			dataAPTty = response.data[0].houseTy
+			console.log(dataAPTty)
+			var tmpTy = dataAPTty.split(",")[0]
+			document.querySelector("#tyAPT").innerText = `${tmpTy}`
+		}).catch(err => {console.log(err)});
+}
+callAPTty();
+var date = new Date();
+year = date.getFullYear();
+month = date.getMonth() + 1;
+day = date.getDate();
+document.querySelector("#today").innerHTML = year + "년 " + month + "월 " + day + "일"
+
+
+
+// DB insert
 </script>
 </body>
 </html>
