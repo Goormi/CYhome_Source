@@ -38,14 +38,14 @@
 	<script src="js/kabhom/main/site.js"></script>
 
 	<!-- 성능제어 Netfunnel, 키보드보안 -->
-	<script src="js/kabhom/com/com.js"></script>
+	<!-- <script src="js/kabhom/com/com.js"></script> -->
 
 	<!-- 성능제어 Netfunnel -->
 	<script src="https://static.applyhome.co.kr/netfunnel/netfunnel.js"></script>
 	<script src="https://static.applyhome.co.kr/netfunnel/netfunnel_skin.js"></script>
 
 	<script>
-	document.domain = "applyhome.co.kr";
+	// document.domain = "applyhome.co.kr";
 
 	window.onpageshow = function(event) {
 		if(event.persisted) {
@@ -54,9 +54,9 @@
 		}
 	}
 	$(document).ready(function() {
-		if(gfn_isMobile()) {
+		//if(gfn_isMobile()) {
 			$('#divTab').css("display","none");
-		}
+		//}
 
 		var gnbTree = $("#gnbTree > li > button");
 		$(gnbTree).on("click", function() {
@@ -133,6 +133,11 @@
 	}
 
 	</script>
+	<!-- react 및 axios -->
+	<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js" ></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
 	<div id="content" class="sub_content">
@@ -321,7 +326,7 @@
             <div class="tab_wrap">
                 <ul class="tab_box">
                     <li id="li0"><a href="#"><span>특별공급</span></a></li>
-                    <li id="li1"><a href="AptCancelList2.html"><span>1순위&middot;2순위</span></a></li>
+                    <li id="li1"><a href="#"><span>1순위&middot;2순위</span></a></li>
                     <li id="li2"><a href="#"><span>무순위</span></a></li>
                     <li id="li3"><a href="#"><span>취소후재공급</span></a></li>
                 </ul>
@@ -335,7 +340,7 @@
 				</div>
 			</div>
 
-			<h5 class="sub_sub_tit mt_50">1&middot;2순위 청약신청내용</h5>
+			<h5 class="sub_sub_tit mt_50" ><span id = email></span> 님의 1&middot;2순위 청약신청내용</h5>
 			<p class="mt_10">청약신청 상세정보를 보시려면 주택명을 클릭하여 주시기 바랍니다.</p>
 
 			<div class="search_wrap mt_30">
@@ -379,7 +384,7 @@
 
 						</select>
 					</div>
-					<button type="button" class="search_btn" id="btnSearch"><img src="https://static.applyhome.co.kr/images/kabhom/board/ic_search.png" alt=""> 조회</button>
+					<button type="button" class="search_btn" onclick = "location.href = '#'"><img src="https://static.applyhome.co.kr/images/kabhom/board/ic_search.png" alt=""> 조회</button>
 				</div>
 			</div>
 			<div id="divList">
@@ -410,9 +415,9 @@
 								<th scope="col">당첨자발표일</th>
 							</tr>
 						</thead>
-						<tbody>
+						<tbody id = applyTable>
 							<tr>
-								<td colspan="9" class="list_none">
+								<td colspan="9" class="list_none" id = applyList>
 									<b class="color_blue">['조회' 버튼을 눌러 신청내역을 확인 하시기 바랍니다.]</b>
 								</td>
 							</tr>
@@ -444,7 +449,58 @@
 <script>
 	var gvPgmId = "APA03M03";
 </script>
-<script src="js/kabhom/com/hom.core.js"></script>
-<script src="js/kabhom/util/hom.all.js"></script>
+<!-- <script src="js/kabhom/com/hom.core.js"></script>
+<script src="js/kabhom/util/hom.all.js"></script> -->
+<script>
+// 세션 유지 확인
+const callUser = async() => {
+  try{
+    return await axios.get('http://localhost:30020/session_user');
+  } catch (error) {console.log(error)}
+}
+const sessionUser = () => {
+  const user = callUser().then(response => {
+  if(response.data.email){
+		var email = response.data.email
+		console.log(email)
+		document.querySelector("#email").innerText = `${response.data.email}`
+		// 신청 내역 출력
+		let tmpNum = async() =>{
+			await axios.post('http://localhost:30020/connect_db', {
+				query: `SELECT * FROM applications WHERE email = '${email}' ;`})
+				.then((response) => {
+					let lengthData = response.data.length
+					// 없을 경우
+					if(!lengthData) document.querySelector("#applyList").innerHTML = "<b class='color_blue'> [ 주택청약 신청 내역이 없습니다. ] </b>"
+					else{ // 있을 경우
+						console.log(response.data)
+						document.querySelector("#applyList").innerHTML = `<b class='color_blue'> [ 주택청약 신청 내역이 ${lengthData}개 있습니다. ] </b>`
+						var tmpStr = ``
+						response.data.forEach((item, i) => {
+							tmpStr += `
+							<tr>
+								<td>${item.numApply}</td>
+								<td>${item.applyDay.split("T")[0]}</td>
+								<td>구르미</td>
+								<td>1순위</td>
+								<td>${item.houseNm}</td>
+								<td>${item.houseTy}</td>
+								<td>-</td>
+								<td>버튼</td>
+								<td>2022-02-18</td>
+							</tr>`
+						});
+
+						document.querySelector("#applyTable").innerHTML = tmpStr
+					}
+				}).catch(err => {console.log(err)});
+		}
+		tmpNum()
+		}
+  }).catch(error => {console.log(error)})
+};
+sessionUser();
+// 신청 취소
+</script>
 </body>
 </html>
