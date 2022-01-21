@@ -486,7 +486,7 @@ const sessionUser = () => {
 								<td>${item.houseNm}</td>
 								<td>${item.houseTy}</td>
 								<td>-</td>
-								<td>버튼</td>
+								<td><button type="button" onclick = "cancelApply('${email}', ${item.numApply})">취소하기</button></td>
 								<td>2022-02-18</td>
 							</tr>`
 						});
@@ -501,6 +501,17 @@ const sessionUser = () => {
 };
 sessionUser();
 // 신청 취소
+const cancelApply = async(email, num) => {
+	console.log(email)
+	console.log(num)
+	console.log(`DELETE FROM applications WHERE email = '${email}' AND numApply = ${num};`)
+	await axios.post('http://localhost:30020/connect_db', {
+		query: `DELETE FROM applications WHERE email = '${email}' AND numApply = ${num};` })
+		.then((response) => {
+			console.log(response)
+		}).catch(err => console.log(err))
+		window.location.reload()
+}
 </script>
 </body>
 </html>
