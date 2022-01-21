@@ -83,8 +83,7 @@ router.route('/process/login').post(async (req, res) => {
     });
 });
 router.route('/process/register').post(async (req, res) => {
-  const { email, password, confPassword } = req.body;
-  console.log(req.body)
+  const { email, password, confPassword, period_nohome, num_dependents, period_subscription } = req.body;
   if(password !== confPassword) return res.status(400).json({msg: "Password and Confirm Password is different"});
   try {
     const user = await Users.findAll({
@@ -97,9 +96,14 @@ router.route('/process/register').post(async (req, res) => {
       const hashPassword = await bcrypt.hash(password, salt);
       await Users.create({
           email: email,
-          password: hashPassword
+          password: hashPassword,
+          period_nohome: period_nohome,
+          num_dependents: num_dependents,
+          period_subscription: period_subscription
       });
-      res.json({msg: "Register Success"});
+      console.log("Register Success");
+      res.redirect('/public/main.home.html');
+      // res.json({msg: "Register Success"});
     }else {console.log("Already exist email");}
   } catch (error) {
         console.log(error);

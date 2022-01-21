@@ -13,6 +13,15 @@ const Users = db.define('test',{
     password:{
         type: DataTypes.STRING
     },
+    period_nohome:{
+        type: DataTypes.INTEGER
+    },
+    num_dependents:{
+        type: DataTypes.INTEGER
+    },
+    period_subscription:{
+        type: DataTypes.INTEGER
+    },
     refresh_token:{
         type: DataTypes.TEXT
     }
