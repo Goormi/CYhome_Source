@@ -277,23 +277,23 @@
 							<tr>
 								<th scope="rowgroup" rowspan="3">가점항목</th>
 								<td>무주택기간(최고32점)</td>
-								<td id = period_nohome>유주택, 30세미만 미혼인 무주택</td>
-								<td>0점</td>
+								<td id = period_nohome_Info>유주택, 30세미만 미혼인 무주택</td>
+								<td id = period_nohome>0점</td>
 							</tr>
 							<tr>
 								<td>부양가족수(최고35점)</td>
-								<td id = num_dependents>1명</td>
-								<td>10점</td>
+								<td id = num_dependents_Info>1명</td>
+								<td id = num_dependents>10점</td>
 							</tr>
 							<tr>
 								<td>청약통장 가입기간(최고17점)</td>
-								<td id = period_subscription>6월 미만</td>
-								<td>1점</td>
+								<td id = period_subscription_Info>6월 미만</td>
+								<td id = period_subscription>1점</td>
 							</tr>
 							<tr class="tbl_total mTotal">
 								<th scope="row" colspan="2">총점</th>
 								<td class="br_none"></td>
-								<td><b class="color_blue">11</b><small class="xsmall">/ 84점</small></td>
+								<td><b class="color_blue" id = totalScore>11</b><small class="xsmall">/ 84점</small></td>
 							</tr>
 						</tbody>
 				</table>
@@ -381,9 +381,14 @@ const sessionUser = () => {
 					period_nohome = response.data[0].period_nohome
 					num_dependents = response.data[0].num_dependents
 					period_subscription = response.data[0].period_subscription
-					document.querySelector("#period_nohome").innerText = `${period_nohome} 년 동안 무주택`
-					document.querySelector("#num_dependents").innerText = `${num_dependents} 명`
-					document.querySelector("#period_subscription").innerText = `${period_subscription} 년 미만`
+					document.querySelector("#period_nohome_Info").innerText = `${period_nohome} 년 동안 무주택`
+					document.querySelector("#num_dependents_Info").innerText = `${num_dependents} 명`
+					document.querySelector("#period_subscription_Info").innerText = `${period_subscription} 년 미만`
+					document.querySelector("#period_nohome").innerText = `${period_nohome}점`
+					document.querySelector("#num_dependents").innerText = `${num_dependents}점`
+					document.querySelector("#period_subscription").innerText = `${period_subscription}점`
+					var totalScore = parseInt(period_nohome) + parseInt(num_dependents) + parseInt(period_subscription)
+					document.querySelector("#totalScore").innerText =`${totalScore}`
 				}).catch(err => {console.log(err)});
 		}
 		callUserInfo();
