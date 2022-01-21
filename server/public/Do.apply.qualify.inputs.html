@@ -32,7 +32,7 @@
 
 	  gtag('config', 'UA-143621263-1');
 	</script>
-
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script src="https://static.applyhome.co.kr/js/kabhom/plugin/jquery.3.1.1.min.js"></script>
 	<script src="https://static.applyhome.co.kr/js/kabhom/plugin/jquery-ui.min.js"></script>
 	<script src="js/kabhom/main/site.js"></script>
@@ -256,7 +256,7 @@
                         </div>
 
                     </div>
-
+                    
 
                     <h5 class="sub_square mb_10 mt_30"> 청약신청 내역 <span class="color_org">(현재 청약신청 미완료 상태임)</span></h5>
                     <table class="tbl_st tbl_row mt_10 mTbl type04">
@@ -269,33 +269,106 @@
                         </colgroup>
                         <tbody>
 
+                            <script>
+                                let email;
+                                const callUser = async() => {
+                                  try{
+                                    return await axios.get('http://localhost:30020/session_user');
+                                  } catch (error) {console.log(error)}
+                                }
+                                const sessionUser = () => {
+                                  const user = callUser().then(response => {
+                                  if(response.data.email){
+                                      email = response.data.email;
+                                      document.getElementById('mail').innerHTML=email
+                                      callAPT();
+                                      callpoint();
+                                  }
+                                  }).catch(error => {console.log(error)})
+                                };
+                                sessionUser();
+                                
+                                
+                                  
+                    
+                                        const callAPT = async() => {
+                                            await axios.post('http://localhost:30020/connect_db', 
+                                            {
+                                                
+                                            query: `SELECT * FROM goormy_first_database.applications WHERE email = "${email}";`
+                                        
+                                           // query: "SELECT * FROM goormy_first_database.applications WHERE email = 'aws';"
+                                            }
+                                            ).then((response) => {
+                                                console.log(response.data);
+                                                var hNm = response.data[0].houseNm;
+                                                var hTy = response.data[0].houseTy;
+                                                var nAy = response.data[0].numApply;
+                                                var aPd = response.data[0].applyDay
+                                                document.getElementById('houseNm').innerHTML=hNm
+                                                document.getElementById('houseTy').innerHTML=hTy
+                                                document.getElementById('numApply').innerHTML=nAy
+                                                document.getElementById('applyDay').innerHTML=aPd
+                                                
+                                            }).catch(err=>{
+                                                console.log(err)
+                                            });
+                                        }
 
+                                        const callpoint = async() => {
+                                            await axios.post('http://localhost:30020/connect_db', 
+                                            {
+                                                
+                                            query: `SELECT * FROM test WHERE email = "${email}";`
+                                        
+                                           // query: "SELECT * FROM goormy_first_database.applications WHERE email = 'aws';"
+                                            }
+                                            ).then((response) => {
+                                                console.log(response.data);
 
+                                        
+                                                var pNh = response.data[0].period_nohome;
+                                                var nDp = response.data[0].num_dependents;
+                                                var pSc = response.data[0].period_subscription;
+                                        
+                                                document.getElementById('period_nohome').innerHTML=pNh
+                                                document.getElementById('num_dependents').innerHTML=nDp
+                                                document.getElementById('period_subscription').innerHTML=pSc
+                                                
+                                                var total = pNh+nDp+pSc
+                                                document.getElementById('total').innerHTML=total
+                                                
+                                            }).catch(err=>{
+                                                console.log(err)
+                                            });
+                                        }
+                                        
+                                        </script>
                                     <tr>
                                         <th scope="row">성명</th>
-                                        <td>YOUR NAME</td>
+                                        <td id="mail">email</td>
                                         <th scope="row" class="iemNm" data-no="3">거주구분</th>
                                         <td class="iemVal" data-no="3">해당지역</td>
                                     </tr>
 
-
+        
                             <tr>
                                 <th scope="row">주민등록번호</th>
                                 <td>YYMMDD-*******</td>
                                 <th scope="row">청약신청일</th>
-                                <td>20YY년 MM월 DD일</td>
+                                <td id="applyDay">20YY년 MM월 DD일</td>
                             </tr>
                             <tr>
-                                <th scope="row" class="iemNm" data-no="1">주택명</th>
-                                <td class="iemVal" data-no="1">청약가상체험(민영주택)</td>
-                                <th scope="row" class="iemNm" data-no="2">주택형</th>
-                                <td class="iemVal" data-no="2">TYPE_TEXT/FLOAT </td>
+                                <th scope="row" class="iemNm" data-no="1" >주택명</th>
+                                <td class="iemVal" data-no="1" id="houseNm">청약가상체험(민영주택)</td>
+                                <th scope="row" class="iemNm" data-no="2" >주택형</th>
+                                <td class="iemVal" data-no="2" id="houseTy">TYPE_TEXT/FLOAT </td>
 
                             </tr>
 
                             <tr>
                                 <th scope="row" class="iemNm" data-no="6">청약신청순위</th>
-                                <td class="iemVal" data-no="6">1순위</td>
+                                <td class="iemVal" data-no="6" id="numApply">1순위</td>
                                 <th scope="row" class="iemNm" data-no="7">주택처분서약</th>
                                 <td class="iemVal" data-no="7">해당사항없음</td>
                             </tr>
@@ -346,28 +419,23 @@
                                     <tr>
                                         <th scope="rowgroup" rowspan="3">가점항목</th>
                                         <td>무주택기간(최고32점)</td>
-
-
-
-                                                <td>유주택, 30세미만 미혼인 무주택</td>
-
-
-                                        <td>0점</td>
+                                        <td id = period_nohome_Info>유주택, 30세미만 미혼인 무주택</td>
+                                        <td id = period_nohome>0점</td>
                                     </tr>
                                     <tr>
                                         <td>부양가족수(최고35점)</td>
-                                        <td>1명</td>
-                                        <td>10점</td>
+                                        <td id = num_dependents_Info>1명</td>
+                                        <td id = num_dependents>10점</td>
                                     </tr>
                                     <tr>
                                         <td>청약통장 가입기간(최고17점)</td>
-                                        <td>6월 미만</td>
-                                        <td>1점</td>
+                                        <td id = period_subscription_Info>6월 미만</td>
+                                        <td id = period_subscription>1점</td>
                                     </tr>
                                     <tr class="tbl_total">
                                         <th scope="row" colspan="2">총점</th>
                                         <td class="br_none"></td>
-                                        <td><b class="color_blue">11</b><small class="xsmall">/ 84점</small></td>
+                                        <td><b class="color_blue" id="total">11</b><small class="xsmall">/ 84점</small></td>
                                     </tr>
                                 </tbody>
                         </table>
