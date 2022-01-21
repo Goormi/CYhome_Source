@@ -15,7 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="css/kabhom/main/leftMenu.css"/>
 	<!-- 배너 슬라이드 추가링크 -->
 	<link rel="stylesheet" href="css/kabhom/main/vendors/swiper.min.css">
-    <script src="js/kabhom/plugin/swiper.min.js"></script>
+  <script src="js/kabhom/plugin/swiper.min.js"></script>
 
 	<title>청약홈 | 청약가상체험</title>
 
@@ -38,14 +38,13 @@
 	<script src="js/kabhom/main/site.js"></script>
 
 	<!-- 성능제어 Netfunnel, 키보드보안 -->
-	<script src="js/kabhom/com/com.js"></script>
+	<!-- <script src="js/kabhom/com/com.js"></script> -->
 
 	<!-- 성능제어 Netfunnel -->
 	<script src="https://static.applyhome.co.kr/netfunnel/netfunnel.js"></script>
 	<script src="https://static.applyhome.co.kr/netfunnel/netfunnel_skin.js"></script>
 
 	<script>
-	document.domain = "applyhome.co.kr";
 
 	window.onpageshow = function(event) {
 		if(event.persisted) {
@@ -54,9 +53,9 @@
 		}
 	}
 	$(document).ready(function() {
-		if(gfn_isMobile()) {
-			$('#divTab').css("display","none");
-		}
+		// if(gfn_isMobile()) {
+		// 	$('#divTab').css("display","none");
+		// }
 
 		var gnbTree = $("#gnbTree > li > button");
 		$(gnbTree).on("click", function() {
@@ -133,6 +132,11 @@
 	}
 
 	</script>
+	<!-- react 및 axios -->
+	<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js" ></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
   <div id="content" class="sub_content">
@@ -142,26 +146,18 @@
 					<h5>
 
 
-						모집공고단지 청약연습
+						모집공고단지 청약신청
 
 
 
 					</h5>
-					<p>50여년간 우리나라 부동산 가치의 기준을 세워 온 한국부동산원 주택청약 서비스입니다.</p>
+					<p>주택청약 서비스입니다</p>
 
-					<div class="lnb_wrap">
+					<div class = "lnb_wrap">
 						<ul class="lnb_box" id="naviUl">
-							<li><a href="javascript:$net.href('/co/coa/selectMainView.do');"><i class="xi-home"></i><span class="blind">홈으로</span></a></li>
-							<li class="mo_none" data-mid="100122"><i class="xi-angle-right-thin"></i> 모집공고단지 청약연습</li>
-
-
-
-							<li class="" data-mid="100126" data-umid="100122">
-								<i class="xi-angle-right-thin"></i> 청약가상체험
-							</li>
-
-
-
+							<li><a href="main.home.html"><i class="xi-home"></i><span class="blind">홈으로</span></a></li>
+							<li class="mo_none" data-mid="100122"><i class="xi-angle-right-thin"></i> 모집공고단지 청약신청</li>
+							<li class="" data-mid="100126" data-umid="100122"> <i class="xi-angle-right-thin"></i> 신청 완료 </li>
 						</ul>
 					</div>
 				</div>
@@ -216,7 +212,7 @@
 
 									<tr>
 		                                <th scope="row">성명</th>
-		                                <td>YOUR NAME</td>
+		                                <td>YOUR NAME HERE</td>
 										<th scope="row" class="iemNm" data-no="3">거주구분</th>
 										<td class="iemVal" data-no="3">해당지역</td>
 		                            </tr>
@@ -322,7 +318,7 @@
 <script>
 
 	$(function(){
-		gfn_hideCmmnProgressBar();
+		// gfn_hideCmmnProgressBar();
 
 
 
@@ -364,7 +360,22 @@
 <script>
 	var gvPgmId = "APR00R06";
 </script>
-<script src="js/kabhom/com/hom.core.js"></script>
-<script src="js/kabhom/util/hom.all.js"></script>
+<!-- <script src="js/kabhom/com/hom.core.js"></script>
+<script src="js/kabhom/util/hom.all.js"></script> -->
+
+<script>
+const callUser = async() => {
+  try{
+    return await axios.get('http://localhost:30020/session_user');
+  } catch (error) {console.log(error)}
+}
+const sessionUser = () => {
+  const user = callUser().then(response => {
+  if(response.data.email){console.log(response.data.email)}
+  }).catch(error => {console.log(error)})
+};
+sessionUser();
+
+</script>
 </body>
 </html>
