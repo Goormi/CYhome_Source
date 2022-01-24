@@ -145,6 +145,7 @@ app.get('/session_user', (req, res) => {
       res.send(req.session.user);
   }
   else{
+        res.send('null');
       console.log('로그인 상태 아님');
   }
 });
