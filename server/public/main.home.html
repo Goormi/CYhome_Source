@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <style>
   body {
@@ -47,6 +48,7 @@
 </head>
 <body>
 
+
 <!-- Navbar -->
 <nav class="navbar navbar-default">
   <div class="container">
@@ -61,33 +63,48 @@
       </a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right" id="target">
         <li><a href="AptCancelList.html">청약 신청 내역/취소</a></li>
         <li><a href="AddpointCaculatorView.html">청약가점 정보변경</a></li>
-        <li><a href="sign.in.html">로그인</a></li>
         <li><a href="/process/logout">로그아웃</a></li>
-        <li><a href="sign.up.html">회원가입</a></li>
       </ul>
     </div>
   </div>
 </nav>
+<script>
+  let email;
+  const callUser = async() => {
+    try{
+      return await axios.get('http://localhost:30020/session_user');
+    } catch (error) {console.log(error)}
+  }
+  const sessionUser = () => {
+    const user = callUser().then(response => {
 
+        console.log(response.data);
+        if(response.data==null){
+      var target = document.getElementById("target");
+      var li = document.createElement("li");
+      var a = document.createElement("a");
+      var text = document.createTextNode('로그인');
+      a.appendChild(text);
+      a.setAttribute("href", "sign.in.html");
+      li.appendChild(a);
+      target.appendChild(li);
+  }
+    
+    }).catch(error => {console.log(error)})
+  };
+  sessionUser();
+
+          </script>
 <!-- First Container -->
 <div class="container-fluid bg-1 text-center">
   <a href="do_apply_start.html" class="btn btn-default btn-lg">
     청약 신청하기
   </a>
 </div>
-<div class="container-fluid bg-1 text-center">
-  <a href="AptCancelList2.html" class="btn btn-default btn-lg">
-    AptCancelList2.html
-  </a>
-</div>
-<div class="container-fluid bg-1 text-center">
-  <a href="Do.apply.complete.html" class="btn btn-default btn-lg">
-    Do.apply.complete.html
-  </a>
-</div>
+
 
 
 <!-- Footer -->
