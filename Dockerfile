@@ -1,7 +1,7 @@
 FROM node:latest
 # 작업 폴더를 만들고 npm 설치
 RUN mkdir /app
-COPY ./package.json /app/package.json
+COPY ./server/package.json /app/package.json
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 ENV rds_host $rds_host
