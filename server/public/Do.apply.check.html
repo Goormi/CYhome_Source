@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="css/kabhom/main/vendors/swiper.min.css">
     <script src="js/kabhom/plugin/swiper.min.js"></script>
 
-	<title>청약홈 | 청약가상체험</title>
+	<title>청약홈 | 청약</title>
 
 
 	<!-- 운영일 경우에만 -->
@@ -44,6 +44,12 @@
 	<script src="https://static.applyhome.co.kr/netfunnel/netfunnel.js"></script>
 	<script src="https://static.applyhome.co.kr/netfunnel/netfunnel_skin.js"></script>
 
+	<!-- react 및 axios -->
+	<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js" ></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"> </script>
+	
 	<script>
 	document.domain = "applyhome.co.kr";
 
@@ -135,29 +141,29 @@
 	</script>
 </head>
 <body>
-  <div id="content" class="sub_content">
+  <div id="" class="sub_content">
 		<div class="sub_visu apply">
 			<div class="sub_visu_box">
 				<div class="sub_visu_txt">
 					<h5>
 
 
-						모집공고단지 청약연습
+						모집공고단지 청약신청
 
 
 
 					</h5>
-					<p>50여년간 우리나라 부동산 가치의 기준을 세워 온 한국부동산원 주택청약 서비스입니다.</p>
+					<p>주택청약 서비스입니다.</p>
 
 					<div class="lnb_wrap">
 						<ul class="lnb_box" id="naviUl">
 							<li><a href="main.home.html"><i class="xi-home"></i><span class="blind">홈으로</span></a></li>
-							<li class="mo_none" data-mid="100122"><i class="xi-angle-right-thin"></i> 모집공고단지 청약연습</li>
+							<li class="mo_none" data-mid="100122"><i class="xi-angle-right-thin"></i> 모집공고단지 청약신청</li>
 
 
 
 							<li class="" data-mid="100126" data-umid="100122">
-								<i class="xi-angle-right-thin"></i> 청약가상체험
+								<i class="xi-angle-right-thin"></i> 청약신청
 							</li>
 
 
@@ -198,7 +204,6 @@
 	<div class="apply_step_box">
 		<h5>
 
-				<span class="color_blue">가상 체험</span>
 
 
 
@@ -209,7 +214,7 @@
 
 
 
-									APT 1순위 청약신청
+									APT 1순위 청약
 
 
 
@@ -270,6 +275,7 @@
 	</div>
 
 	<form name="reqstForm" id="reqstForm" method="POST">
+		<!--여기부터-->
 		<div class="chos_wrap">
 			<input type="hidden" name="processTm" id="processTm" value="18143833247668741"/>
 			<input type="hidden" name="houseManageNo" id="houseManageNo" value="2021000907" />
@@ -324,36 +330,108 @@
 		</div>
 
 		<div class="chos_wrap">
-			<h5 class="sub_tit mt_20">거주지 확인</h5>
-			<table class="tbl_st tbl_row mt_30 scrp_result mTbl type02">
-				<caption class="blind">스크래핑 결과가 나와있는 테이블입니다.</caption>
+			
+		
+
+		<div id="move"></div>
+
+		<input type="hidden" name="housePosesnAtTy" id="housePosesnAtTy" value="2A" />
+        <input type="hidden" name="housePosesnSecd" id="housePosesnSecd" value="" />
+		<input type="hidden" name="apsPrzwinAt" id="apsPrzwinAt" value="N" />
+		<input type="hidden" name="apsSubscrptAt" id="apsSubscrptAt" value="Y" />
+        <input type="hidden" name="apsSubscrptAtOri" id="apsSubscrptAtOri" value="Y" />
+        <input type="hidden" name="bhmlsPriorAt" id="bhmlsPriorAt" value="N" />
+        <input type="hidden" name="agreAt" id="agreAt" value="N" />
+	    <div id="addpntIemInput" style="display: none"></div>
+	<!--여기까지-->
+
+	<script type="text/babel">
+		class TypeSelect extends React.Component{
+			constructor(props){
+				super(props);
+				this.state = {
+					data : [],
+					houseManageNo : parseInt(location.href.split('?')[1]?.split('=')[1]),
+					houseTy : String(location.href.split('?')[2]?.split('=')[1]),
+					lngtrSrvicSolderAt : null,
+					resideSecd : null,
+					housePosesn : null,
+					przwinAt : null
+				}
+				this.moveLocationFront = this.moveLocationFront.bind(this);
+				this.moveLocationBack = this.moveLocationBack.bind(this);
+				this.setlngtrSrvicSolderAt = this.setlngtrSrvicSolderAt.bind(this);
+				this.setResideSecd = this.setResideSecd.bind(this);
+				this.setHousePosesn = this.setHousePosesn.bind(this);
+				this.setPrzwinAt = this.setPrzwinAt.bind(this);
+			}
+
+			moveLocationFront(e){
+				let data1 = this.state.lngtrSrvicSolderAt ;
+				let data2 = this.state.resideSecd ;
+				let data3 = this.state.housePosesn ;
+				let data4 = this.state.przwinAt;
+				if(data1 != null && data2 != null && data3 != null && data4 != null){
+					location.href = `Do.apply.qualify.inputs.html?houseManageNo=${this.state?.houseManageNo}?houseTy=${this.state?.houseTy}?dataSet=${data1+data2+data3+data4}`;
+				}else{
+					alert("선택지를 모두 선택하여 주십시오.");
+				}
+			}
+
+			moveLocationBack(e){
+				location.href = `do_apply_type_select.html?houseManageNo=${this.state?.houseManageNo}`;
+			}
+
+			setlngtrSrvicSolderAt(e){
+				this.setState({ lngtrSrvicSolderAt : e.target.value })
+				console.log(e.target.value)
+			}
+			
+			setResideSecd(e){
+				this.setState({ resideSecd : e.target.value })
+				console.log(e.target.value)
+			}
+			setHousePosesn(e){
+				this.setState({ housePosesn : e.target.value })
+				console.log(e.target.value)
+			}
+			setPrzwinAt(e){
+				this.setState({ przwinAt : e.target.value })
+				console.log(parent.document.body)
+			}
+
+			render(){
+				return <>
+
+				<h5 className="sub_tit mt_20">거주지 확인</h5>
+			<table className="tbl_st tbl_row mt_30 scrp_result mTbl type02">
+				<caption className="blind">스크래핑 결과가 나와있는 테이블입니다.</caption>
 				<thead>
 					<tr>
-						<th class="thTIt" style="width: 50%">검증항목</th>
-						<th style="width: 26%">고객선택</th>
-						</th>
+						<th className="thTIt" style={{width: '50%'}}>검증항목</th>
+						<th style={{width: '26%'}}>고객선택</th>
 					</tr>
 				</thead>
 				<tbody>
 
 						<tr>
 							<td>
-								Q1. <span class="color_blue">모집공고일(2022년 11월 18일)</span> 현재, <span class="color_blue">10년 이상(임관일 2012년 11월 18일 이전) 장기복무중</span>인 군인에 해당되십니까?
-								<a href="#layer02" class="detail_btn" title='10년 이상 장기복무 중인 군인 선택 설명보기'>
-								<img src="https://static.applyhome.co.kr/images/kabhom/apply_step/detail_chk.png" alt="상세설명"></a>
-								<div id="layer02" class="detail_layer pop" tabindex="0">
-									<div class="line_box" style="margin: 0">
-										<div class="line_content">
-											<b class="line_tit">10년 이상 장기복무 중인 군인 선택</b>
-											<ul class="bul_list" style="font-size: 1rem">
+								Q1. <span className="color_blue">모집공고일(<span name="thisyear" className="color_blue"></span>년 <span name="thismonth" className="color_blue"></span>월 <span name="thisdate" className="color_blue"></span>일</span> 현재, <span className="color_blue">10년 이상(임관일 <span name="yearago" className="color_blue"></span>년 <span name="thismonth1" className="color_blue"></span>월 <span name="thisdate1" className="color_blue"></span>일 이전) 장기복무중</span>인 군인에 해당되십니까?
+								<a href="#layer02" className="detail_btn" title='10년 이상 장기복무 중인 군인 선택 설명보기'>
+								<img src="https://static.applyhome.co.kr/images/kabhom/apply_step/detail_chk.png" alt="상세설명"/></a>
+								<div id="layer02" className="detail_layer pop" tabIndex="0">
+									<div className="line_box" style={{margin: 0}}>
+										<div className="line_content">
+											<b className="line_tit">10년 이상 장기복무 중인 군인 선택</b>
+											<ul className="bul_list" style={{fontSize: '1rem'}}>
 												<li>
-													<span class="mt_10">입주자모집공고일 현재, 10년 이상 장기복무중인 군인으로서 “장기복무군인”을 선택한 경우, 다른 주택건설지역(기타지역)에 거주하는 청약자도  <b>‘해당지역’</b>거주자의 자격으로 청약할 수 있습니다.</span>
+													<span className="mt_10">입주자모집공고일 현재, 10년 이상 장기복무중인 군인으로서 “장기복무군인”을 선택한 경우, 다른 주택건설지역(기타지역)에 거주하는 청약자도  <b>‘해당지역’</b>거주자의 자격으로 청약할 수 있습니다.</span>
 												</li>
 												<li>
 												<span>다만, 수도권에서 <em>공급*</em>하거나 <b>전입제한기간이 있는 수도권 외의 지역</b>에서 <em>공급**</em>하는 주택에서는 10년 이상 장기복무군인이라 하더라도 해당 주택건설지역(해당지역)이 아닌 <b>‘기타지역’</b> 거주자의 자격으로 청약됩니다.</span>
 												</li>
 												<li>
-													<b class="mt_10">* 수도권에서 공급하는 주택의 경우, ‘수도권 외 거주자’만 장기복무군인으로 신청 가능</b>
+													<b className="mt_10">* 수도권에서 공급하는 주택의 경우, ‘수도권 외 거주자’만 장기복무군인으로 신청 가능</b>
 												</li>
 												<li>
 													<b>** 전입제한기간이 있는 수도권 외 지역에서 공급하는 주택의 경우, 해당지역 거주자는 장기복무군인으로 신청 불가 </b>
@@ -361,685 +439,98 @@
 											</ul>
 										</div>
 									</div>
-									<button type="button" class="detail_close">
-										<i class="xi xi-close-thin"></i><span class="blind">팝업
+									<button type="button" className="detail_close">
+										<i className="xi xi-close-thin"></i><span className="blind">팝업
 											닫기</span>
 									</button>
 								</div>
 							</td>
 							<td>
-								<div class="add_box">
-									<p class="radio_st2">
+								<div className="add_box">
+									<p className="radio_st2">
 										<input type="radio" name="lngtrSrvicSolderAt"
-											id="lngtrSrvicSolderAtY" value="Y" data-qcd="06"> <label
-											for="lngtrSrvicSolderAtY">장기복무군인</label>
+											id="lngtrSrvicSolderAtY" value="Y" data-qcd="06" onClick={this.setlngtrSrvicSolderAt}/> <label
+											htmlFor="lngtrSrvicSolderAtY">장기복무군인</label>
 									</p>
-									<p class="radio_st2">
+									<p className="radio_st2">
 										<input type="radio" name="lngtrSrvicSolderAt"
-											id="lngtrSrvicSolderAtN" value="N" data-qcd="06"> <label
-											for="lngtrSrvicSolderAtN">해당사항없음</label>
+											id="lngtrSrvicSolderAtN" value="N" data-qcd="06" onClick={this.setlngtrSrvicSolderAt}/> <label
+											htmlFor="lngtrSrvicSolderAtN">해당사항없음</label>
 									</p>
 								</div>
 							</td>
 						</tr>
 
 					<tr>
-						<td>Q2. 거주지는 <span class="color_blue">입주자모집공고일(2022년 11월 18일)</span>
+						<td>Q2. 거주지는 <span className="color_blue">입주자모집공고일(<span name="thisyear1" className="color_blue"></span>년 <span name="thismonth2" className="color_blue"></span>월 <span name="thisdate2" className="color_blue"></span>일)</span>
 							현재, 주민등록상 주소를 선택하여 주시기 바랍니다.
-							<a href="#layer03" class="detail_btn" title="청약자격 거주구분 설명보기">
-							<img src="https://static.applyhome.co.kr/images/kabhom/apply_step/detail_chk.png" alt="상세설명"></a>
-							<div id="layer03" class="detail_layer pop" tabindex="0">
-								<div class="line_box" style="margin: 0">
-									<div class="line_content">
-										<b class="line_tit">청약자격 거주구분</b>
-										<ul class="bul_list line_list">
-											<li>청약자의 주소지와 주택건설지역이 일치하는 경우 : 해당<br>다만, 전입제한일이 있는
+							<a href="#layer03" className="detail_btn" title="청약자격 거주구분 설명보기">
+							<img src="https://static.applyhome.co.kr/images/kabhom/apply_step/detail_chk.png" alt="상세설명"/></a>
+							<div id="layer03" className="detail_layer pop" tabIndex="0">
+								<div className="line_box" style={{margin: 0}}>
+									<div className="line_content">
+										<b className="line_tit">청약자격 거주구분</b>
+										<ul className="bul_list line_list">
+											<li>청약자의 주소지와 주택건설지역이 일치하는 경우 : 해당<br/>다만, 전입제한일이 있는
 												경우 전입제한일 이후 거주자는 기타로 구분함
 											</li>
 											<li>주택건설지역에 연접한 도 및 광역시 거주자가 청약하는 경우 : 기타</li>
 
 										</ul>
-										<ul class="bul_list star_list">
-											<li>주택공급은 해당지역 거주자에게 우선적으로 공급되고 미달 시 잔여세대가 인근지역 거주자에게 공급됩니다.<br>다만, 수도권 내 대규모 택지개발지구 및 행정중심복합도시 예정지역(세종특별자치시)은 별도의 기준을 적용합니다.<br>세부사항은 사업주체의 입주자모집공고문 또는 청약안내 &gt; APT 청약안내 &gt; 당첨자 선정을 참고하시기 바랍니다.</li>
+										<ul className="bul_list star_list">
+											<li>주택공급은 해당지역 거주자에게 우선적으로 공급되고 미달 시 잔여세대가 인근지역 거주자에게 공급됩니다.<br/>다만, 수도권 내 대규모 택지개발지구 및 행정중심복합도시 예정지역(세종특별자치시)은 별도의 기준을 적용합니다.<br/>세부사항은 사업주체의 입주자모집공고문 또는 청약안내 &gt; APT 청약안내 &gt; 당첨자 선정을 참고하시기 바랍니다.</li>
 										</ul>
 									</div>
-									<button type="button" class="detail_close">
-										<i class="xi xi-close-thin"></i><span class="blind">팝업
+									<button type="button" className="detail_close">
+										<i className="xi xi-close-thin"></i><span className="blind">팝업
 											닫기</span>
 									</button>
 								</div>
 							</div>
-							<div class="line_content">
+							<div className="line_content">
 								<p>
-									※<span class="color_red">청약을 위한 위장전입은 3년 이하의 징역 또는 3천만원
+									※<span className="color_red">청약을 위한 위장전입은 3년 이하의 징역 또는 3천만원
 										이하의 벌금</span>에 처합니다. (주택법 제 65조 및 101조 제3호)
 								</p>
 								<p>
-									- 국토교통부에서는 <span class="color_red">청약자료를 토대로 주소이전 현황 등을
+									- 국토교통부에서는 <span className="color_red">청약자료를 토대로 주소이전 현황 등을
 										분석, 정기적으로 위장전입 의심자를 수사의뢰함</span>
 								</p>
 							</div>
 						</td>
-						<td class="scrp_chk">
+						<td className="scrp_chk">
 							<div>
-								<div id="nonSolder" class="add_box">
+								<div id="nonSolder" className="add_box">
 
 
 
-										<p class="radio_st2">
-											<input type="radio" class="choiseY" name="resideSecd"
-												id="resideSecd1" data-sn="1" value="01"
-												data-pdat="N"> <label
-												for="resideSecd1">해당지역(대구 거주)</label>
+										<p className="radio_st2">
+											<input type="radio" className="choiseY" name="resideSecd"
+												id="resideSecd1" data-sn="1" value="Y"
+												data-pdat="N" onClick={this.setResideSecd}/> <label
+												htmlFor="resideSecd1">해당지역 거주</label>
+										</p>  
+
+										<p className="radio_st2">
+											<input type="radio" className="choiseY" name="resideSecd"
+												id="resideSecd2" data-sn="2" value="N"
+												data-pdat="N" onClick={this.setResideSecd}/> <label htmlFor="resideSecd2">기타지역 거주</label>
 										</p>
-
-											<p class="sel_st choiseY" id="pSel1">
-												<label for="selAreaCode1" class="blind ">
-													해당지역(대구 거주)
-												</label>
-												<select name="selAreaCode" id="selAreaCode1" data-sn="1" class="sel_st choiseY">
-													<option value="">-</option>
-
-														<option
-															value="700">대구</option>
-
-												</select>
-											</p>
-
-
-
-
-										<p class="radio_st2">
-											<input type="radio" class="choiseY" name="resideSecd"
-												id="resideSecd2" data-sn="2" value="02"
-												data-pdat="N"> <label
-												for="resideSecd2">기타지역(대구 외 경북 거주)</label>
-										</p>
-
-											<p class="sel_st choiseY" id="pSel2">
-												<label for="selAreaCode2" class="blind ">
-													기타지역(대구 외 경북 거주)
-												</label>
-												<select name="selAreaCode" id="selAreaCode2" data-sn="2" class="sel_st choiseY">
-													<option value="">-</option>
-
-														<option
-															value="712">경산</option>
-
-														<option
-															value="780">경주</option>
-
-														<option
-															value="717">고령</option>
-
-														<option
-															value="730">구미</option>
-
-														<option
-															value="716">군위</option>
-
-														<option
-															value="740">김천</option>
-
-														<option
-															value="745">문경</option>
-
-														<option
-															value="755">봉화</option>
-
-														<option
-															value="742">상주</option>
-
-														<option
-															value="719">성주</option>
-
-														<option
-															value="760">안동</option>
-
-														<option
-															value="766">영덕</option>
-
-														<option
-															value="764">영양</option>
-
-														<option
-															value="750">영주</option>
-
-														<option
-															value="770">영천</option>
-
-														<option
-															value="757">예천</option>
-
-														<option
-															value="799">울릉</option>
-
-														<option
-															value="767">울진</option>
-
-														<option
-															value="769">의성</option>
-
-														<option
-															value="714">청도</option>
-
-														<option
-															value="763">청송</option>
-
-														<option
-															value="718">칠곡</option>
-
-														<option
-															value="790">포항</option>
-
-												</select>
-											</p>
 
 
 								</div>
-								<div id="solder" class="add_box" style="display: none;">
-									<!-- <ul class="plus_sel" id="solder" style="display:none;">  -->
+								<div id="solder" className="add_box" style={{display: 'none'}}>
 
 
 
-										<p class="radio_st2">
-											<input type="radio" class="choiseY" name="resideSecd"
+										<p className="radio_st2">
+											<input type="radio" className="choiseY" name="resideSecd"
 												id="resideSecd3" data-sn="3" value="01"
-												data-pdat="N"> <label
-												for="resideSecd3">해당지역(대구 외 거주)</label>
+												data-pdat="N"/> <label
+												htmlFor="resideSecd3">해당지역 거주</label>
 										</p>
 
-											<p class="sel_st choiseY" id="pSel3">
-												<label for="selAreaCode3" class="blind">해당지역(대구 외 거주)</label> <select
-													name="selAreaCode" id="selAreaCode3" data-sn="3"
-													class="sel_st choiseY">
-													<option value="">-</option>
-
-														<option
-															value="477">가평</option>
-
-														<option
-															value="210">강릉</option>
-
-														<option
-															value="527">강진</option>
-
-														<option
-															value="656">거제</option>
-
-														<option
-															value="670">거창</option>
-
-														<option
-															value="712">경산</option>
-
-														<option
-															value="780">경주</option>
-
-														<option
-															value="321">계룡</option>
-
-														<option
-															value="717">고령</option>
-
-														<option
-															value="219">고성(강원)</option>
-
-														<option
-															value="638">고성(경남)</option>
-
-														<option
-															value="410">고양</option>
-
-														<option
-															value="585">고창</option>
-
-														<option
-															value="548">고흥</option>
-
-														<option
-															value="516">곡성</option>
-
-														<option
-															value="314">공주</option>
-
-														<option
-															value="427">과천</option>
-
-														<option
-															value="423">광명</option>
-
-														<option
-															value="545">광양</option>
-
-														<option
-															value="500">광주광</option>
-
-														<option
-															value="464">광주시</option>
-
-														<option
-															value="367">괴산</option>
-
-														<option
-															value="542">구례</option>
-
-														<option
-															value="471">구리</option>
-
-														<option
-															value="730">구미</option>
-
-														<option
-															value="573">군산</option>
-
-														<option
-															value="716">군위</option>
-
-														<option
-															value="435">군포</option>
-
-														<option
-															value="312">금산</option>
-
-														<option
-															value="576">김제</option>
-
-														<option
-															value="740">김천</option>
-
-														<option
-															value="415">김포</option>
-
-														<option
-															value="621">김해</option>
-
-														<option
-															value="520">나주</option>
-
-														<option
-															value="472">남양주</option>
-
-														<option
-															value="590">남원</option>
-
-														<option
-															value="668">남해</option>
-
-														<option
-															value="320">논산</option>
-
-														<option
-															value="395">단양</option>
-
-														<option
-															value="517">담양</option>
-
-														<option
-															value="343">당진</option>
-
-														<option
-															value="300">대전</option>
-
-														<option
-															value="483">동두천</option>
-
-														<option
-															value="240">동해</option>
-
-														<option
-															value="530">목포</option>
-
-														<option
-															value="534">무안</option>
-
-														<option
-															value="568">무주</option>
-
-														<option
-															value="745">문경</option>
-
-														<option
-															value="627">밀양</option>
-
-														<option
-															value="355">보령</option>
-
-														<option
-															value="546">보성</option>
-
-														<option
-															value="376">보은</option>
-
-														<option
-															value="755">봉화</option>
-
-														<option
-															value="600">부산</option>
-
-														<option
-															value="579">부안</option>
-
-														<option
-															value="323">부여</option>
-
-														<option
-															value="420">부천</option>
-
-														<option
-															value="664">사천</option>
-
-														<option
-															value="666">산청</option>
-
-														<option
-															value="245">삼척</option>
-
-														<option
-															value="742">상주</option>
-
-														<option
-															value="697">서귀포</option>
-
-														<option
-															value="356">서산</option>
-
-														<option
-															value="100">서울</option>
-
-														<option
-															value="325">서천</option>
-
-														<option
-															value="461">성남</option>
-
-														<option
-															value="719">성주</option>
-
-														<option
-															value="338">세종</option>
-
-														<option
-															value="217">속초</option>
-
-														<option
-															value="440">수원</option>
-
-														<option
-															value="595">순창</option>
-
-														<option
-															value="540">순천</option>
-
-														<option
-															value="429">시흥</option>
-
-														<option
-															value="535">신안</option>
-
-														<option
-															value="336">아산</option>
-
-														<option
-															value="760">안동</option>
-
-														<option
-															value="425">안산</option>
-
-														<option
-															value="456">안성</option>
-
-														<option
-															value="430">안양</option>
-
-														<option
-															value="255">양구</option>
-
-														<option
-															value="626">양산</option>
-
-														<option
-															value="215">양양</option>
-
-														<option
-															value="482">양주</option>
-
-														<option
-															value="476">양평</option>
-
-														<option
-															value="550">여수</option>
-
-														<option
-															value="469">여주</option>
-
-														<option
-															value="486">연천</option>
-
-														<option
-															value="513">영광</option>
-
-														<option
-															value="766">영덕</option>
-
-														<option
-															value="370">영동</option>
-
-														<option
-															value="526">영암</option>
-
-														<option
-															value="764">영양</option>
-
-														<option
-															value="230">영월</option>
-
-														<option
-															value="750">영주</option>
-
-														<option
-															value="770">영천</option>
-
-														<option
-															value="340">예산</option>
-
-														<option
-															value="757">예천</option>
-
-														<option
-															value="447">오산</option>
-
-														<option
-															value="373">옥천</option>
-
-														<option
-															value="537">완도</option>
-
-														<option
-															value="565">완주</option>
-
-														<option
-															value="446">용인</option>
-
-														<option
-															value="799">울릉</option>
-
-														<option
-															value="680">울산</option>
-
-														<option
-															value="767">울진</option>
-
-														<option
-															value="220">원주</option>
-
-														<option
-															value="369">음성</option>
-
-														<option
-															value="636">의령</option>
-
-														<option
-															value="769">의성</option>
-
-														<option
-															value="437">의왕</option>
-
-														<option
-															value="480">의정부</option>
-
-														<option
-															value="467">이천</option>
-
-														<option
-															value="570">익산</option>
-
-														<option
-															value="252">인제</option>
-
-														<option
-															value="400">인천</option>
-
-														<option
-															value="566">임실</option>
-
-														<option
-															value="515">장성</option>
-
-														<option
-															value="597">장수</option>
-
-														<option
-															value="529">장흥</option>
-
-														<option
-															value="560">전주</option>
-
-														<option
-															value="233">정선</option>
-
-														<option
-															value="580">정읍</option>
-
-														<option
-															value="690">제주</option>
-
-														<option
-															value="390">제천</option>
-
-														<option
-															value="368">증평</option>
-
-														<option
-															value="539">진도</option>
-
-														<option
-															value="567">진안</option>
-
-														<option
-															value="660">진주</option>
-
-														<option
-															value="365">진천</option>
-
-														<option
-															value="635">창녕</option>
-
-														<option
-															value="641">창원</option>
-
-														<option
-															value="330">천안</option>
-
-														<option
-															value="269">철원</option>
-
-														<option
-															value="714">청도</option>
-
-														<option
-															value="763">청송</option>
-
-														<option
-															value="345">청양</option>
-
-														<option
-															value="360">청주</option>
-
-														<option
-															value="200">춘천</option>
-
-														<option
-															value="380">충주</option>
-
-														<option
-															value="718">칠곡</option>
-
-														<option
-															value="235">태백</option>
-
-														<option
-															value="357">태안</option>
-
-														<option
-															value="650">통영</option>
-
-														<option
-															value="413">파주</option>
-
-														<option
-															value="232">평창</option>
-
-														<option
-															value="450">평택</option>
-
-														<option
-															value="487">포천</option>
-
-														<option
-															value="790">포항</option>
-
-														<option
-															value="465">하남</option>
-
-														<option
-															value="667">하동</option>
-
-														<option
-															value="637">함안</option>
-
-														<option
-															value="676">함양</option>
-
-														<option
-															value="525">함평</option>
-
-														<option
-															value="678">합천</option>
-
-														<option
-															value="536">해남</option>
-
-														<option
-															value="350">홍성</option>
-
-														<option
-															value="250">홍천</option>
-
-														<option
-															value="445">화성</option>
-
-														<option
-															value="519">화순</option>
-
-														<option
-															value="209">화천</option>
-
-														<option
-															value="225">횡성</option>
-
-												</select>
-											</p>
+											
 
 
 								</div>
@@ -1054,636 +545,142 @@
 				value="N" /> <input type="hidden" name="rsResideSecd"
 				id="rsResideSecd"
 				value="01" />
-		</div>
 
 
+				<div className="cert_wrap">
+				</div>
+				<div>
+				<h5 className="sub_tit mt_20"> 선정기준 확인</h5>
 
-					<div>
+		<table className="tbl_st tbl_row mt_30 scrp_result mTbl type02">
+			<caption className="blind">행정정보조회결과가 나와있는 테이블입니다.</caption>
+			<thead>
+				<tr>
+					<th className="thTIt" style={{width : '40%'}}>검증항목</th>
+					<th style={{width : '14%'}}>고객선택</th>
+				</tr>
+			</thead>
+			<tbody>
 
+				<tr>
+					<td>
+						<b id="qualf07tit" data-stdrval="N">Q1. 주택소유여부</b>
+						<span><b className="color_blue">모집공고일(<span name="thisyear3" className="color_blue"></span>년 <span name="thismonth4" className="color_blue"></span>월 <span name="thisdate4" className="color_blue"></span>일)</b> 현재, 본인과 세대에 속한 자가 주택을 소유(분양권등 포함) 하였습니까?</span>
+						<a href="#layer04" className="detail_btn" title="주택소유여부에 따른 추첨제 입주자 선정기준 설명보기"><img src="https://static.applyhome.co.kr/images/kabhom/apply_step/detail_chk.png" alt="상세설명"/></a>
+						<div id="layer04" className="detail_layer pop" tabIndex="0">
+							<div className="line_box" style={{margin: 0}}>
 
-
-
-
-					<h5 class="sub_tit mt_20"> 선정기준 확인</h5>
-					<!--
-						<div class="line_box noti_line">
-							<div class="line_content">
-								<p>주택소유여부에 대한 적용기준 및 소유한 주택이 무주택으로 인정되는 경우 등 규칙상 주택소유여부에 대하여 정확히 확인하고 선택하시기 바랍니다. 세부사항은 국토교통부장관이 정하는 바에 따릅니다.</p>
+								<div className="line_box">
+									<div className="line_content">
+										<b className="line_tit">주택소유여부 판정 기준</b>
+										<p>
+											청약신청자의 <b>만60세 이상의 직계존속이 주택을 소유(분양권등 포함)한 경우는 주택을 소유하지
+												않은 것으로 인정</b>합니다. 단, 공공임대주택의 청약 시에는 주택을 소유한 것으로 봅니다.
+										</p>
+										<p className="mt_5">
+											<b>분양권등을 갖고 있거나 주택 또는 분양권등의 공유지분을 소유</b>하고 있는 경우에는 주택을 소유하는
+											것으로 보되, 주택소유여부 판정기준(주택공급에 관한 규칙 제53조의 각호)의 어느 하나에 해당하거나
+											소형&middot;저가주택 등을 무주택자로 보는 경우는 주택을 소유하지 않은 것으로 봅니다.
+										</p>
+									</div>
+								</div>
+								<button type="button" className="detail_close">
+									<i className="xi xi-close-thin"></i>
+									<span className="blind">팝업 닫기</span>
+								</button>
 							</div>
 						</div>
-						 -->
+						<p>
+							<strong>*분양권등</strong> : 주택소유로 보는 경우 등 세부사항은 분양권등 참조
+						</p>
 
+					</td>
+					<td>
+						<div className="cnt_question add_box">
 
-			<table class="tbl_st tbl_row mt_30 scrp_result mTbl type02">
-				<caption class="blind">행정정보조회결과가 나와있는 테이블입니다.</caption>
-				<thead>
-					<tr>
-						<th class="thTIt" style="width: 40%">검증항목</th>
-						<th style="width: 14%">고객선택</th>
-					</tr>
-				</thead>
-				<tbody>
-
-					<tr>
-						<td>
-							<b id="qualf07tit" data-stdrval="N">Q1. 주택소유여부</b>
-							<span><b class="color_blue">모집공고일(2022년 11월 18일)</b> 현재, 본인과 세대에 속한 자가 주택을 소유(분양권등 포함) 하였습니까?</span>
-							<a href="#layer04" class="detail_btn" title="주택소유여부에 따른 추첨제 입주자 선정기준 설명보기"><img src="https://static.applyhome.co.kr/images/kabhom/apply_step/detail_chk.png" alt="상세설명"></a>
-							<div id="layer04" class="detail_layer pop" tabindex="0">
-								<div class="line_box" style="margin: 0">
-
-									<div class="line_box">
-										<div class="line_content">
-											<b class="line_tit">주택소유여부 판정 기준</b>
-											<p>
-												청약신청자의 <b>만60세 이상의 직계존속이 주택을 소유(분양권등 포함)한 경우는 주택을 소유하지
-													않은 것으로 인정</b>합니다. 단, 공공임대주택의 청약 시에는 주택을 소유한 것으로 봅니다.
-											</p>
-											<p class="mt_5">
-												<b>분양권등을 갖고 있거나 주택 또는 분양권등의 공유지분을 소유</b>하고 있는 경우에는 주택을 소유하는
-												것으로 보되, 주택소유여부 판정기준(주택공급에 관한 규칙 제53조의 각호)의 어느 하나에 해당하거나
-												소형&middot;저가주택 등을 무주택자로 보는 경우는 주택을 소유하지 않은 것으로 봅니다.
-											</p>
-											<ul class="btn_auto_list">
-												<li><button type="button" class="btn_org btnPopWord"
-														data-popword="householdLay">세대 안내</button></li>
-												<li><button type="button" class="btn_org btnPopWord"
-														data-popword="houseOwnerCriteriaLay">주택소유여부 판정기준</button></li>
-												<li><button type="button" class="btn_org btnPopWord"
-														data-popword="lowPriceHouseLay">소형&middot;저가주택 등
-														소유자를 무주택자로 보는 경우 무주택자로 보는 경우</button></li>
-												<li><button type="button" class="btn_org btnPopWord"
-														data-popword="rightSellHouseLay">분양권등</button></li>
-											</ul>
-										</div>
-									</div>
-									<button type="button" class="detail_close">
-										<i class="xi xi-close-thin"></i>
-										<span class="blind">팝업 닫기</span>
-									</button>
-								</div>
-							</div>
-							<p>
-								<strong>*분양권등</strong> : 주택소유로 보는 경우 등 세부사항은 분양권등 참조
-							</p>
-
-						</td>
-						<td>
-							<div class="cnt_question add_box">
-
-									<p class="radio_st2 lg_line2">
-										<input type="radio" name="housePosesn" id="hp00" value="N" data-nty="A">
-										<label for="hp00">예(무주택자아님)</label>
-									</p>
-
-									<p class="radio_st2 lg_line2">
-										<input type="radio" name="housePosesn" id="hp01" value="0" data-nty="A">
-										<label for="hp01">아니오(무주택자)</label>
-									</p>
-
-							</div>
-						</td>
-					</tr>
-
-
-					<tr>
-						<td>
-							<b id="qualf07tit" data-stdrval="N">Q2. 과거 2년내 가점제 당첨여부</b>
-							<span>입주자모집공고일 현재, 본인과 세대에 속한 자 중 과거 2년 이내에 가점제로 당첨된 자가 있습니까?</span>
-							<a href="#layer04" class="detail_btn" title="과거 2년내 가점제 당첨자의 가점제 당첨제한 설명보기"><img src="https://static.applyhome.co.kr/images/kabhom/apply_step/detail_chk.png" alt="상세설명"></a>
-							<div id="layer04" class="detail_layer pop" tabindex="0">
-								<div class="line_box" style="margin: 0">
-
-									 <div class="line_box">
-										<div class="line_content">
-											<b class="line_tit">과거 2년내 가점제 당첨자의 가점제 당첨제한</b>
-											<p>과거 2년 이내에 가점제로 당첨사실이 있는 세대에 속한 자는 가점제 당첨이 제한되며, 추첨제로
-												청약하여야 합니다. 상기에서 "예"를 선택할 경우 추첨제로 청약되며, 가점제 당첨여부에 관계없이
-												2017.10.17.이전에 당첨된 경우에는 "아니오"를 선택하여 주시기 바랍니다.</p>
-										</div>
-										</div>
-									</div>
-									<div class="line_box">
-										<div class="line_content">
-											<b class="line_tit">적용주택</b>
-											<p>가점제로 공급되는 주택 청약시</p>
-										</div>
-									</div>
-									<div class="line_box">
-										<div class="line_content">
-											<b class="line_tit">과거 가점제 당첨사실 조회</b>
-											<p>청약자 본인의 과거 2년 이내에 가점제 당첨된 내역은 "청약자격확인-청약제한사항 확인 또는
-												청약조회-APT-청약제한사항 확인" 메뉴에서 조회할 수 있습니다. 다만, 청약자의 세대에 속한 자의 과거
-												2년 이내에 가점제로 당첨된 내역 조회는 해당 세대에 속한 자 명의 각각의 공동인증서로 로그인하여
-												조회하여야 합니다.</p>
-										</div>
-									</div>
-									<button type="button" class="detail_close">
-										<i class="xi xi-close-thin"></i>
-										<span class="blind">팝업 닫기</span>
-									</button>
-								</div>
-							</div>
-						</td>
-						<td>
-							<div class="cnt_question add_box">
-								<p class="radio_st2">
-									<input type="radio" name="przwinAt" id="przwinAtY" value="Y" data-drwt="Y"> <label for="przwinAtY">예</label>
+								<p className="radio_st2 lg_line2">
+									<input type="radio" name="housePosesn" id="hp00" value="Y" data-nty="A" onClick={this.setHousePosesn}/>
+									<label htmlFor="hp00">예(무주택자아님)</label>
 								</p>
-								<p class="radio_st2">
-									<input type="radio" name="przwinAt" id="przwinAtN" value="N"> <label for="przwinAtN">아니오</label>
+
+								<p className="radio_st2 lg_line2">
+									<input type="radio" name="housePosesn" id="hp01" value="N" data-nty="A" onClick={this.setHousePosesn}/>
+									<label htmlFor="hp01">아니오(무주택자)</label>
 								</p>
-							</div>
-						</td>
-					</tr>
 
-				</tbody>
-			</table>
-		</div>
-		<input type="hidden" name="housePosesnAtTy" id="housePosesnAtTy" value="2A" />
-        <input type="hidden" name="housePosesnSecd" id="housePosesnSecd" value="" />
-		<input type="hidden" name="apsPrzwinAt" id="apsPrzwinAt" value="N" />
-		<input type="hidden" name="apsSubscrptAt" id="apsSubscrptAt" value="Y" />
-        <input type="hidden" name="apsSubscrptAtOri" id="apsSubscrptAtOri" value="Y" />
-        <input type="hidden" name="bhmlsPriorAt" id="bhmlsPriorAt" value="N" />
-        <input type="hidden" name="agreAt" id="agreAt" value="N" />
-		<div id="addpntIemInput" style="display: none">
-			<h5 class="sub_tit mt_20">가점항목 확인</h5>
-			<table class="tbl_st tbl_row mt_30 scrp_result mTbl type02">
-				<caption class="blind">스크래핑 결과가 나와있는 테이블입니다.</caption>
-				<thead>
-					<tr>
-						<th class="thTIt" style="width: 50%">검증항목</th>
-						<th style="width: 26%">고객선택</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Q1. 무주택기간을 선택해주세요. (※미혼 경우 만 30세부터 기간을 산정) <a
-							href="#layer05" class="detail_btn" title="무주택기간 적용기준 설명보기"><img
-								src="https://static.applyhome.co.kr/images/kabhom/apply_step/detail_chk.png" alt="상세설명"></a>
-							<div id="layer05" class="detail_layer pop" tabindex="0">
-								<div class="line_box" style="margin: 0">
-									<div class="line_content">
-										<b class="line_tit">무주택기간 적용기준</b>
-										<p>무주택자 여부는 세대에 속한 자 전원, 청약자의 피부양자 및 그 배우자를 기준으로하고 무주택기간은
-											청약신청자 및 그 배우자, 피부양자 및 그 배우자를 기준으로 산정합니다.</p>
-										<b class="line_tit">무주택자 여부</b>
-										<ul class="inde_txt">
-											<li>1) 입주자모집공고일 현재 주민등록등본상에 등재된 청약신청자를 포함한 세대<sup>주)</sup>에
-												속한 자 전원이 주택을 소유(분양권등 포함)하지 아니하여야 함<br>주) 세대의 범위 : 배우자,
-												직계존속(배우자의 직계존속 포함) 및 직계비속(직계비속의 배우자 포함)
-												<p class="color_org">* 청약신청자 또는 배우자의 직계존속(피부양자의 배우자 포함)이
-													주택을 소유(분양권등 포함)한 경우 유주택자에 해당함.</p> <!-- <small>(만 60세 이상의
-													직계존속이 주택을 소유(분양권등 포함)한 경우 무주택으로 보는 「주택공급에 관한 규칙」
-													제53조(주택소유여부 판정기준)의 특례 미적용)</small> -->
-											</li>
-											<li class="mt_5">2) 배우자 분리세대<sup>주)</sup>의 경우에는 주민등록이
-												분리된 배우자 및 배우자와 동일한 세대를 이루고 있는 세대에 속한 자도 주택을 소유(분양권등 포함)하지
-												아니하여야 함<br>주) 청약신청자의 배우자가 동일한 주민등록표등본 상에 등재되어 있지 아니한 경우
-											</li>
-											<!-- <li class="mt_5">3) 소형ㆍ저가주택을 소유(분양권등 포함)한 경우 유주택자에 해당함.
-												(가점제의 무주택기간 산정시 소형ㆍ저가주택의 소유자를 무주택자로 보는 특례 미적용)<br>
-											<b>*분양권등</b> : 주택소유로 보는 경우 등 세부사항은
-												<button type="button" class="btn_voca">
-													<span>분양권등</span>
-												</button> 참조
-											</li> -->
-											<li class="mt_5">3) 공급규칙 제53조제9호에 따른 소형·저가주택 등을 1호(1세대)만을 소유(분양권등 포함)한 세대에 속한 경우에는 무주택자로 보나, 2호(2세대) 이상을 소유(분양권등 포함)한 경우에는 유주택자에 해당함. (가점제의 무주택기간 산정 시 소형·저가주택의 소유자를 무주택자로 보는 특례 미적용)<br>
-											<b>*분양권등</b> : 주택소유로 보는 경우 등 세부사항은
-												<button type="button" class="btn_voca">
-													<span>분양권등</span>
-												</button> 참조
-											</li>
-										</ul>
-										<b class="line_tit">무주택기간 산정</b>
-										<ul class="inde_txt">
-											<li>1) 청약신청자 및 배우자가 주택을 소유(분양권등 포함)한 적이 없는 경우
-												<ul class="bul_list line_list">
-													<li>청약신청자의 연령이 만 30세가 되는 날부터 주택의 모집공고일까지 기산함. 다만, 만
-														30세가 되기 전에 혼인한 경우 혼인신고일로 등재된 날부터 기산함.</li>
-												</ul>
-											</li>
-											<li class="mt_5">2) 청약신청자 및 배우자가 주택을 소유(분양권등 포함)한 적이 있는
-												경우
-												<ul class="bul_list line_list">
-													<li>그 주택을 처분한 후 무주택자가 된 날과 위의 1)번의 날 중 늦은날부터 기산함.</li>
-												</ul> <small>*2회 이상 주택을 소유한 사실이 있는 경우에는 가장 최근에 무주택자가된 날<br>*청약신청자의
-													배우자가 결혼 전 매도한 주택은 산정에서 제외함
-											</small>
-											</li>
-											<li class="mt_5">3) (노부모부양 특별공급 시)피부양자 및 피부양자의 배우자가 주택을 소유(분양권등 포함)하고
-												있었던 기간은 무주택 기간에서 제외<br>
-											</li>
-										</ul>
-										<button type="button" class="btn_org btnPopWord" data-popword="noHouseBasisDate">주택 처분 시 무주택기간 기준일</button>
-										<b class="line_tit">무주택기간 산정사례</b>
-										<p>무주택기간은 청약신청자 및 그 배우자, 피부양자 및 그 배우자를 기준으로 산정합니다.</p>
-										<button type="button" class="btn_org btnPopWord" data-popid="bhmlsPdCase">무주택기간 산정 사례</button>
-										<b class="line_tit">무주택기간 계산해보기</b>
-										<p>기간계산은 편리한 계산을 위해 제공하는 것으로 본인이 입력한대로 단순 계산됩니다.</p>
-										<p>선택하신 가점항목에 대한 확인 및 오류입력으로 인한 책임은 본인에게 있는 점 유의하시기 바랍니다.
-										</p>
-										<button type="button" class="btn_org" id="bhmlsPd">무주택기간 등 계산하기</button>
+						</div>
+					</td>
+				</tr>
+
+
+				<tr>
+					<td>
+						<b id="qualf07tit" data-stdrval="N">Q2. 과거 2년내 가점제 당첨여부</b>
+						<span><b className="color_blue">모집공고일(<span name="thisyear2" className="color_blue"></span>년 <span name="thismonth3" className="color_blue"></span>월 <span name="thisdate3" className="color_blue"></span>일)</b> 현재, 본인과 세대에 속한 자가 주택을 소유(분양권등 포함) 하였습니까?</span>
+						<a href="#layer04" className="detail_btn" title="과거 2년내 가점제 당첨자의 가점제 당첨제한 설명보기"><img src="https://static.applyhome.co.kr/images/kabhom/apply_step/detail_chk.png" alt="상세설명"/></a>
+						<div id="layer04" className="detail_layer pop" tabIndex="0">
+							<div className="line_box" style={{margin : 0}}>
+
+								 <div className="line_box">
+									<div className="line_content">
+										<b className="line_tit">과거 2년내 가점제 당첨자의 가점제 당첨제한</b>
+										<p>과거 2년 이내에 가점제로 당첨사실이 있는 세대에 속한 자는 가점제 당첨이 제한되며, 추첨제로
+											청약하여야 합니다. 상기에서 "예"를 선택할 경우 추첨제로 청약되며, 가점제 당첨여부에 관계없이
+											2017.10.17.이전에 당첨된 경우에는 "아니오"를 선택하여 주시기 바랍니다.</p>
 									</div>
-									<button type="button" class="detail_close">
-										<i class="xi xi-close-thin"></i><span class="blind">팝업
-											닫기</span>
-									</button>
 								</div>
 							</div>
-						</td>
-						<td>
-							<p class="select_st radios">
-								<label for="sel_01" class="blind">무주택기간을 선택해주세요.</label>
-								<select name="bhmlsPdScoreCode" id="sel_01" class="select_sel"
-									data-active="explan01" data-next="sel_01">
-									<option value="">무주택기간 선택</option>
-
-										<option value="00">유주택, 30세미만 미혼인 무주택</option>
-
-										<option value="02">1년 미만</option>
-
-										<option value="04">1년 이상～2년 미만</option>
-
-										<option value="06">2년 이상～3년 미만</option>
-
-										<option value="08">3년 이상～4년 미만</option>
-
-										<option value="10">4년 이상～5년 미만</option>
-
-										<option value="12">5년 이상～6년 미만</option>
-
-										<option value="14">6년 이상～7년 미만</option>
-
-										<option value="16">7년 이상～8년 미만</option>
-
-										<option value="18">8년 이상～9년 미만</option>
-
-										<option value="20">9년 이상～10년 미만</option>
-
-										<option value="22">10년 이상～11년 미만</option>
-
-										<option value="24">11년 이상～12년 미만</option>
-
-										<option value="26">12년 이상～13년 미만</option>
-
-										<option value="28">13년 이상～14년 미만</option>
-
-										<option value="30">14년 이상～15년 미만</option>
-
-										<option value="32">15년 이상</option>
-
-								</select>
+							<div className="line_box">
+								<div className="line_content">
+									<b className="line_tit">적용주택</b>
+									<p>가점제로 공급되는 주택 청약시</p>
+								</div>
+							</div>
+							<div className="line_box">
+								<div className="line_content">
+									<b className="line_tit">과거 가점제 당첨사실 조회</b>
+									<p>청약자 본인의 과거 2년 이내에 가점제 당첨된 내역은 "청약자격확인-청약제한사항 확인 또는
+										청약조회-APT-청약제한사항 확인" 메뉴에서 조회할 수 있습니다. 다만, 청약자의 세대에 속한 자의 과거
+										2년 이내에 가점제로 당첨된 내역 조회는 해당 세대에 속한 자 명의 각각의 공동인증서로 로그인하여
+										조회하여야 합니다.</p>
+								</div>
+							</div>
+							<button type="button" className="detail_close">
+								<i className="xi xi-close-thin"></i>
+								<span className="blind">팝업 닫기</span>
+							</button>
+						</div>
+					</td>
+					<td>
+						<div className="cnt_question add_box">
+							<p className="radio_st2">
+								<input type="radio" name="przwinAt" id="przwinAtY" value="Y" data-drwt="Y" onClick={this.setPrzwinAt}/> <label htmlFor="przwinAtY">예</label>
 							</p>
-						</td>
-					</tr>
-					<tr>
-						<td>Q2. 부양가족수를 선택해 주세요. (※본인제외) <a href="#layer06"
-							class="detail_btn" title='부양가족 기준 설명보기'><img
-								src="https://static.applyhome.co.kr/images/kabhom/apply_step/detail_chk.png" alt="상세설명"></a>
-							<div id="layer06" class="detail_layer pop" tabindex="0">
-								<div class="line_box" style="margin: 0">
-                                    <div class="line_content">
-                                        <b class="line_tit">부양가족 기준</b>
-                                        <p>부양가족은 입주자모집공고일 현재 세대에 속한 자 중에서 아래에 해당하는 경우입니다. (본인 제외)</p>
-                                        <table class="tbl_st tbl_row mt_30">
-                                            <caption class="blind">부양가족 기준이 나와있는 테이블입니다.</caption>
-                                            <colgroup>
-                                                <col style="width:17%">
-                                                <col style="width:auto">
-                                            </colgroup>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">배우자</th>
-                                                    <td>포함 (배우자분리세대의 경우에도 포함)</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">직계존속<br>(부모/조부모)<small class="dis_b">※배우자의 직계존속 포함</small>
-                                                    </th>
-                                                    <td>청약신청자가 세대주여야 하며 3년 이상 동일 주민등록표등본에 등재된 직계존속
-                                                        <br/>(배우자분리세대인 경우, 배우자가 세대주여야 하며, 3년이상 동일 주민등록등본에 등재된 직계존속)
-                                                        <br/>
-                                                        <br/>※ 외국인 직계존속은 부양가족으로 인정되지 않으며, 내국인 직계존속이라도 요양시설(「주민등록법」 제12조에 따라 주민등록을 하는 노인요양시설을 말함) 및 해외에 체류중(입주자모집공고일 기준 최근 3년 이내 계속하여 90일을 초과하여 해외에 체류한 경우)인 경우에는 부양가족에서 제외
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">직계비속<br>(자녀/손자녀) </th>
-                                                    <td>
-                                                        -자녀 : 신청자와 동일한 주민등록표등본(배우자 분리세대인 경우, 배우자 등본을 포함)에 등재된 미혼자녀. 다만, 만30세 이상인 자녀는 1년 이상 동일한 주민등록표등본에 등재된 경우에 부양가족으로 인정
-                                                        <br/>* 다만, 혼인 중이거나 혼인한 적이 있는 자녀는 부양가족으로 보지 않습니다.
-                                                        <br/>-손자녀 : 부모가 모두 사망한 경우 미혼인 손자녀
-                                                        <br/>
-                                                        <br/>※ 국토교통부 주택기금과 ‘주택청약 자격 체크리스트(’19.12)’에 따라 외국인 직계비속은 부양가족으로 인정되지 않으며, 내국인 직계비속이라도 해외에 체류중*인 경우에는 부양가족에서 제외
-                                                        <br/>  * 30세 미만 : 입주자모집공고일 기준 현재 계속하여 90일을 초과하여 해외에 체류중인 경우
-                                                        <br/>  * 30세 이상 : 입주자모집공고일 기준 최근 1년 이내 계속하여 90일을 초과하여 해외에 체류한 경우
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+							<p className="radio_st2">
+								<input type="radio" name="przwinAt" id="przwinAtN" value="N" onClick={this.setPrzwinAt}/> <label htmlFor="przwinAtN">아니오</label>
+							</p>
+						</div>
+					</td>
+				</tr>
 
-                                    <button type="button" class="detail_close">
-										<i class="xi xi-close-thin"></i>
-										<span class="blind">팝업닫기</span>
-									</button>
-								</div>
-							</div>
-
-                                <!-- 직계존속 설명팝업 -->
-                                <div id="layer06_01" class="" tabindex="0" style="display:none;">
-                                    <div class="line_box" style="margin: 0">
-                                        <div class="line_content">
-                                            <table class="tbl_st tbl_row mt_30">
-                                                <caption class="blind">부양가족 기준이 나와있는 테이블입니다.</caption>
-                                                <colgroup>
-                                                    <col style="width:17%">
-                                                    <col style="width:auto">
-                                                </colgroup>
-                                                <tbody>
-	                                                <tr>
-	                                                    <th scope="row">직계존속<br>(부모/조부모)<small class="dis_b">※배우자의 직계존속 포함</small>
-	                                                    </th>
-	                                                    <td>청약신청자가 세대주여야 하며 3년 이상 동일 주민등록표등본에 등재된 직계존속
-	                                                        <br/>(배우자분리세대인 경우, 배우자가 세대주여야 하며, 3년이상 동일 주민등록등본에 등재된 직계존속)
-	                                                        <br/>
-	                                                        <br/>※ 외국인 직계존속은 부양가족으로 인정되지 않으며, 내국인 직계존속이라도 요양시설(「주민등록법」 제12조에 따라 주민등록을 하는 노인요양시설을 말함) 및 해외에 체류중(입주자모집공고일 기준 최근 3년 이내 계속하여 90일을 초과하여 해외에 체류한 경우)인 경우에는 부양가족에서 제외
-	                                                    </td>
-	                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                        <button type="button" class="detail_close" onclick="javascript:closePopDetailSub('#layer02_01')">
-                                            <i class="xi xi-close-thin"></i><span class="blind">팝업 닫기</span>
-                                        </button>
-
-                                    </div>
-                                </div>
-
-                                <!-- 직계비속 설명팝업 -->
-                                <div id="layer06_02" class="" tabindex="0" style="display:none;">
-                                    <div class="line_box" style="margin: 0">
-                                        <div class="line_content">
-                                            <table class="tbl_st tbl_row mt_30">
-                                                <caption class="blind">부양가족 기준이 나와있는 테이블입니다.</caption>
-                                                <colgroup>
-                                                    <col style="width:17%">
-                                                    <col style="width:auto">
-                                                </colgroup>
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">직계비속<br>(자녀/손자녀) </th>
-                                                        <td>
-                                                            -자녀 : 신청자와 동일한 주민등록표등본(배우자 분리세대인 경우, 배우자 등본을 포함)에 등재된 미혼자녀. 다만, 만30세 이상인 자녀는 1년 이상 동일한 주민등록표등본에 등재된 경우에 부양가족으로 인정
-                                                            <br/>* 다만, 혼인 중이거나 혼인한 적이 있는 자녀는 부양가족으로 보지 않습니다.
-                                                            <br/>-손자녀 : 부모가 모두 사망한 경우 미혼인 손자녀
-                                                            <br/>
-                                                            <br/>※ 국토교통부 주택기금과 ‘주택청약 자격 체크리스트(’19.12)’에 따라 외국인 직계비속은 부양가족으로 인정되지 않으며, 내국인 직계비속이라도 해외에 체류중*인 경우에는 부양가족에서 제외
-                                                            <br/>  * 30세 미만 : 입주자모집공고일 기준 현재 계속하여 90일을 초과하여 해외에 체류중인 경우
-                                                            <br/>  * 30세 이상 : 입주자모집공고일 기준 최근 1년 이내 계속하여 90일을 초과하여 해외에 체류한 경우
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                        <button type="button" class="detail_close" onclick="javascript:closePopDetailSub('#layer02_02')">
-                                            <i class="xi xi-close-thin"></i><span class="blind">팝업 닫기</span>
-                                        </button>
-
-                                    </div>
-                                </div>
-
-						</td>
-
-						<td style="padding:0px">
-
-
-							<dl class="fam">
-								<dt>배우자</dt>
-								<dd>
-									<span class="check_st" style="display:block">
-										<input type="checkbox" id="spouseAt" name="spouseAt" value="Y" />
-										<label for="spouseAt"><span class="blind">예</span></label>
-									</span>
-								</dd>
-							</dl>
-							<dl class="fam">
-								<dt>직계존속<a href="#a" class="detail_btn2" data-popsubid="#layer06_01"><img src="https://static.applyhome.co.kr/images/kabhom/sub/sub_txt.png" alt="설명"></a><br>(부모/조부모)</dt>
-								<dd>
-									<input type="text" id="hshldMbUpptCo" name="hshldMbUpptCo" class="detail_btn2" maxlength="2" value="" data-popsubid="#layer06_01"/><label for="hshldMbUpptCo" class="pl_5">명</label>
-									<br>(없는 경우 0입력)
-								</dd>
-							</dl>
-							<dl class="fam">
-								<dt>직계비속<a href="#a" class="detail_btn2" data-popsubid="#layer06_02"><img src="https://static.applyhome.co.kr/images/kabhom/sub/sub_txt.png" alt="설명"></a><br>(자녀/손자녀)</dt>
-								<dd>
-									<input type="text" id="hshldMbUndgrndCo" name="hshldMbUndgrndCo" class="detail_btn2" maxlength="2" value="" data-popsubid="#layer06_02"/><label for="hshldMbUndgrndCo" class="pl_5">명</label>
-									<br>(없는 경우 0입력)
-								</dd>
-							</dl>
-							<dl class="fam">
-								<dt>합계</dt>
-								<dd>
-									<input type="text" id="supportCo" name="supportCo" value="0" readOnly /><label for="supportCo" class="pl_5">명</label>
-									&nbsp;<button type="button" class="btn_mini" style="background-color:#0e4eb2;" onclick="javascript:calcHshldMbcnt();"><span style="color:#ffffff">수동계산</span></button>
-								</dd>
-							</dl>
-							<input type="hidden" id="supportScore" value="0" />
-
-						</td>
-					</tr>
-					<tr>
-						<td>Q3. 청약통장 가입일, 가입기간을 확인해 주세요. <a href="#layer07"
-							class="detail_btn" title="최초통장가입일 설명보기"><img
-								src="https://static.applyhome.co.kr/images/kabhom/apply_step/detail_chk.png" alt="상세설명"></a>
-							<div id="layer07" class="detail_layer pop" tabindex="0">
-								<div class="line_box" style="margin: 0">
-
-									<div class="line_content" id="explan03" data-stde="2022-01-13">
-										<b class="line_tit">최초통장가입일</b>
-										<p class="disa_result" id="subscribeDe"></p>
-										<b class="line_tit mt_10">청약통장 가입기간</b>
-										<p class="disa_result" id="subscribePd">청약통장 가입일을 선택해주세요.</p>
-										<p class="mt_10">입주자모집공고일 현재 입주자저축 가입자의 가입기간을 기준으로하며, 입주자저축의 종류, 금액, 가입자 명의변경을 한 경우에도 최초 가입일을 기준으로 가입기간을 산정합니다.</p>
-										<p>청약통장 가입일은 청약통장 가입은행에서 조회된 자료로 통장가입기간에 따른 가점은 자동계산됩니다.</p>
-										<p>미성년자로서 가입한 기간이 2년을 초과하면 2년만 인정 (주택공급에 관한 규칙 제10조 제6항)</p>
-									</div>
-									<div style="display:none">
-										<label for="svingsSbscrbPd">청약가입기간</label>
-										<select name="svingsSbscrbPd" id="svingsSbscrbPd" class="select_sel">
-
-												<option value="01">6월 미만</option>
-
-												<option value="02">6월 이상 ~ 1년 미만</option>
-
-												<option value="03">1년 이상 ~ 2년 미만</option>
-
-												<option value="04">2년 이상 ~ 3년 미만</option>
-
-												<option value="05">3년 이상 ~ 4년 미만</option>
-
-												<option value="06">4년 이상 ~ 5년 미만</option>
-
-												<option value="07">5년 이상 ~ 6년 미만</option>
-
-												<option value="08">6년 이상 ~ 7년 미만</option>
-
-												<option value="09">7년 이상 ~ 8년 미만</option>
-
-												<option value="10">8년 이상 ~ 9년 미만</option>
-
-												<option value="11">9년 이상 ~ 10년 미만</option>
-
-												<option value="12">10년 이상 ~ 11년 미만</option>
-
-												<option value="13">11년 이상 ~ 12년 미만</option>
-
-												<option value="14">12년 이상 ~ 13년 미만</option>
-
-												<option value="15">13년 이상 ~ 14년 미만</option>
-
-												<option value="16">14년 이상 ~ 15년 미만</option>
-
-												<option value="17">15년 이상</option>
-
-										</select>
-									</div>
-									<button type="button" class="detail_close">
-										<i class="xi xi-close-thin"></i><span class="blind">팝업
-											닫기</span>
-									</button>
-
-								</div>
-							</div>
-						</td>
-						<td>
-							<label for="disa_inp" class="blind">최초 청약통장 가입일 예시) 2009-05-26</label>
-							<input type="text" id="disa_inp" class="disa_inp" value="" placeholder="청약통장가입일" data-active="explan03" style="width: 100%; min-width: 100%" readonly>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<div class="agr_wrap">
-				<div class="chk_wrap sm_chk_box mt_10" style="padding: 10px">
-					<p>
-						무주택기간 및 부양가족 수는 상기의 <span class="color_org">문항별 적용기준에 따라 정확하게 선택</span>하였으며,
-						<br>
-						<span class="color_org">허위 또는 부정확하게 입력하였을 경우 부적격 처리</span>됨을 확인합니다.
-					</p>
-					<div class="check_st mt_5 add_box">
-						<input type="checkbox" id="chkCnfirm">
-						<label for="chkCnfirm">예</label>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="btn_box">
-			<button type="button" class="btn_cancel" id="btnSubmitPre" onclick = "location.href = 'do_apply_type_select.html' ">
-				<img src="https://static.applyhome.co.kr/images/kabhom/sub/btn_left.png" alt="" > 이전
-			</button>
-			<button type="button" class="btn_submit" id="btnSubmitNext" onclick = "location.href = 'Do.apply.qualify.inputs.html' ">
-				다음 <img src="https://static.applyhome.co.kr/images/kabhom/sub/btn_right.png" alt="" >
-			</button>
-		</div>
-	</form>
-</div>
-
-<div id="popScoreCnfirm" class="popDiv" style="display: none;">
-	<div class="popBody">
-		<b class="line_tit">무주택기간(최고32점)</b>
-		<div class="disa_result">
-			<dl>
-				<dt id="popBhmlsPdNm"></dt>
-				<dd>
-					<span class="color_blue" id="popBhmlsPdScore"></span>점
-				</dd>
-			</dl>
-		</div>
-		<b class="line_tit">부양가족 수(최고35점)</b>
-		<div class="disa_result">
-			<dl>
-				<dt id="popSuportFamilyNm"></dt>
-				<dd>
-					<span class="color_blue" id="popSuportFamilyScore"></span>점
-				</dd>
-			</dl>
-		</div>
-		<b class="line_tit">청약통장 가입기간(최고17점)</b>
-		<div class="disa_result">
-			<dl>
-				<dt id="popSvingsSbscrbPdNm"></dt>
-				<dd>
-					<span class="color_blue" id="popSvingsSbscrbPdScore"></span>점
-				</dd>
-			</dl>
-		</div>
-		<div class="total_tit_score">
-			<b>청약가점 총점</b>
-			<p>
-				<span class="color_blue" id="popTotScore"></span><small
-					class="xsmall">/84점</small>
-			</p>
-		</div>
-		<p>*본인이 선택하신 가점항목 및 해당 점수를 확인하여 주시기 바랍니다.</p>
-		<div class="btn_box btn_sm mt_30">
-			<button type="button" class="btn_cancel" id="btnPopRe">닫기</button>
-			<button type="button" class="btn_submit" id="btnPopNext">
-				다음 <img src="https://static.applyhome.co.kr/images/kabhom/sub/btn_right.png" alt="">
-			</button>
-		</div>
+			</tbody>
+		</table>
 	</div>
-</div>
-
-<div style="display:none;">
-	<label for="bhmlsPdScoreCodeTemp1">무주택기간 선택</label>
-	<select name="bhmlsPdScoreCodeTemp1" id="bhmlsPdScoreCodeTemp1"  disabled="disabled">
-		<option value="">무주택기간 선택</option>
-
-			<option value="00">유주택, 30세미만 미혼인 무주택(0점)</option>
-
-			<option value="02">1년 미만(2점)</option>
-
-			<option value="04">1년 이상～2년 미만(4점)</option>
-
-			<option value="06">2년 이상～3년 미만(6점)</option>
-
-			<option value="08">3년 이상～4년 미만(8점)</option>
-
-			<option value="10">4년 이상～5년 미만(10점)</option>
-
-			<option value="12">5년 이상～6년 미만(12점)</option>
-
-			<option value="14">6년 이상～7년 미만(14점)</option>
-
-			<option value="16">7년 이상～8년 미만(16점)</option>
-
-			<option value="18">8년 이상～9년 미만(18점)</option>
-
-			<option value="20">9년 이상～10년 미만(20점)</option>
-
-			<option value="22">10년 이상～11년 미만(22점)</option>
-
-			<option value="24">11년 이상～12년 미만(24점)</option>
-
-			<option value="26">12년 이상～13년 미만(26점)</option>
-
-			<option value="28">13년 이상～14년 미만(28점)</option>
-
-			<option value="30">14년 이상～15년 미만(30점)</option>
-
-			<option value="32">15년 이상(32점)</option>
-
-	</select>
+					<div className="btn_box mt_10">
+						<button type="button" className="btn_cancel" id="btnSubmitPre" onClick = {this.moveLocationBack}>
+							<img src="https://static.applyhome.co.kr/images/kabhom/sub/btn_left.png" alt=""/> 이전
+						</button>
+						<button type="button" className="btn_submit" id="btnSubmitNext" onClick = {this.moveLocationFront}>
+							다음 <img src="https://static.applyhome.co.kr/images/kabhom/sub/btn_right.png" alt=""/>
+						</button>
+					</div>
 
 
-	<label for="bhmlsPdScoreCodeTemp2">주택소유 여부</label>
-	<select name="bhmlsPdScoreCodeTemp2" id="bhmlsPdScoreCodeTemp2" disabled="disabled">
-		<option value="00" selected>유주택, 30세 미만 미혼인 무주택(0점)</option>
-	</select>
-</div>
+				</>
+			}
+		}
+		ReactDOM.render(<TypeSelect/>, document.getElementById("move"));
+	</script>
 
 <script>
 
@@ -2041,13 +1038,13 @@
 				function() {
 					if ($(this).val() != vRsResideSecd) {
 						var tgtSn = $(this).data("sn");
-
-						$(this).attr("disabled", "disabled").removeClass(
-								"choiseY");
+                        //라디오+드롭다운 disable
+                        /*   
 						$("#pSel" + tgtSn).addClass("disabled").removeClass(
 								"choiseY");
 						$("#selAreaCode" + tgtSn).attr("disabled", "disabled")
 								.removeClass("choiseY");
+                        */
 					}
 				});
 	}
@@ -2545,69 +1542,6 @@
 		fn_sumbmit();
 	});
 
-	function fn_sumbmit() {
-
-        if (checkSubmit) {
-			checkSubmit = false;
-
-			if ($("#apsSubscrptAt").val() == 'Y' && $("#supportScore").val() == '0') {
-			    checkSubmit = true;
-			    alert("부양가족수 점수 산정에 문제가 발생하였습니다. \n새로고침(F5 이거나 Ctrl+r 버튼) 후 다시 진행해 주시기 바랍니다. \n동일한 문제가 계속 발생시 1644-7445 연락 주시기 바랍니다.");
-			    return ;
-            }
-
-			gfn_showCmmnProgressBar();
-
-
-            var arrQualfVal = fn_checkQualfSpecltRdnVal();
-
-
-            var vUrl = "/ap/app/reqst/insertStep3.do";
-
-
-            var $objResideSecd = $("input[name='resideSecd']:checked");
-
-
-            var spouseCk = $("input:checkbox[id='spouseAt']:checked").val();
-            if(spouseCk != "Y") {
-                spouseCk = "N";
-            }
-
-			var param = {
-			    "processTm" : $("#processTm").val(),
-				"houseManageNo" : $("#houseManageNo").val(),
-				"pblancNo" : $("#pblancNo").val(),
-				"specltRdnEarthAt" : $("#specltRdnEarthAt").val(),
-				"arrQualfCode" : arrQualfVal,
-				"lngtrSrvicSolderAt" : $("#solderAt").val(),
-				"resideSecd" : $objResideSecd.val(),
-				"resideAreaCode" : $("#resideAreaCode").val(),
-				"residePdSuffcnAt" : $objResideSecd.data("pdat"),
-				"housePosesnAtTy" : $("#housePosesnAtTy").val(),
-				"housePosesnSecd" : $("input[name=housePosesn]:checked").val(),
-				"apsPrzwinAt" : $("#apsPrzwinAt").val(),
-				"apsSubscrptAt" : $("#apsSubscrptAt").val(),
-				"agreAt" : $("#agreAt").val(),
-				"bhmlsPdScoreCode" : $("#sel_01").val(),
-				"suportFamilyScoreCode" : $("#supportScore").val(),
-				"spouseAt" : spouseCk,
-                "hshldMbUpptCo" : $("#hshldMbUpptCo").val(),
-                "hshldMbUndgrndCo" : $("#hshldMbUndgrndCo").val(),
-				"svingsSbscrbPdScoreCode" : $('#svingsSbscrbPd').val(),
-				"popTotScore" : $("#popTotScore").text()
-				//"reformOpertnDe" : $('#disa_inp').val()
-			};
-
-			var oOptions = new Object();
-			oOptions.CallBack = "fn_nextCallBack";
-			oOptions.dataType = "json";
-			oOptions.requestData = param;
-			$net.ajax(vUrl, oOptions);
-		} else {
-			alert("처리 중 입니다. 반응이 없을 경우 화면을 새로고침(F5) 바랍니다.");
-		}
-	}
-
 	function fn_nextCallBack(vResBody) {
 		if (vResBody.codeRtn == "200") {
 		  //$net.href("/ap/app/reqst/step4.do");
@@ -2620,11 +1554,34 @@
 		}
 	}
 </script>
+</div>
 
 
 
-	</div>
-<div id="divForPopup"></div>
+
+<script>
+	function datevalue(){
+		var today = new Date;
+		var year = today.getFullYear(); 
+		var month = today.getMonth() + 1;
+		var date = today.getDate();
+		document.getElementsByName("thisyear")[0].innerText=year;
+		document.getElementsByName("thisyear1")[0].innerText=year;
+		document.getElementsByName("thisyear2")[0].innerText=year;
+		document.getElementsByName("thisyear3")[0].innerText=year;
+		document.getElementsByName("yearago")[0].innerText=year-10;
+		document.getElementsByName("thismonth")[0].innerText=month;
+		document.getElementsByName("thismonth1")[0].innerText=month;
+		document.getElementsByName("thismonth2")[0].innerText=month;
+		document.getElementsByName("thismonth3")[0].innerText=month;
+		document.getElementsByName("thismonth4")[0].innerText=month;
+		document.getElementsByName("thisdate")[0].innerText=date;
+		document.getElementsByName("thisdate1")[0].innerText=date;
+		document.getElementsByName("thisdate2")[0].innerText=date;
+		document.getElementsByName("thisdate3")[0].innerText=date;
+		document.getElementsByName("thisdate4")[0].innerText=date;
+	}datevalue()
+</script>
 
 
 <div class="loding_wrap" id="commonProgressBar">
