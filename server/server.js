@@ -3,6 +3,7 @@ const Users = require('../server/models/userModel.js');
 const bcrypt = require('bcrypt');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const axios = require('axios');
 
 var express = require('express'),
     http = require('http'),
