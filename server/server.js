@@ -50,11 +50,8 @@ router.route('/process/login').post(async (req, res) => {
               email: req.body.email
           }
       });
-      console.log("id : " + user[0].id + "email : " + user[0].email);
       const match =  bcrypt.compare(req.body.password, user[0].password);
-      if(!match) return res.status(400).json({msg: "Wrong Password"});
-      const userId = user[0].id;
-      console.log(userId);
+      if(!match) {return res.status(400).json({msg: "Wrong Password"}); console.log("Wrong password")}
       const email = user[0].email;
       // session 생성
       if (req && req.session && req.session.user){ console.log("Already logined");}

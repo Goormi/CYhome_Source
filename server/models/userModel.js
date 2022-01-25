@@ -3,9 +3,10 @@ const  db = require('../config/userDatabase.js');
 
 const { DataTypes } = Sequelize;
 
-const Users = db.define('test',{
+const Users = db.define('user',{
     email:{
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        primaryKey: true
     },
     password:{
         type: DataTypes.STRING
