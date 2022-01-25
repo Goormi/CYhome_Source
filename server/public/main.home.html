@@ -92,23 +92,29 @@
 
         //consol.log(response.data);
         if(response.data==null){
-      var target = document.getElementById("target");
-      var li = document.createElement("li");
-      var a = document.createElement("a");
-      var text = document.createTextNode('로그인');
-      a.appendChild(text);
-      a.setAttribute("href", "sign.in.html");
-      li.appendChild(a);
-      target.appendChild(li);
-  }
+          var target = document.getElementById("target");
+          var li = document.createElement("li");
+          var a = document.createElement("a");
+          var text = document.createTextNode('로그인');
+          a.appendChild(text);
+          a.setAttribute("href", "sign.in.html");
+          li.appendChild(a);
+          target.appendChild(li);
+          document.querySelector('#applyDiv').innerHTML=`
+          <a href="sign.in.html" class="btn btn-default btn-lg btn-info">
+            로그인
+          </a>
+          <p style="color:black; font-size: 8px;"><br>* 로그인 후 청약 신청을 하실 수 있습니다</p>`
+      }
 
     }).catch(error => {console.log(error)})
   };
   sessionUser();
+
 </script>
 
 <!-- First Container -->
-<div class="container-fluid bg-1 text-center">
+<div class="container-fluid bg-1 text-center" id = applyDiv>
   <a href="do_apply_start.html" class="btn btn-default btn-lg btn-info">
     청약 신청하기
   </a>
