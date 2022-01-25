@@ -2,12 +2,6 @@ FROM node:latest
 # 작업 폴더를 만들고 npm 설치
 RUN mkdir /app
 COPY ./package.json /app/package.json
-
-RUN sudo apt-get install -y curl
-RUN curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh
-RUN sudo bash nodesource_setup.sh 
-RUN sudo apt-get install nodejs
-
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 ENV rds_host $rds_host
