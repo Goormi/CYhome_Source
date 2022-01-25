@@ -4,9 +4,6 @@ const  db = require('../config/userDatabase.js');
 const { DataTypes } = Sequelize;
 
 const Users = db.define('test',{
-    name:{
-        type: DataTypes.STRING
-    },
     email:{
         type: DataTypes.STRING
     },
@@ -21,9 +18,6 @@ const Users = db.define('test',{
     },
     period_subscription:{
         type: DataTypes.INTEGER
-    },
-    refresh_token:{
-        type: DataTypes.TEXT
     }
 },{
     freezeTableName:true
