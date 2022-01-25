@@ -1,7 +1,8 @@
+const dotenv = require('dotenv');
+dotenv.config();
 const userdb = require('../server/config/userDatabase.js');
 const Users = require('../server/models/userModel.js');
 const bcrypt = require('bcrypt');
-const dotenv = require('dotenv');
 const cors = require('cors');
 const axios = require('axios');
 
@@ -15,8 +16,6 @@ var express = require('express'),
     expressSession = require('express-session');
 var app = express();
 var router = express.Router();
-
-dotenv.config();
 
 app.use(expressSession({
     secret: 'my key',
@@ -187,7 +186,7 @@ const GetAPTLttotPblancDetail = async (houseManageNo, pblancNo) => {
         let query = data.gnrlrnk1etcggrcptdepd == undefined ? `INSERT INTO api_apt_details( houseManageNo, hssplyAdres, spsplyRceptBgnde, spsplyRceptEndde, gnrlRnk1CrspareaRceptPd, gnrlRnk1EtcAreaRcptdePd, gnrlRnk2CrspareaRceptPd, gnrlRnk2EtcAreaRcptdePd ) VALUES( ${houseManageNo}, '${data.hssplyadres}', '${data.spsplyrceptbgnde}', '${data.spsplyrceptendde}', '${data.gnrlrnk1crsparearceptpd}', '${data.gnrlrnk1etcarearcptdepd}', '${data.gnrlrnk2crsparearceptpd}', '${data.gnrlrnk2etcarearcptdepd}' )`
          : `INSERT INTO api_apt_details( houseManageNo, hssplyAdres, spsplyRceptBgnde, spsplyRceptEndde, gnrlRnk1CrspareaRceptPd, gnrlRnk1EtcGGRcptdePd, gnrlRnk1EtcAreaRcptdePd, gnrlRnk2CrspareaRceptPd, gnrlRnk2EtcGGRcptdePd, gnrlRnk2EtcAreaRcptdePd ) VALUES( ${houseManageNo}, '${data.hssplyadres}', '${data.spsplyrceptbgnde}', '${data.spsplyrceptendde}', '${data.gnrlrnk1crsparearceptpd}', '${data.gnrlrnk1etcggrcptdepd}', '${data.gnrlrnk1etcarearcptdepd}', '${data.gnrlrnk2crsparearceptpd}', '${data.gnrlrnk2etcggrcptdepd}', '${data.gnrlrnk2etcarearcptdepd}' )`
         // DB 저장
-        connection.query(query, (error) => { if (error) if(error.code != 'ER_DUP_ENTRY') console.log(error); });    
+        connection.query(query, (error) => { if (error) if(error.code != 'ER_DUP_ENTRY') console.log(error); });
     }).catch(error =>{
         console.log(error)
     });
@@ -210,9 +209,9 @@ const GetAPTLttotPblancMdl = async (houseManageNo, pblancNo) => {
                 }
             }
         }
-        
+
         // DB 저장
-        connection.query(`INSERT INTO api_apt_type_details( houseManageNo, houseTy ) VALUES( ${houseManageNo}, '${housety}' )`, (error) => { if (error) if(error.code != 'ER_DUP_ENTRY') console.log(error.code); });    
+        connection.query(`INSERT INTO api_apt_type_details( houseManageNo, houseTy ) VALUES( ${houseManageNo}, '${housety}' )`, (error) => { if (error) if(error.code != 'ER_DUP_ENTRY') console.log(error.code); });
     }).catch(error =>{
         console.log(error)
     });

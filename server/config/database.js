@@ -1,7 +1,7 @@
 module.exports = {
-  host : "goormy-database-1.ce7mkzss15bi.ap-northeast-2.rds.amazonaws.com",
-  user : "admin",
-  password : "groomy1!",
-  database : "goormy_first_database",
+  host : process.env.rds_host,
+  user : process.env.rds_user,
+  password : process.env.rds_password,
+  database : process.env.rds_database,
   port : 3306
 };

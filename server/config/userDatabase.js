@@ -1,7 +1,7 @@
 const {Sequelize} = require('sequelize');
 
-const db = new Sequelize('goormy_first_database','admin','groomy1!',{
-    host: "goormy-database-1.ce7mkzss15bi.ap-northeast-2.rds.amazonaws.com",
+const db = new Sequelize(process.env.rds_database, process.env.rds_user, process.env.rds_password,{
+    host: process.env.rds_host,
     dialect: "mysql"
 });
 
