@@ -10,7 +10,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- ##### 모달 추가한 부분 -->
-	<link rel="icon" type="image/ico" href="https://static.applyhome.co.kr/images/kabhom/common/favicon.ico" />
+	<link rel="icon" type="image/ico" href="images/logo_v1.svg" />
 	<link rel="apple-touch-icon" href="https://static.applyhome.co.kr/images/kabhom/common/phone.png"/>
 	<link rel="shortcut icon" href="https://static.applyhome.co.kr/images/kabhom/common/phone.png"/>
 
@@ -23,7 +23,7 @@
 	<link rel="stylesheet" href="css/kabhom/main/vendors/swiper.min.css">
     <script src="js/kabhom/plugin/swiper.min.js"></script>
 
-	<title>청약홈 | 청약가점계산</title>
+	<title>구르미 | 청약</title>
 
 
 	<!-- 운영일 경우에만 -->
@@ -729,11 +729,11 @@ $(function() {
 		}else{
 
             var bhmlsPd = $('#sel_00').val();
-    
+
             if(bhmlsPd == '-1') bhmlsPd = '0';
             bhmlsPd = parseInt(bhmlsPd);
-    
-    
+
+
             var suportSumCo = parseInt( $('.suport_fm input:checked').val() );
             $('.suport_fm select').each(function() {
                 suportSumCo += parseInt( $(this).val() );
@@ -742,10 +742,10 @@ $(function() {
                 suportSumCo = 6;
             }
             var suportSumSc = $("#sel_01 option[value='"+suportSumCo+"']").data("score");
-    
+
             var addpntFrm = $('<form/>', {name:'addpntFrm', id:'addpntFrm'});
             $('.btn_box').after(addpntFrm);
-    
+
             addpntFrm.append( $('<input/>', {type:'hidden', name:'bhmlsPdCd', id:'bhmlsPdCd', value:$('#sel_00').val()}) );
             addpntFrm.append( $('<input/>', {type:'hidden', name:'bhmlsPdSc', id:'bhmlsPdSc', value:bhmlsPd}) );
             addpntFrm.append( $('<input/>', {type:'hidden', name:'bhmlsPdNm', id:'bhmlsPdNm', value:$('#sel_00 option:selected').text()}) );
@@ -754,18 +754,18 @@ $(function() {
             addpntFrm.append( $('<input/>', {type:'hidden', name:'subscribePdCd', id:'subscribePdCd', value:$('#svingsSbscrbPd').val()}) );
             addpntFrm.append( $('<input/>', {type:'hidden', name:'subscribePdSc', id:'subscribePdSc', value:parseInt($('#svingsSbscrbPd').val())}) );
             addpntFrm.append( $('<input/>', {type:'hidden', name:'subscribePdNm', id:'subscribePdNm', value:$('#svingsSbscrbPd option:selected').text()}) );
-    
+
             var oPopupOptions = new Object();
-    
+
             oPopupOptions.title = "청약가점점수 확인";
             oPopupOptions.url = "/ap/apg/calculateAddpntView.do";
             oPopupOptions.height = "620";
             oPopupOptions.resizable = false;
             oPopupOptions.clazz ='pop_w_700';
             oPopupOptions.formId = "addpntFrm";
-    
+
             $pop.dialog(oPopupOptions);
-    
+
             if($('#addpntFrm')){
                 $('#addpntFrm').remove();
             }

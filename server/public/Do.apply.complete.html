@@ -4,7 +4,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1" />
 	<meta name="format-detection" content="telephone=no" />
-	<link rel="icon" type="image/ico" href="https://static.applyhome.co.kr/images/kabhom/common/favicon.ico" />
+	<link rel="icon" type="image/ico" href="images/logo_v1.svg" />
 	<link rel="apple-touch-icon" href="https://static.applyhome.co.kr/images/kabhom/common/phone.png"/>
 	<link rel="shortcut icon" href="https://static.applyhome.co.kr/images/kabhom/common/phone.png"/>
 
@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="css/kabhom/main/vendors/swiper.min.css">
   <script src="js/kabhom/plugin/swiper.min.js"></script>
 
-	<title>청약홈 | 청약가상체험</title>
+	<title>구르미 | 청약</title>
 
 
 	<!-- 운영일 경우에만 -->
@@ -156,7 +156,6 @@
 					<div class = "lnb_wrap">
 						<ul class="lnb_box" id="naviUl">
 							<li><a href="main.home.html"><i class="xi-home"></i><span class="blind">홈으로</span></a></li>
-							<li class="mo_none" data-mid="100122"><i class="xi-angle-right-thin"></i> 모집공고단지 청약신청</li>
 							<li class="" data-mid="100126" data-umid="100122"> <i class="xi-angle-right-thin"></i> 신청 완료 </li>
 						</ul>
 					</div>
@@ -203,7 +202,7 @@
 		                                <th scope="row">성명</th>
 		                                <td id = email>YOUR NAME HERE</td>
 										<th scope="row" class="iemNm" data-no="3">거주구분</th>
-										<td class="iemVal" data-no="3">해당지역</td>
+										<td class="iemVal" data-no="3" id = locat>해당지역</td>
 		                            </tr>
 
 
@@ -215,13 +214,13 @@
 						</tr>
 						<tr>
 							<th scope="row" class="iemNm" data-no="1">주택명</th>
-							<td class="iemVal" data-no="1" id = nameAPT>청약가상체험(민영주택)</td>
+							<td class="iemVal" data-no="1" id = houseNm>청약가상체험(민영주택)</td>
 							<th scope="row">청약신청일</th>
 							<td id = today>20YY년 MM월 DD일</td>
 						</tr>
 						<tr>
 							<th scope="row" class="iemNm" data-no="2">주택형</th>
-							<td class="iemVal" data-no="2" id = tyAPT>TYPE_TEXT/FLOAT</td>
+							<td class="iemVal" data-no="2" id = houseTy>TYPE_TEXT/FLOAT</td>
 							<th scope="row" class="iemNm" data-no="5">최하층 우선배정</th>
 							<td class="iemVal" data-no="5">해당사항 없음</td>
 						</tr>
@@ -229,20 +228,9 @@
 						<tr>
 							<th scope="row" class="iemNm" data-no="6">청약신청순위</th>
 							<td class="iemVal" data-no="6">1순위</td>
-							<th scope="row" class="iemNm" data-no="7">주택처분서약</th>
-							<td class="iemVal" data-no="7">해당사항없음</td>
+							<th scope="row" class="iemNm" data-no="7">장기복무군인 신청</th>
+							<td class="iemVal" data-no="7" id = army>해당사항없음</td>
 						</tr>
-
-
-
-
-						<tr>
-							<th scope="row" class="iemNm" data-no="4">장기복무군인 신청</th>
-							<td colspan="3" class="iemVal" data-no="4">해당사항 없음</td>
-						</tr>
-
-
-
 					</tbody>
 				</table>
 			<!-- ## 가점제청약 (일반공급 가점제, 특별공급 노부모부양 민간) start-->
@@ -361,7 +349,7 @@ const callUser = async() => {
 const sessionUser = () => {
   const user = callUser().then(response => {
   if(response.data.email){
-		console.log(response.data.email)
+		//consol.log(response.data.email)
 		// 가산점 출력
 		const callUserInfo = async() => {
 			await axios.post('http://localhost:30020/connect_db', {
@@ -388,29 +376,28 @@ const sessionUser = () => {
 };
 sessionUser();
 
-const houseManageNo = '2021000930';
+let houseManageNo = location.href.split('?')[1]?.split('=')[1]
+let houseTy = location.href.split('?')[2]?.split('=')[1]
+let dataSet = location.href.split('?')[3]?.split('=')[1].split('')
+let data1 = dataSet[0]
+let data2 = dataSet[1]
+let data3 = dataSet[2]
+let data4 = dataSet[3]
 var dataAPT = {}, dataAPTty = {};
 const callAPT = async() => {
 	await axios.post('http://localhost:30020/connect_db', {
 		query: `SELECT * FROM api_apt WHERE houseManageNo = ${houseManageNo};`	})
 		.then((response) => {
-			dataAPT = response.data[0].houseNm
-			console.log(dataAPT)
-			document.querySelector("#nameAPT").innerText = `${dataAPT}`
+			document.querySelector("#houseNm").innerText = `${response.data[0].houseNm}`
+			document.querySelector("#houseTy").innerText = `${houseTy}`
+			if(data2 == 'Y')
+				document.querySelector("#locat").innerText = `해당지역`
+			else
+				document.querySelector("#locat").innerText = `기타지역`
+			document.querySelector("#army").innerText = `${data1}`
 		}).catch(err => {console.log(err)});
 }
 callAPT();
-const callAPTty = async() => {
-	await axios.post('http://localhost:30020/connect_db', {
-		query: `SELECT * FROM api_apt_type_details WHERE houseManageNo = ${houseManageNo};`	})
-		.then((response) => {
-			dataAPTty = response.data[0].houseTy
-			console.log(dataAPTty)
-			const tmpTy = dataAPTty.split(",")[0]
-			document.querySelector("#tyAPT").innerText = `${tmpTy}`
-		}).catch(err => {console.log(err)});
-}
-callAPTty()
 
 var date = new Date();
 year = date.getFullYear();
@@ -444,7 +431,7 @@ const insertApply = async() => {
 											query: `SELECT * FROM applications WHERE email = '${email}' ;`})
 											.then((response) => {
 												let lengthData = response.data.length
-												console.log("$$" + tmpTy + "$$" + houseNm + "$$" + email + "$$" + lengthData + "$$" + applyDay)
+												//consol.log("$$" + tmpTy + "$$" + houseNm + "$$" + email + "$$" + lengthData + "$$" + applyDay)
 												let maxNum = 0
 												response.data.forEach((item, i) => {
 													if(item.numApply > maxNum) maxNum = item.numApply
@@ -453,9 +440,9 @@ const insertApply = async() => {
 												// 드디어 INSERT
 												let insertData = async() => {
 													await axios.post('http://localhost:30020/connect_db', {
-														query: `INSERT INTO applications(email, numApply, houseNm, houseTy, applyDay) values ('${email}', ${maxNum}, '${houseNm}', '${tmpTy}', '${applyDay}');`
+														query: `INSERT INTO applications(email, numApply, houseNm, houseTy, applyDay) values ('${email}', ${maxNum}, '${houseNm}', '${houseTy}', '${applyDay}');`
 													}).then((response) => {
-														console.log(response)
+														//consol.log(response)
 													}).catch(err => console.log(err))
 												}
 												insertData()

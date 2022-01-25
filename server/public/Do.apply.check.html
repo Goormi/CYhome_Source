@@ -4,7 +4,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1" />
 	<meta name="format-detection" content="telephone=no" />
-	<link rel="icon" type="image/ico" href="https://static.applyhome.co.kr/images/kabhom/common/favicon.ico" />
+	<link rel="icon" type="image/ico" href="images/logo_v1.svg" />
 	<link rel="apple-touch-icon" href="https://static.applyhome.co.kr/images/kabhom/common/phone.png"/>
 	<link rel="shortcut icon" href="https://static.applyhome.co.kr/images/kabhom/common/phone.png"/>
 
@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="css/kabhom/main/vendors/swiper.min.css">
     <script src="js/kabhom/plugin/swiper.min.js"></script>
 
-	<title>청약홈 | 청약</title>
+	<title>구르미 | 청약</title>
 
 
 	<!-- 운영일 경우에만 -->
@@ -49,7 +49,7 @@
 	<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
 	<script src="https://unpkg.com/@babel/standalone/babel.min.js" ></script>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"> </script>
-	
+
 	<script>
 	document.domain = "applyhome.co.kr";
 
@@ -158,10 +158,6 @@
 					<div class="lnb_wrap">
 						<ul class="lnb_box" id="naviUl">
 							<li><a href="main.home.html"><i class="xi-home"></i><span class="blind">홈으로</span></a></li>
-							<li class="mo_none" data-mid="100122"><i class="xi-angle-right-thin"></i> 모집공고단지 청약신청</li>
-
-
-
 							<li class="" data-mid="100126" data-umid="100122">
 								<i class="xi-angle-right-thin"></i> 청약신청
 							</li>
@@ -330,8 +326,8 @@
 		</div>
 
 		<div class="chos_wrap">
-			
-		
+
+
 
 		<div id="move"></div>
 
@@ -384,20 +380,20 @@
 
 			setlngtrSrvicSolderAt(e){
 				this.setState({ lngtrSrvicSolderAt : e.target.value })
-				console.log(e.target.value)
+				//consol.log(e.target.value)
 			}
-			
+
 			setResideSecd(e){
 				this.setState({ resideSecd : e.target.value })
-				console.log(e.target.value)
+				//consol.log(e.target.value)
 			}
 			setHousePosesn(e){
 				this.setState({ housePosesn : e.target.value })
-				console.log(e.target.value)
+				//consol.log(e.target.value)
 			}
 			setPrzwinAt(e){
 				this.setState({ przwinAt : e.target.value })
-				console.log(parent.document.body)
+				//consol.log(parent.document.body)
 			}
 
 			render(){
@@ -509,7 +505,7 @@
 												id="resideSecd1" data-sn="1" value="Y"
 												data-pdat="N" onClick={this.setResideSecd}/> <label
 												htmlFor="resideSecd1">해당지역 거주</label>
-										</p>  
+										</p>
 
 										<p className="radio_st2">
 											<input type="radio" className="choiseY" name="resideSecd"
@@ -530,7 +526,7 @@
 												htmlFor="resideSecd3">해당지역 거주</label>
 										</p>
 
-											
+
 
 
 								</div>
@@ -1039,7 +1035,7 @@
 					if ($(this).val() != vRsResideSecd) {
 						var tgtSn = $(this).data("sn");
                         //라디오+드롭다운 disable
-                        /*   
+                        /*
 						$("#pSel" + tgtSn).addClass("disabled").removeClass(
 								"choiseY");
 						$("#selAreaCode" + tgtSn).attr("disabled", "disabled")
@@ -1562,7 +1558,7 @@
 <script>
 	function datevalue(){
 		var today = new Date;
-		var year = today.getFullYear(); 
+		var year = today.getFullYear();
 		var month = today.getMonth() + 1;
 		var date = today.getDate();
 		document.getElementsByName("thisyear")[0].innerText=year;

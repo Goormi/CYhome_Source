@@ -4,7 +4,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1" />
 	<meta name="format-detection" content="telephone=no" />
-	<link rel="icon" type="image/ico" href="https://static.applyhome.co.kr/images/kabhom/common/favicon.ico" />
+	<link rel="icon" type="image/ico" href="images/logo_v1.svg" />
 	<link rel="apple-touch-icon" href="https://static.applyhome.co.kr/images/kabhom/common/phone.png"/>
 	<link rel="shortcut icon" href="https://static.applyhome.co.kr/images/kabhom/common/phone.png"/>
 
@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="css/kabhom/main/vendors/swiper.min.css">
     <script src="js/kabhom/plugin/swiper.min.js"></script>
 
-	<title>청약홈 | APT 1순위 청약취소</title>
+	<title>구르미 | 청약</title>
 
 
 	<!-- 운영일 경우에만 -->
@@ -331,7 +331,7 @@
                     <li id="li3"><a href="#"><span>취소후재공급</span></a></li>
                 </ul>
             </div>
-		-->	
+		-->
 			<div class="tab_wrap">
 				<ul class="tab_box"><li id="li0"><a href="#"><span>1순위</span></a></li></ul>
 			</div>
@@ -437,7 +437,7 @@ const sessionUser = () => {
   const user = callUser().then(response => {
   if(response.data.email){
 		var email = response.data.email
-		console.log(email)
+		//consol.log(email)
 		document.querySelector("#email").innerText = `${response.data.email}`
 		// 신청 내역 출력
 		let tmpNum = async() =>{
@@ -448,7 +448,7 @@ const sessionUser = () => {
 					// 없을 경우
 					if(!lengthData) document.querySelector("#applyList").innerHTML = "<b class='color_blue'> [ 주택청약 신청 내역이 없습니다. ] </b>"
 					else{ // 있을 경우
-						console.log(response.data)
+						//consol.log(response.data)
 						document.querySelector("#applyList").innerHTML = `<b class='color_blue'> [ 주택청약 신청 내역이 ${lengthData}개 있습니다. ] </b>`
 						var tmpStr = ``
 						response.data.forEach((item, i) => {
@@ -476,13 +476,13 @@ const sessionUser = () => {
 sessionUser();
 // 신청 취소
 const cancelApply = async(email, num) => {
-	console.log(email)
-	console.log(num)
-	console.log(`DELETE FROM applications WHERE email = '${email}' AND numApply = ${num};`)
+	//consol.log(email)
+	//consol.log(num)
+	//consol.log(`DELETE FROM applications WHERE email = '${email}' AND numApply = ${num};`)
 	await axios.post('http://localhost:30020/connect_db', {
 		query: `DELETE FROM applications WHERE email = '${email}' AND numApply = ${num};` })
 		.then((response) => {
-			console.log(response)
+			//consol.log(response)
 		}).catch(err => console.log(err))
 		window.location.reload()
 }
