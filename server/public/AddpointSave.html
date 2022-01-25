@@ -119,7 +119,7 @@ height:auto
 }
 </style>
 <div class="sub_content_box" id="subContent">
-	<h4 class="sub_tit">청약가점 계산하기</h4>
+	<h4 class="sub_tit">청약가점 수정하기</h4>
 	<div class="chos_wrap">
 		<div class="line_box noti_line">
 			<div class="line_content">
@@ -472,7 +472,7 @@ height:auto
 				<!-- #####모달 추가
 					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
 			-->
-		<button type="button" class="btn_submit" onclick= "location.href = 'sign.up.html' ">돌아가기</button>
+		<button type="button" class="btn_submit" id="brnCalPop" data-bs-toggle="modal" data-bs-target="#myModal">가점 수정하기</button>
 
 
 	</div>
@@ -504,7 +504,7 @@ height:auto
       <!-- Modal footer -->
       <div class="modal-footer">
 				<h4 class="modal-title"></h4>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">저장</button>
       </div>
 
     </div>
@@ -726,50 +726,52 @@ $(function() {
 
 		if ( !validation.checkCustomVal() ) {
 			return ;
-		}
+		}else{
+
+            var bhmlsPd = $('#sel_00').val();
+    
+            if(bhmlsPd == '-1') bhmlsPd = '0';
+            bhmlsPd = parseInt(bhmlsPd);
+    
+    
+            var suportSumCo = parseInt( $('.suport_fm input:checked').val() );
+            $('.suport_fm select').each(function() {
+                suportSumCo += parseInt( $(this).val() );
+            });
+            if(suportSumCo > 6) {
+                suportSumCo = 6;
+            }
+            var suportSumSc = $("#sel_01 option[value='"+suportSumCo+"']").data("score");
+    
+            var addpntFrm = $('<form/>', {name:'addpntFrm', id:'addpntFrm'});
+            $('.btn_box').after(addpntFrm);
+    
+            addpntFrm.append( $('<input/>', {type:'hidden', name:'bhmlsPdCd', id:'bhmlsPdCd', value:$('#sel_00').val()}) );
+            addpntFrm.append( $('<input/>', {type:'hidden', name:'bhmlsPdSc', id:'bhmlsPdSc', value:bhmlsPd}) );
+            addpntFrm.append( $('<input/>', {type:'hidden', name:'bhmlsPdNm', id:'bhmlsPdNm', value:$('#sel_00 option:selected').text()}) );
+            addpntFrm.append( $('<input/>', {type:'hidden', name:'suportSumCo', id:'suportSumCo', value:suportSumCo}) );
+            addpntFrm.append( $('<input/>', {type:'hidden', name:'suportSumSc', id:'suportSumSc', value:suportSumSc}) );
+            addpntFrm.append( $('<input/>', {type:'hidden', name:'subscribePdCd', id:'subscribePdCd', value:$('#svingsSbscrbPd').val()}) );
+            addpntFrm.append( $('<input/>', {type:'hidden', name:'subscribePdSc', id:'subscribePdSc', value:parseInt($('#svingsSbscrbPd').val())}) );
+            addpntFrm.append( $('<input/>', {type:'hidden', name:'subscribePdNm', id:'subscribePdNm', value:$('#svingsSbscrbPd option:selected').text()}) );
+    
+            var oPopupOptions = new Object();
+    
+            oPopupOptions.title = "청약가점점수 확인";
+            oPopupOptions.url = "/ap/apg/calculateAddpntView.do";
+            oPopupOptions.height = "620";
+            oPopupOptions.resizable = false;
+            oPopupOptions.clazz ='pop_w_700';
+            oPopupOptions.formId = "addpntFrm";
+    
+            $pop.dialog(oPopupOptions);
+    
+            if($('#addpntFrm')){
+                $('#addpntFrm').remove();
+            }
+        }
 
 
-		var bhmlsPd = $('#sel_00').val();
-
-		if(bhmlsPd == '-1') bhmlsPd = '0';
-		bhmlsPd = parseInt(bhmlsPd);
-
-
-		var suportSumCo = parseInt( $('.suport_fm input:checked').val() );
-		$('.suport_fm select').each(function() {
-			suportSumCo += parseInt( $(this).val() );
-		});
-		if(suportSumCo > 6) {
-			suportSumCo = 6;
-		}
-		var suportSumSc = $("#sel_01 option[value='"+suportSumCo+"']").data("score");
-
-		var addpntFrm = $('<form/>', {name:'addpntFrm', id:'addpntFrm'});
-		$('.btn_box').after(addpntFrm);
-
-		addpntFrm.append( $('<input/>', {type:'hidden', name:'bhmlsPdCd', id:'bhmlsPdCd', value:$('#sel_00').val()}) );
-		addpntFrm.append( $('<input/>', {type:'hidden', name:'bhmlsPdSc', id:'bhmlsPdSc', value:bhmlsPd}) );
-		addpntFrm.append( $('<input/>', {type:'hidden', name:'bhmlsPdNm', id:'bhmlsPdNm', value:$('#sel_00 option:selected').text()}) );
-		addpntFrm.append( $('<input/>', {type:'hidden', name:'suportSumCo', id:'suportSumCo', value:suportSumCo}) );
-		addpntFrm.append( $('<input/>', {type:'hidden', name:'suportSumSc', id:'suportSumSc', value:suportSumSc}) );
-		addpntFrm.append( $('<input/>', {type:'hidden', name:'subscribePdCd', id:'subscribePdCd', value:$('#svingsSbscrbPd').val()}) );
-		addpntFrm.append( $('<input/>', {type:'hidden', name:'subscribePdSc', id:'subscribePdSc', value:parseInt($('#svingsSbscrbPd').val())}) );
-		addpntFrm.append( $('<input/>', {type:'hidden', name:'subscribePdNm', id:'subscribePdNm', value:$('#svingsSbscrbPd option:selected').text()}) );
-
-		var oPopupOptions = new Object();
-
-		oPopupOptions.title = "청약가점점수 확인";
-		oPopupOptions.url = "/ap/apg/calculateAddpntView.do";
-		oPopupOptions.height = "620";
-		oPopupOptions.resizable = false;
-		oPopupOptions.clazz ='pop_w_700';
-		oPopupOptions.formId = "addpntFrm";
-
-		$pop.dialog(oPopupOptions);
-
-		if($('#addpntFrm')){
-			$('#addpntFrm').remove();
-		}
 	});
 
 
