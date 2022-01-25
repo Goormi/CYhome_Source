@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <!-- Theme Made By www.w3schools.com - No Copyright -->
-  <title>Bootstrap Theme Simply Me</title>
+  <title>구르미 | 청약</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -11,9 +11,13 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <style>
+  @font-face { font-family: 'NanumGothic';
+  src: url('/fonts/NanumGothic.eot');
+  src: url('/fonts/NanumGothic.eot') format('embedded-opentype'),
+  url('/fonts/NanumGothic.woff') format('woff');}
   body {
-    font: 20px Montserrat, sans-serif;
-    line-height: 1.8;
+    font: 20px NanumGothic, sans-serif;
+    line-height: 2;
     color: #f5f6f7;
   }
   p {font-size: 16px;}
@@ -22,7 +26,11 @@
     background-color: #1abc9c; /* Green */
     color: #ffffff;
     min-height:0px !important;
-    height: 500px;
+    height: 800px;
+    background-image: url('images/home_bg.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
   }
   .bg-4 {
     background-color: #2f2f2f; /* Black Gray */
@@ -42,7 +50,7 @@
     letter-spacing: 5px;
   }
   .navbar-nav  li a:hover {
-    color: #1abc9c !important;
+    color: #33B7FF !important;
   }
   </style>
 </head>
@@ -92,15 +100,15 @@
       li.appendChild(a);
       target.appendChild(li);
   }
-    
+
     }).catch(error => {console.log(error)})
   };
   sessionUser();
+</script>
 
-          </script>
 <!-- First Container -->
 <div class="container-fluid bg-1 text-center">
-  <a href="do_apply_start.html" class="btn btn-default btn-lg">
+  <a href="do_apply_start.html" class="btn btn-default btn-lg btn-info">
     청약 신청하기
   </a>
 </div>
