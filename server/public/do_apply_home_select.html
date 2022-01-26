@@ -4,7 +4,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1" />
 	<meta name="format-detection" content="telephone=no" />
-	<link rel="icon" type="image/ico" href="https://static.applyhome.co.kr/images/kabhom/common/favicon.ico" />
+	<link rel="icon" type="image/ico" href="images/logo_v1.svg" />
 	<link rel="apple-touch-icon" href="https://static.applyhome.co.kr/images/kabhom/common/phone.png"/>
 	<link rel="shortcut icon" href="https://static.applyhome.co.kr/images/kabhom/common/phone.png"/>
 
@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="css/kabhom/main/vendors/swiper.min.css">
     <script src="js/kabhom/plugin/swiper.min.js"></script>
 
-	<title>청약홈 | 청약가상체험</title>
+	<title>구르미 | 청약</title>
 
 
 	<!-- 운영일 경우에만 -->
@@ -43,6 +43,12 @@
 	<!-- 성능제어 Netfunnel -->
 	<script src="https://static.applyhome.co.kr/netfunnel/netfunnel.js"></script>
 	<script src="https://static.applyhome.co.kr/netfunnel/netfunnel_skin.js"></script>
+
+	<!-- react 및 axios -->
+	<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js" ></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"> </script>
 
 	<script>
 	document.domain = "applyhome.co.kr";
@@ -135,12 +141,12 @@
 	</script>
 </head>
 <body>
-  <div id="content" class="sub_content">
+  <div id="" class="sub_content">
 		<div class="sub_visu apply">
 			<div class="sub_visu_box">
 				<div class="sub_visu_txt">
-					<h5> 모집공고단지 청약연습 </h5>
-					<p>50여년간 우리나라 부동산 가치의 기준을 세워 온 한국부동산원 주택청약 서비스입니다.</p>
+					<h5> 모집공고단지 청약신청 </h5>
+					<p>주택청약 서비스입니다.</p>
 					<div class="lnb_wrap">
 						<ul class="lnb_box" id="naviUl">
 							<li><a href="main.home.html"><i class="xi-home"></i><span class="blind">홈으로</span></a></li>
@@ -172,7 +178,7 @@
   </script>
 		<div class="sub_content_box add_box" id="subContent">
 			<div class="apply_step_box">
-				<h5> APT 1순위&middot;2순위 청약신청 </h5>
+				<h5> APT 1순위 청약신청 </h5>
 				<div class="apply_step_list_box">
                         <ul id="ulStep" class="apply_step_list virtual">
                             <li id="liStep1" class="step_active">
@@ -204,166 +210,130 @@
 
                     </div>
 			</div>
+			<div id="root"></div>
+			<script type="text/babel">
+				class Hello extends React.Component{
+					constructor(props){
+						super(props);
+						this.state = {
+							data : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+							index : null
+						}
+						this.callAPT = this.callAPT.bind(this);
+						this.callView = this.callView.bind(this);
+						this.moveLocation = this.moveLocation.bind(this);
+					}
+
+					componentDidMount(){
+						this.callAPT();
+					}
+
+					moveLocation(e){
+						var index = e.target.value
+/*						var form = document.createElement("form");
+						var parm = new Array();
+						var input = new Array();
+
+						form.action = 'do_apply_type_select.html';
+						form.method = "post";
+
+
+						parm.push( ['sido', this.state.data[index].sido] );
+						parm.push( ['houseNm', this.state.data[index].houseNm] );
+						parm.push( ['houseManageNo', this.state.data[index].houseManageNo] );
+
+
+						for (var i = 0; i < parm.length; i++) {
+							input[i] = document.createElement("input");
+							input[i].setAttribute("type", "hidden");
+							input[i].setAttribute('name', parm[i][0]);
+							input[i].setAttribute("value", parm[i][1]);
+							form.appendChild(input[i]);
+						}
+						document.body.appendChild(form);
+						form.submit();
+*/
+						location.href = `do_apply_type_select.html?houseManageNo=${this.state.data[index].houseManageNo}`
+					}
+
+					async callAPT(){
+						await axios.post('http://localhost:30020/connect_db',
+						{
+						query: "SELECT * FROM api_apt WHERE houseDtlSecdNm = '민영';"
+						}
+						).then((response) => {
+							//consol.log(response.data)
+							this.setState({ data : response.data })
+						}).catch(err=>{
+							console.log(err)
+						});
+					}
+
+					callView(){
+						return this.state.data.map((value, index) =>
+						<div className="radio_lg" data-pbno={"2021000908"+index.toString()} data-hmno={"2021000908"+index.toString()} tabIndex="0" key={index}>
+							<input type="hidden" name="hidRank" id={"hidRank2021000908"+index.toString()} value="1"/>
+							<input type="hidden" name="hidHmNo" id={"hidHmNo2021000908"+index.toString()} value={"2021000908"+index.toString()}/>
+							<input type="hidden" name="hidRNo" id={"hidRNo2021000908"+index.toString()} value=""/>
+							<input type="radio" name="rdoPblanc" id={"rdoPblanc0"+index.toString()} value={"2021000908"+index.toString()} />
+							<label htmlFor={"rdoPblanc0"+index.toString()}>
+								<span className="blk">
+									<b>{value.houseNm}(민영주택)</b>
+									<b className="radio_cate_txt"><span>APT</span><span>{value.sido}</span></b>
+								</span>
+								<b className="radio_cate_txt">
+									<span className="lb_line_2"><em className="lb lb_blue 1st">1순위</em> {value.rceptBgnde}</span>
+									<span className="lb_line_2"><em className="lb 2st">2순위</em> {value.rceptEndde}</span>
+								</b>
+							</label>
+							<span className="btn_box2">
+								<button type="button" className="btn_submit popOpen" data-pop="notes" value={index} onClick = {(e) => this.moveLocation(e)}>다음</button>
+							</span>
+						</div>
+						)
+					}
+
+					render(){
+						return <>
+							<div className="sub_tit">
+								주택 선택
+								<div className="explan">
+									<img src="https://static.applyhome.co.kr/images/kabhom/sub/sub_detail_txt.png" alt="상세설명"/>
+									<div id="explan" className="line_box add_line_box">
+									<div className="line_content">
+										<ul className="bul_list" style={{fontSize: '1rem'}}>
+											<li>청약하고자 하는 주택명을 선택해주세요.</li>
+											<li>투기과열지구 또는 청약과열지역에서 공급되는주택의 1순위 접수일은 해당지역과 기타지역으로 분리하여 접수합니다.</li>
+											<li>단, 공급 주택이 수도권내 대규모택지개발지구 또는 행정중심복합도시 예정지역이고 투기과열지구 또는 청약과열지역인 경우, 해당지역과 기타지역의 1순위 접수일은 동일합니다.</li>
+										</ul>
+
+										<button type="button" className="detail_close">
+											<i className="xi xi-close-thin"></i><span className="blind">팝업 닫기</span>
+										</button>
+									</div>
+								</div>
+								</div>
+
+							</div>
+
+
+							<div className="radio_st add_st lg" id="divPblancList">
+							{this.state.data.length > 0 ? this.callView() : ""}
+						</div>
+						<form name="reqstForm" id="reqstForm" method="POST">
+							<input type="hidden" name="houseSecd" id="houseSecd" value=""/>
+							<input type="hidden" name="suplyTycd" id="suplyTycd" value=""/>
+							<input type="hidden" name="houseManageNo" id="houseManageNo" value=""/>
+							<input type="hidden" name="pblancNo" id="pblancNo" value=""/>
+							<input type="hidden" name="rceptNo" id="rceptNo" value=""/>
+						</form>
+						<div className="btn_box"></div>
+					</>
+					}
+				}
+				ReactDOM.render(<Hello/>, document.getElementById("root"));
+			</script>
 
-			<div class="sub_tit">
-				주택 선택
-				<div class="explan">
-                    <img src="https://static.applyhome.co.kr/images/kabhom/sub/sub_detail_txt.png" alt="상세설명">
-					<div id="explan" class="line_box add_line_box">
-                    <div class="line_content">
-                        <ul class="bul_list" style="font-size: 1rem">
-                            <li>청약하고자 하는 주택명을 선택해주세요.</li>
-                            <li>투기과열지구 또는 청약과열지역에서 공급되는주택의 1순위 접수일은 해당지역과 기타지역으로 분리하여 접수합니다.</li>
-                            <li>단, 공급 주택이 수도권내 대규모택지개발지구 또는 행정중심복합도시 예정지역이고 투기과열지구 또는 청약과열지역인 경우, 해당지역과 기타지역의 1순위 접수일은 동일합니다.</li>
-                        </ul>
-
-						<button type="button" class="detail_close">
-                            <i class="xi xi-close-thin"></i><span class="blind">팝업 닫기</span>
-                        </button>
-                    </div>
-                </div>
-                </div>
-
-			</div>
-
-
-			<div class="radio_st add_st lg" id="divPblancList">
-
-				<div class="radio_lg" data-pbno="2021000908" data-hmno="2021000908" tabindex="0">
-
-
-
-
-
-
-
-
-
-
-
-
-						<input type="hidden" name="hidRank" id="hidRank2021000908" value="1">
-						<input type="hidden" name="hidHmNo" id="hidHmNo2021000908" value="2021000908">
-						<input type="hidden" name="hidRNo" id="hidRNo2021000908" value="">
-						<input type="radio" name="rdoPblanc" id="rdoPblanc0" value="2021000908" >
-						<label for="rdoPblanc0">
-
-
-
-
-
-
-
-
-
-
-						<span class="blk">
-							<b>청약가상체험1(민영주택)</b>
-							<b class="radio_cate_txt"><span>APT</span><span>대구</span></b>
-	                    </span>
-						<b class="radio_cate_txt">
-
-
-
-
-
-
-									<span class="lb_line_2"><em class="lb lb_blue">1순위</em> 2021-11-19~2099-12-31</span>
-
-
-
-
-
-									<span class="lb_line_2"><em class="lb">2순위</em> 2022-11-30</span>
-
-
-
-
-
-						</b>
-
-					</label>
-					<span class="btn_box2">
-                      	    <button type="button" class="btn_submit popOpen" data-pop="notes" onclick = "location.href = 'do_apply_type_select.html' ">다음</button>
-                        </span>
-				</div>
-
-
-				<div class="radio_lg" data-pbno="2021000907" data-hmno="2021000907" tabindex="0">
-
-
-
-
-
-
-
-
-
-
-
-
-						<input type="hidden" name="hidRank" id="hidRank2021000907" value="1">
-						<input type="hidden" name="hidHmNo" id="hidHmNo2021000907" value="2021000907">
-						<input type="hidden" name="hidRNo" id="hidRNo2021000907" value="">
-						<input type="radio" name="rdoPblanc" id="rdoPblanc1" value="2021000907" >
-						<label for="rdoPblanc1">
-
-
-
-
-
-
-
-
-
-
-						<span class="blk">
-							<b>청약가상체험2(민영주택)</b>
-							<b class="radio_cate_txt"><span>APT</span><span>대구</span></b>
-	                    </span>
-						<b class="radio_cate_txt">
-
-
-
-
-
-
-									<span class="lb_line_2"><em class="lb lb_blue">1순위</em> 2021-11-19~2099-12-31</span>
-
-
-
-
-
-									<span class="lb_line_2"><em class="lb">2순위</em> 2022-11-30</span>
-
-
-
-
-
-						</b>
-
-					</label>
-					<span class="btn_box2">
-                      	    <button type="button" class="btn_submit popOpen" data-pop="notes" onclick = "location.href = 'do_apply_type_select.html' ">다음</button>
-                        </span>
-				</div>
-
-
-			</div>
-			<form name="reqstForm" id="reqstForm" method="POST">
-				<input type="hidden" name="houseSecd" id="houseSecd" value=""/>
-				<input type="hidden" name="suplyTycd" id="suplyTycd" value=""/>
-				<input type="hidden" name="houseManageNo" id="houseManageNo" value=""/>
-				<input type="hidden" name="pblancNo" id="pblancNo" value=""/>
-				<input type="hidden" name="rceptNo" id="rceptNo" value=""/>
-			</form>
-			<div class="btn_box">
-
-
-
-
-
-			</div>
 <script>
     $(document).ready(function() {
         $(".popOpen").on("click", function() {

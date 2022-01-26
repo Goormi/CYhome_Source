@@ -4,7 +4,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1" />
 	<meta name="format-detection" content="telephone=no" />
-	<link rel="icon" type="image/ico" href="https://static.applyhome.co.kr/images/kabhom/common/favicon.ico" />
+	<link rel="icon" type="image/ico" href="images/logo_v1.svg" />
 	<link rel="apple-touch-icon" href="https://static.applyhome.co.kr/images/kabhom/common/phone.png"/>
 	<link rel="shortcut icon" href="https://static.applyhome.co.kr/images/kabhom/common/phone.png"/>
 
@@ -15,9 +15,9 @@
 	<link rel="stylesheet" type="text/css" href="css/kabhom/main/leftMenu.css"/>
 	<!-- 배너 슬라이드 추가링크 -->
 	<link rel="stylesheet" href="css/kabhom/main/vendors/swiper.min.css">
-    <script src="js/kabhom/plugin/swiper.min.js"></script>
+  <script src="js/kabhom/plugin/swiper.min.js"></script>
 
-	<title>청약홈 | 청약가상체험</title>
+	<title>구르미 | 청약</title>
 
 
 	<!-- 운영일 경우에만 -->
@@ -38,14 +38,13 @@
 	<script src="js/kabhom/main/site.js"></script>
 
 	<!-- 성능제어 Netfunnel, 키보드보안 -->
-	<script src="js/kabhom/com/com.js"></script>
+	<!-- <script src="js/kabhom/com/com.js"></script> -->
 
 	<!-- 성능제어 Netfunnel -->
 	<script src="https://static.applyhome.co.kr/netfunnel/netfunnel.js"></script>
 	<script src="https://static.applyhome.co.kr/netfunnel/netfunnel_skin.js"></script>
 
 	<script>
-	document.domain = "applyhome.co.kr";
 
 	window.onpageshow = function(event) {
 		if(event.persisted) {
@@ -54,9 +53,9 @@
 		}
 	}
 	$(document).ready(function() {
-		if(gfn_isMobile()) {
-			$('#divTab').css("display","none");
-		}
+		// if(gfn_isMobile()) {
+		// 	$('#divTab').css("display","none");
+		// }
 
 		var gnbTree = $("#gnbTree > li > button");
 		$(gnbTree).on("click", function() {
@@ -133,35 +132,31 @@
 	}
 
 	</script>
+	<!-- react 및 axios -->
+	<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+	<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js" ></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 <body>
-  <div id="content" class="sub_content">
+  <div id="" class="sub_content">
 		<div class="sub_visu apply">
 			<div class="sub_visu_box">
 				<div class="sub_visu_txt">
 					<h5>
 
 
-						모집공고단지 청약연습
+						모집공고단지 청약신청
 
 
 
 					</h5>
-					<p>50여년간 우리나라 부동산 가치의 기준을 세워 온 한국부동산원 주택청약 서비스입니다.</p>
+					<p>주택청약 서비스입니다</p>
 
-					<div class="lnb_wrap">
+					<div class = "lnb_wrap">
 						<ul class="lnb_box" id="naviUl">
-							<li><a href="javascript:$net.href('/co/coa/selectMainView.do');"><i class="xi-home"></i><span class="blind">홈으로</span></a></li>
-							<li class="mo_none" data-mid="100122"><i class="xi-angle-right-thin"></i> 모집공고단지 청약연습</li>
-
-
-
-							<li class="" data-mid="100126" data-umid="100122">
-								<i class="xi-angle-right-thin"></i> 청약가상체험
-							</li>
-
-
-
+							<li><a href="main.home.html"><i class="xi-home"></i><span class="blind">홈으로</span></a></li>
+							<li class="" data-mid="100126" data-umid="100122"> <i class="xi-angle-right-thin"></i> 신청 완료 </li>
 						</ul>
 					</div>
 				</div>
@@ -188,17 +183,6 @@
     });
   </script>
 		<div class="sub_content_box" id="subContent">
-			<div class="imagine_info">
-				<dl>
-					<dt>
-						<img src="https://static.applyhome.co.kr/images/kabhom/sub/imagin_bg01.png" alt="청약체험 이미지">
-					</dt>
-					<dd>
-						<em>청약신청이 완료되었습니다.</em>
-						<p>실제 청약이 아닌 <span class="color_blue">가상 체험</span>입니다. 유의하십시오.</p>
-					</dd>
-				</dl>
-			</div>
 			<div class="apply_result_chk">
 				<h5 class="sub_sub_tit mb_10"> 청약신청 내역 </h5>
 				<table class="tbl_st only_tbl_tb mt_10 mTbl type04">
@@ -216,9 +200,9 @@
 
 									<tr>
 		                                <th scope="row">성명</th>
-		                                <td>YOUR NAME</td>
+		                                <td id = email>YOUR NAME HERE</td>
 										<th scope="row" class="iemNm" data-no="3">거주구분</th>
-										<td class="iemVal" data-no="3">해당지역</td>
+										<td class="iemVal" data-no="3" id = locat>해당지역</td>
 		                            </tr>
 
 
@@ -230,13 +214,13 @@
 						</tr>
 						<tr>
 							<th scope="row" class="iemNm" data-no="1">주택명</th>
-							<td class="iemVal" data-no="1">청약가상체험(민영주택)</td>
+							<td class="iemVal" data-no="1" id = houseNm>청약가상체험(민영주택)</td>
 							<th scope="row">청약신청일</th>
-							<td>20YY년 MM월 DD일</td>
+							<td id = today>20YY년 MM월 DD일</td>
 						</tr>
 						<tr>
 							<th scope="row" class="iemNm" data-no="2">주택형</th>
-							<td class="iemVal" data-no="2">TYPE_TEXT/FLOAT</td>
+							<td class="iemVal" data-no="2" id = houseTy>TYPE_TEXT/FLOAT</td>
 							<th scope="row" class="iemNm" data-no="5">최하층 우선배정</th>
 							<td class="iemVal" data-no="5">해당사항 없음</td>
 						</tr>
@@ -244,20 +228,9 @@
 						<tr>
 							<th scope="row" class="iemNm" data-no="6">청약신청순위</th>
 							<td class="iemVal" data-no="6">1순위</td>
-							<th scope="row" class="iemNm" data-no="7">주택처분서약</th>
-							<td class="iemVal" data-no="7">해당사항없음</td>
+							<th scope="row" class="iemNm" data-no="7">장기복무군인 신청</th>
+							<td class="iemVal" data-no="7" id = army>해당사항없음</td>
 						</tr>
-
-
-
-
-						<tr>
-							<th scope="row" class="iemNm" data-no="4">장기복무군인 신청</th>
-							<td colspan="3" class="iemVal" data-no="4">해당사항 없음</td>
-						</tr>
-
-
-
 					</tbody>
 				</table>
 			<!-- ## 가점제청약 (일반공급 가점제, 특별공급 노부모부양 민간) start-->
@@ -281,23 +254,23 @@
 							<tr>
 								<th scope="rowgroup" rowspan="3">가점항목</th>
 								<td>무주택기간(최고32점)</td>
-								<td>유주택, 30세미만 미혼인 무주택</td>
-								<td>0점</td>
+								<td id = period_nohome_Info>유주택, 30세미만 미혼인 무주택</td>
+								<td id = period_nohome>0점</td>
 							</tr>
 							<tr>
 								<td>부양가족수(최고35점)</td>
-								<td>1명</td>
-								<td>10점</td>
+								<td id = num_dependents_Info>1명</td>
+								<td id = num_dependents>10점</td>
 							</tr>
 							<tr>
 								<td>청약통장 가입기간(최고17점)</td>
-								<td>6월 미만</td>
-								<td>1점</td>
+								<td id = period_subscription_Info>6월 미만</td>
+								<td id = period_subscription>1점</td>
 							</tr>
 							<tr class="tbl_total mTotal">
 								<th scope="row" colspan="2">총점</th>
 								<td class="br_none"></td>
-								<td><b class="color_blue">11</b><small class="xsmall">/ 84점</small></td>
+								<td><b class="color_blue" id = totalScore>11</b><small class="xsmall">/ 84점</small></td>
 							</tr>
 						</tbody>
 				</table>
@@ -316,13 +289,13 @@
 			</div>
 			<div class="btn_box">
 				<button type="button" class="btn_submit" id="btnHome" onclick = "location.href = 'main.home.html' ">홈으로</button>
-				<button type="button" class="btn_submit" id="btnHomePrct" onclick = "location.href = 'do_apply_start.html' ">다시하기</button>
+				<button type="button" class="btn_submit" id="btnHomePrct" onclick = "location.href = 'do_apply_start.html' ">신청하기</button>
 			</div>
 		</div>
 <script>
 
 	$(function(){
-		gfn_hideCmmnProgressBar();
+		// gfn_hideCmmnProgressBar();
 
 
 
@@ -364,7 +337,128 @@
 <script>
 	var gvPgmId = "APR00R06";
 </script>
-<script src="js/kabhom/com/hom.core.js"></script>
-<script src="js/kabhom/util/hom.all.js"></script>
+<!-- <script src="js/kabhom/com/hom.core.js"></script>
+<script src="js/kabhom/util/hom.all.js"></script> -->
+<script>
+// 신청 내역 출력
+const callUser = async() => {
+  try{
+    return await axios.get('http://localhost:30020/session_user');
+  } catch (error) {console.log(error)}
+}
+const sessionUser = () => {
+  const user = callUser().then(response => {
+  if(response.data.email){
+		//consol.log(response.data.email)
+		// 가산점 출력
+		const callUserInfo = async() => {
+			await axios.post('http://localhost:30020/connect_db', {
+				query: `SELECT * FROM user WHERE email = "${response.data.email}";`	})
+				.then((response) => {
+					period_nohome = response.data[0].period_nohome
+					num_dependents = response.data[0].num_dependents
+					period_subscription = response.data[0].period_subscription
+					document.querySelector("#period_nohome_Info").innerText = `${period_nohome} 년 동안 무주택`
+					document.querySelector("#num_dependents_Info").innerText = `${num_dependents} 명`
+					document.querySelector("#period_subscription_Info").innerText = `${period_subscription} 년 미만`
+					document.querySelector("#period_nohome").innerText = `${period_nohome}점`
+					document.querySelector("#num_dependents").innerText = `${num_dependents}점`
+					document.querySelector("#period_subscription").innerText = `${period_subscription}점`
+					var totalScore = parseInt(period_nohome) + parseInt(num_dependents) + parseInt(period_subscription)
+					document.querySelector("#totalScore").innerText =`${totalScore}`
+				}).catch(err => {console.log(err)});
+		}
+		callUserInfo();
+
+		document.querySelector("#email").innerText = `${response.data.email}`
+	}
+  }).catch(error => {console.log(error)})
+};
+sessionUser();
+
+let houseManageNo = location.href.split('?')[1]?.split('=')[1]
+let houseTy = location.href.split('?')[2]?.split('=')[1]
+let dataSet = location.href.split('?')[3]?.split('=')[1].split('')
+let data1 = dataSet[0]
+let data2 = dataSet[1]
+let data3 = dataSet[2]
+let data4 = dataSet[3]
+var dataAPT = {}, dataAPTty = {};
+const callAPT = async() => {
+	await axios.post('http://localhost:30020/connect_db', {
+		query: `SELECT * FROM api_apt WHERE houseManageNo = ${houseManageNo};`	})
+		.then((response) => {
+			document.querySelector("#houseNm").innerText = `${response.data[0].houseNm}`
+			document.querySelector("#houseTy").innerText = `${houseTy}`
+			if(data2 == 'Y')
+				document.querySelector("#locat").innerText = `해당지역`
+			else
+				document.querySelector("#locat").innerText = `기타지역`
+			document.querySelector("#army").innerText = `${data1}`
+		}).catch(err => {console.log(err)});
+}
+callAPT();
+
+var date = new Date();
+year = date.getFullYear();
+month = date.getMonth() + 1;
+day = date.getDate();
+document.querySelector("#today").innerHTML = year + "년 " + month + "월 " + day + "일"
+var applyDay = `${year}-${month >= 10 ? month : '0' + month}-${day >= 10 ? day : '0' + day}`
+
+// DB insert
+const insertApply = async() => {
+	// 내부 함수 1차 - houseTy
+	await axios.post('http://localhost:30020/connect_db', {
+		query: `SELECT * FROM api_apt_type_details WHERE houseManageNo = ${houseManageNo};`	})
+		.then((response) => {
+			dataAPTty = response.data[0].houseTy
+			const tmpTy = dataAPTty.split(",")[0]
+			// 내부 함수 2차 - houseNm
+			let tmpHouseNm = async() => {
+				await axios.post('http://localhost:30020/connect_db', {
+					query: `SELECT * FROM api_apt WHERE houseManageNo = ${houseManageNo};`	})
+					.then((response) => {
+						houseNm = response.data[0].houseNm
+						// 내부 함수 3차 - email
+						let tmpUser = () => {
+						  const user = callUser().then(response => {
+							  if(response.data.email){
+									var email = response.data.email
+									// 내부 함수 4차 - numApply
+									let tmpNum = async() =>{
+										await axios.post('http://localhost:30020/connect_db', {
+											query: `SELECT * FROM applications WHERE email = '${email}' ;`})
+											.then((response) => {
+												let lengthData = response.data.length
+												//consol.log("$$" + tmpTy + "$$" + houseNm + "$$" + email + "$$" + lengthData + "$$" + applyDay)
+												let maxNum = 0
+												response.data.forEach((item, i) => {
+													if(item.numApply > maxNum) maxNum = item.numApply
+												});
+												maxNum += 1 // 가장 마지막 숫자 + 1
+												// 드디어 INSERT
+												let insertData = async() => {
+													await axios.post('http://localhost:30020/connect_db', {
+														query: `INSERT INTO applications(email, numApply, houseNm, houseTy, applyDay) values ('${email}', ${maxNum}, '${houseNm}', '${houseTy}', '${applyDay}');`
+													}).then((response) => {
+														//consol.log(response)
+													}).catch(err => console.log(err))
+												}
+												insertData()
+											}).catch(err => {console.log(err)});
+									}
+									tmpNum()
+								}
+							})
+						}
+					tmpUser()
+				}).catch(err => {console.log(err)});
+			}
+			tmpHouseNm()
+		}).catch(err => {console.log(err)});
+}
+insertApply();
+</script>
 </body>
 </html>
