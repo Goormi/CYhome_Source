@@ -51,12 +51,11 @@ router.route('/process/login').post(async (req, res) => {
           }
       });
       const match =  bcrypt.compare(req.body.password, user[0].password);
-      if(!match) {return res.status(400).json({msg: "Wrong Password"}); console.log("Wrong password")}
-      const email = user[0].email;
+      if(!match) {return res.status(400).json({msg: "Wrong Password"}); console.log("Wrong password")} // unreachable code
       // session 생성
       if (req && req.session && req.session.user){ console.log("Already logined");}
       else{
-        req.session.user = { email : req.body.email }
+        req.session.user = { email : req.body.email };
       }
       res.redirect('/');
     } catch (error) {
@@ -194,8 +193,8 @@ const GetAPTLttotPblancMdl = async (houseManageNo, pblancNo) => {
     let URL = `https://openapi.reb.or.kr/OpenAPI_ToolInstallPackage/service/rest/ApplyhomeInfoSvc/getAPTLttotPblancMdl?serviceKey=xAgM3EBDlVEz1d%2FZFyQJwuDBmrs%2FRain5Farc%2FXCYhRPx6wJSHwHG2by0pEQ2newDCW5XUEgsxVVDHVlZBB18A%3D%3D&houseManageNo=${houseManageNo}&pblancNo=${pblancNo}`
     await axios.get(URL).then(response=> {
         let data = response.data.response.body?.items?.item
-        dataLength = data.length
-        housety = ""
+        let dataLength = data.length
+        let housety = ""
         if (dataLength == undefined){
             housety = data.housety
         }else{
