@@ -136,7 +136,7 @@ app.post('/connect_db', (req, res) => {
 // session
 app.get('/session_user', (req, res) => {
   if(req && req.session && req.session.user){
-      console.log(req.session.user);
+      // console.log(req.session.user);
       res.send(req.session.user);
   }
   else{
