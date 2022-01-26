@@ -353,7 +353,7 @@ const sessionUser = () => {
 		// 가산점 출력
 		const callUserInfo = async() => {
 			await axios.post('http://localhost:30020/connect_db', {
-				query: `SELECT * FROM test WHERE email = "${response.data.email}";`	})
+				query: `SELECT * FROM user WHERE email = "${response.data.email}";`	})
 				.then((response) => {
 					period_nohome = response.data[0].period_nohome
 					num_dependents = response.data[0].num_dependents
