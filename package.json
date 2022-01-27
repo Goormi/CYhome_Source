@@ -1,4 +1,8 @@
 {
+  "scripts": {
+   "start": "node ./server/server.js",
+   "test" : ""
+ },
   "dependencies": {
     "axios": "^0.25.0",
     "bcrypt": "^5.0.1",
