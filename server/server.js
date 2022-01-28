@@ -20,7 +20,7 @@ var router = express.Router();
 app.use(expressSession({
     secret: 'my key',
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true, cookie: { maxAge: 60000 * 5 }
 }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
