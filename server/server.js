@@ -55,7 +55,7 @@ router.route('/process/login').post(async (req, res) => {
               email: req.body.email
           }
       });
-      const match =  bcrypt.compare(req.body.password, user[0].password);
+      const match = await bcrypt.compare(req.body.password, user[0].password);
       if(!match) {return res.status(400).json({msg: "Wrong Password"}); console.log("Wrong password")} // unreachable code
       // session 생성
       if (req && req.session && req.session.user){ console.log("Already logined");}
