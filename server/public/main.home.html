@@ -81,10 +81,12 @@
   </div>
 </nav>
 <script>
+  const url = "http://localhost:30020/";
+  // http://k8s-default-backendi-6566bc7d31-347925406.ap-northeast-2.elb.amazonaws.com/"
   let email;
   const callUser = async() => {
     try{
-      return await axios.get('http://localhost:30020/session_user');
+      return await axios.get(`${url}session_user`);
     } catch (error) {console.log(error)}
   }
   const sessionUser = () => {

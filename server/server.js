@@ -20,7 +20,7 @@ var router = express.Router();
 app.use(expressSession({
     secret: 'my key',
     resave: true,
-    saveUninitialized: true, cookie: { maxAge: 60000 * 5 }
+    saveUninitialized: true, cookie: { maxAge: 60000 * 60 }
 }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -106,7 +106,7 @@ router.route('/process/register').post(async (req, res) => {
       console.log("Register Success");
       res.redirect('/public/main.home.html');
       // res.json({msg: "Register Success"});
-    }else {console.log("Already exist email");}
+    }else {console.log("Already exist email"); res.redirect('/')}
   } catch (error) {
         console.log(error);
   }

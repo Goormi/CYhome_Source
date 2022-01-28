@@ -340,10 +340,12 @@
 <!-- <script src="js/kabhom/com/hom.core.js"></script>
 <script src="js/kabhom/util/hom.all.js"></script> -->
 <script>
+const url = "http://localhost:30020/";
+  // http://k8s-default-backendi-6566bc7d31-347925406.ap-northeast-2.elb.amazonaws.com/"
 // 신청 내역 출력
 const callUser = async() => {
   try{
-    return await axios.get('http://localhost:30020/session_user');
+    return await axios.get(`${url}session_user`);
   } catch (error) {console.log(error)}
 }
 const sessionUser = () => {
@@ -352,7 +354,7 @@ const sessionUser = () => {
 		//consol.log(response.data.email)
 		// 가산점 출력
 		const callUserInfo = async() => {
-			await axios.post('http://localhost:30020/connect_db', {
+			await axios.post(`${url}connect_db`, {
 				query: `SELECT * FROM user WHERE email = "${response.data.email}";`	})
 				.then((response) => {
 					period_nohome = response.data[0].period_nohome
@@ -385,7 +387,7 @@ let data3 = dataSet[2]
 let data4 = dataSet[3]
 var dataAPT = {}, dataAPTty = {};
 const callAPT = async() => {
-	await axios.post('http://localhost:30020/connect_db', {
+	await axios.post(`${url}connect_db`, {
 		query: `SELECT * FROM api_apt WHERE houseManageNo = ${houseManageNo};`	})
 		.then((response) => {
 			document.querySelector("#houseNm").innerText = `${response.data[0].houseNm}`
@@ -409,14 +411,14 @@ var applyDay = `${year}-${month >= 10 ? month : '0' + month}-${day >= 10 ? day :
 // DB insert
 const insertApply = async() => {
 	// 내부 함수 1차 - houseTy
-	await axios.post('http://localhost:30020/connect_db', {
+	await axios.post(`${url}connect_db`, {
 		query: `SELECT * FROM api_apt_type_details WHERE houseManageNo = ${houseManageNo};`	})
 		.then((response) => {
 			dataAPTty = response.data[0].houseTy
 			const tmpTy = dataAPTty.split(",")[0]
 			// 내부 함수 2차 - houseNm
 			let tmpHouseNm = async() => {
-				await axios.post('http://localhost:30020/connect_db', {
+				await axios.post(`${url}connect_db`, {
 					query: `SELECT * FROM api_apt WHERE houseManageNo = ${houseManageNo};`	})
 					.then((response) => {
 						houseNm = response.data[0].houseNm
@@ -427,7 +429,7 @@ const insertApply = async() => {
 									var email = response.data.email
 									// 내부 함수 4차 - numApply
 									let tmpNum = async() =>{
-										await axios.post('http://localhost:30020/connect_db', {
+										await axios.post(`${url}connect_db`, {
 											query: `SELECT * FROM applications WHERE email = '${email}' ;`})
 											.then((response) => {
 												let lengthData = response.data.length
@@ -439,7 +441,7 @@ const insertApply = async() => {
 												maxNum += 1 // 가장 마지막 숫자 + 1
 												// 드디어 INSERT
 												let insertData = async() => {
-													await axios.post('http://localhost:30020/connect_db', {
+													await axios.post(`${url}connect_db`, {
 														query: `INSERT INTO applications(email, numApply, houseNm, houseTy, applyDay) values ('${email}', ${maxNum}, '${houseNm}', '${houseTy}', '${applyDay}');`
 													}).then((response) => {
 														//consol.log(response)

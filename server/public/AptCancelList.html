@@ -427,10 +427,12 @@
 <!-- <script src="js/kabhom/com/hom.core.js"></script>
 <script src="js/kabhom/util/hom.all.js"></script> -->
 <script>
+const url = "http://localhost:30020/";
+// http://k8s-default-backendi-6566bc7d31-347925406.ap-northeast-2.elb.amazonaws.com/"
 // 세션 유지 확인
 const callUser = async() => {
   try{
-    return await axios.get('http://localhost:30020/session_user');
+    return await axios.get(`${url}session_user`);
   } catch (error) {console.log(error)}
 }
 const sessionUser = () => {
@@ -441,7 +443,7 @@ const sessionUser = () => {
 		document.querySelector("#email").innerText = `${response.data.email}`
 		// 신청 내역 출력
 		let tmpNum = async() =>{
-			await axios.post('http://localhost:30020/connect_db', {
+			await axios.post(`${url}connect_db`, {
 				query: `SELECT * FROM applications WHERE email = '${email}' ;`})
 				.then((response) => {
 					let lengthData = response.data.length
@@ -479,7 +481,7 @@ const cancelApply = async(email, num) => {
 	//consol.log(email)
 	//consol.log(num)
 	//consol.log(`DELETE FROM applications WHERE email = '${email}' AND numApply = ${num};`)
-	await axios.post('http://localhost:30020/connect_db', {
+	await axios.post(`${url}connect_db`, {
 		query: `DELETE FROM applications WHERE email = '${email}' AND numApply = ${num};` })
 		.then((response) => {
 			//consol.log(response)

@@ -255,6 +255,8 @@
 
 		<div id="root"></div>
 		<script type="text/babel">
+		const url = "http://localhost:30020/";
+// http://k8s-default-backendi-6566bc7d31-347925406.ap-northeast-2.elb.amazonaws.com/"
 			class SelectType extends React.Component{
 				constructor(props){
 					super(props);
@@ -287,7 +289,7 @@
 				}
 
 				async callAPTDetail(){
-					await axios.post('http://localhost:30020/connect_db',
+					await axios.post(`${url}connect_db`,
 					{
 					query: `SELECT * FROM api_apt_type_details WHERE houseManageNo=${this.state?.houseManageNo};`
 					}
@@ -299,7 +301,7 @@
 				}
 
 				async callAPT(){
-					await axios.post('http://localhost:30020/connect_db',
+					await axios.post(`${url}connect_db`,
 					{
 					query: `SELECT * FROM api_apt WHERE houseManageNo=${this.state?.houseManageNo};`
 					}
