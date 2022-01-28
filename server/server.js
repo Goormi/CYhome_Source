@@ -41,6 +41,11 @@ app.get('/',(req,res) => {
     }
 });
 
+app.get('/health',(req,res) => {
+	res.send(200); // 이게 맞는지는 모르겠어요
+});
+
+
 
 
 router.route('/process/login').post(async (req, res) => {
@@ -108,7 +113,7 @@ router.route('/process/register').post(async (req, res) => {
 })
 
 //mysql connection
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const dbconfig = require('../server/config/database'); // 데이터베이스 설정파일 경로
 // 시스템 함수 활용 시 "위 코드 주석", "아래 코드 활성화"
 // const dbconfig = module.exports = {
