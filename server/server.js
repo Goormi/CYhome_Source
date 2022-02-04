@@ -24,7 +24,7 @@ const mysqlStore = require('express-mysql-session')(expressSession);
 const sessionStore = new mysqlStore({}, connection);
 
 app.use(expressSession({
-    secret: 'goormy',
+    secret: 'goormi',
     store: sessionStore,
     resave: false,
     proxy: true,
