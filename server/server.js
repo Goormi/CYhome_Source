@@ -17,10 +17,18 @@ var express = require('express'),
 var app = express();
 var router = express.Router();
 
+const mysql = require('mysql2/promise');
+const dbconfig = require('../server/config/database'); // 데이터베이스 설정파일 경로
+const connection = mysql.createPool(dbconfig);
+const mysqlStore = require('express-mysql-session')(expressSession);
+const sessionStore = new mysqlStore({}, connection);
+
 app.use(expressSession({
-    secret: 'my key',
-    resave: true,
-    saveUninitialized: true, cookie: { maxAge: 60000 * 60 }
+    secret: 'goormy',
+    store: sessionStore,
+    resave: false,
+    proxy: true,
+    saveUninitialized: false, cookie: { maxAge: 60000 * 60 }
 }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -66,8 +74,9 @@ router.route('/process/login').post(async (req, res) => {
     } catch (error) {
         res.status(404).json({msg:"Email not found // error :  " + error});
     }
+});
 
-    router.route('/process/logout').get(function(req, res){
+router.route('/process/logout').get(function(req, res){
         console.log('/process/logout 호출됨');
 
         if(req && req.session && req.session.user){
@@ -83,7 +92,7 @@ router.route('/process/login').post(async (req, res) => {
             res.redirect('/public/sign.in.html');
         }
     });
-});
+
 router.route('/process/register').post(async (req, res) => {
   const { email, password, confPassword, period_nohome, num_dependents, period_subscription } = req.body;
   if(password !== confPassword) return res.status(400).json({msg: "Password and Confirm Password is different"});
@@ -112,29 +121,12 @@ router.route('/process/register').post(async (req, res) => {
   }
 })
 
-//mysql connection
-const mysql = require('mysql2');
-const dbconfig = require('../server/config/database'); // 데이터베이스 설정파일 경로
-// 시스템 함수 활용 시 "위 코드 주석", "아래 코드 활성화"
-// const dbconfig = module.exports = {
-//     host : process.env.rds_host, // END POINT
-//     user : process.env.rds_user, // USER NAME
-//     password : process.env.rds_password, // PASSWORD
-//     database : process.env.rds_database, // Database Name
-//     port : 3306 // Port
-//   };
-const connection = mysql.createPool(dbconfig);
-
 // Front 단에서 쿼리를 Server단에 보낸다.
 app.post('/connect_db', (req, res) => {
     req.setTimeout(0) // 시간 제한 없음
-    connection.query(req.body.query ,
-        (error, rows) => {
-            if (error) {console.log(error);}
-            else{
-                res.send(rows);
-            }
-        });
+    connection.query(req.body.query)
+    .then(([ rows ]) => res.send(rows))
+    .catch(error => console.log(error))
 });
 
 // session
@@ -167,9 +159,8 @@ const GetLttotPblancList = async() =>{
             console.log("API UPDATE")
             for(let i=0; i < array.length; i++){
                 let data = array[i]
-                connection.query(`INSERT INTO api_apt( houseManageNo, houseDtlSecdNm, houseNm, rceptBgnde, rceptEndde, sido ) VALUES( ${data.houseManageNo}, '${data.houseDtlSecdNm}', '${data.houseNm}', '${data.rceptBgnde}', '${data.rceptEndde}', '${data.sido}' )`,
-                (error) => { if (error) if(error.code != 'ER_DUP_ENTRY') console.log(error); }
-                );
+                connection.query(`INSERT INTO api_apt( houseManageNo, houseDtlSecdNm, houseNm, rceptBgnde, rceptEndde, sido ) VALUES( ${data.houseManageNo}, '${data.houseDtlSecdNm}', '${data.houseNm}', '${data.rceptBgnde}', '${data.rceptEndde}', '${data.sido}' )`)
+                .catch(error => console.log(error))
                 GetAPTLttotPblancDetail(data.houseManageNo, data.pblancNo)
                 GetAPTLttotPblancMdl(data.houseManageNo, data.pblancNo)
             }
@@ -187,7 +178,8 @@ const GetAPTLttotPblancDetail = async (houseManageNo, pblancNo) => {
         let query = data.gnrlrnk1etcggrcptdepd == undefined ? `INSERT INTO api_apt_details( houseManageNo, hssplyAdres, spsplyRceptBgnde, spsplyRceptEndde, gnrlRnk1CrspareaRceptPd, gnrlRnk1EtcAreaRcptdePd, gnrlRnk2CrspareaRceptPd, gnrlRnk2EtcAreaRcptdePd ) VALUES( ${houseManageNo}, '${data.hssplyadres}', '${data.spsplyrceptbgnde}', '${data.spsplyrceptendde}', '${data.gnrlrnk1crsparearceptpd}', '${data.gnrlrnk1etcarearcptdepd}', '${data.gnrlrnk2crsparearceptpd}', '${data.gnrlrnk2etcarearcptdepd}' )`
          : `INSERT INTO api_apt_details( houseManageNo, hssplyAdres, spsplyRceptBgnde, spsplyRceptEndde, gnrlRnk1CrspareaRceptPd, gnrlRnk1EtcGGRcptdePd, gnrlRnk1EtcAreaRcptdePd, gnrlRnk2CrspareaRceptPd, gnrlRnk2EtcGGRcptdePd, gnrlRnk2EtcAreaRcptdePd ) VALUES( ${houseManageNo}, '${data.hssplyadres}', '${data.spsplyrceptbgnde}', '${data.spsplyrceptendde}', '${data.gnrlrnk1crsparearceptpd}', '${data.gnrlrnk1etcggrcptdepd}', '${data.gnrlrnk1etcarearcptdepd}', '${data.gnrlrnk2crsparearceptpd}', '${data.gnrlrnk2etcggrcptdepd}', '${data.gnrlrnk2etcarearcptdepd}' )`
         // DB 저장
-        connection.query(query, (error) => { if (error) if(error.code != 'ER_DUP_ENTRY') console.log(error); });
+        connection.query(query)
+        .catch(error =>  console.log(error));
     }).catch(error =>{
         console.log(error)
     });
@@ -212,7 +204,8 @@ const GetAPTLttotPblancMdl = async (houseManageNo, pblancNo) => {
         }
 
         // DB 저장
-        connection.query(`INSERT INTO api_apt_type_details( houseManageNo, houseTy ) VALUES( ${houseManageNo}, '${housety}' )`, (error) => { if (error) if(error.code != 'ER_DUP_ENTRY') console.log(error.code); });
+        connection.query(`INSERT INTO api_apt_type_details( houseManageNo, houseTy ) VALUES( ${houseManageNo}, '${housety}' )`)
+        .catch(error => console.log(error.code));
     }).catch(error =>{
         console.log(error)
     });
