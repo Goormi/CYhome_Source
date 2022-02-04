@@ -126,7 +126,7 @@ app.post('/connect_db', (req, res) => {
     req.setTimeout(0) // 시간 제한 없음
     connection.query(req.body.query)
     .then(([ rows ]) => res.send(rows))
-    .catch(error => console.log(error))
+    .catch(error => { if(error.code != 'ER_DUP_ENTRY') console.log(error) })
 });
 
 // session
@@ -160,7 +160,7 @@ const GetLttotPblancList = async() =>{
             for(let i=0; i < array.length; i++){
                 let data = array[i]
                 connection.query(`INSERT INTO api_apt( houseManageNo, houseDtlSecdNm, houseNm, rceptBgnde, rceptEndde, sido ) VALUES( ${data.houseManageNo}, '${data.houseDtlSecdNm}', '${data.houseNm}', '${data.rceptBgnde}', '${data.rceptEndde}', '${data.sido}' )`)
-                .catch(error => console.log(error))
+                .catch(error => { if(error.code != 'ER_DUP_ENTRY') console.log(error) })
                 GetAPTLttotPblancDetail(data.houseManageNo, data.pblancNo)
                 GetAPTLttotPblancMdl(data.houseManageNo, data.pblancNo)
             }
@@ -179,7 +179,7 @@ const GetAPTLttotPblancDetail = async (houseManageNo, pblancNo) => {
          : `INSERT INTO api_apt_details( houseManageNo, hssplyAdres, spsplyRceptBgnde, spsplyRceptEndde, gnrlRnk1CrspareaRceptPd, gnrlRnk1EtcGGRcptdePd, gnrlRnk1EtcAreaRcptdePd, gnrlRnk2CrspareaRceptPd, gnrlRnk2EtcGGRcptdePd, gnrlRnk2EtcAreaRcptdePd ) VALUES( ${houseManageNo}, '${data.hssplyadres}', '${data.spsplyrceptbgnde}', '${data.spsplyrceptendde}', '${data.gnrlrnk1crsparearceptpd}', '${data.gnrlrnk1etcggrcptdepd}', '${data.gnrlrnk1etcarearcptdepd}', '${data.gnrlrnk2crsparearceptpd}', '${data.gnrlrnk2etcggrcptdepd}', '${data.gnrlrnk2etcarearcptdepd}' )`
         // DB 저장
         connection.query(query)
-        .catch(error =>  console.log(error));
+        .catch(error => { if(error.code != 'ER_DUP_ENTRY') console.log(error) });
     }).catch(error =>{
         console.log(error)
     });
@@ -205,7 +205,7 @@ const GetAPTLttotPblancMdl = async (houseManageNo, pblancNo) => {
 
         // DB 저장
         connection.query(`INSERT INTO api_apt_type_details( houseManageNo, houseTy ) VALUES( ${houseManageNo}, '${housety}' )`)
-        .catch(error => console.log(error.code));
+        .catch(error => { if(error.code != 'ER_DUP_ENTRY') console.log(error) });
     }).catch(error =>{
         console.log(error)
     });
