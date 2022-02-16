@@ -66,7 +66,7 @@ Cloud 9으로 진행, EKS, github action, Argo 사용
 <img width="611" alt="imgargo" src="https://user-images.githubusercontent.com/59551613/154191715-679ecba6-9299-4532-833a-7d8b91aa6fb3.png" /> </img>
 
 ## <h1> Getting Started <br/><br/></h1><br/>
-> ~~.pdf를 통해 확인하실 수 있습니다.
+> GetStarted.md 를 통해 확인하실 수 있습니다.
 
 ## <h1> Contributors <br/><br/></h1><br/>
 > Please contact us for details and the process for pull requests to us. <br/>
