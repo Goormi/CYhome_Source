@@ -22,10 +22,10 @@
 <img width="802" alt="imgargo" src="https://user-images.githubusercontent.com/59551613/154191715-679ecba6-9299-4532-833a-7d8b91aa6fb3.png">
 
 ## <h2> Getting Started <br/><br/></h2><br/>
-- ~~.pdf를 통해 확인하실 수 있습니다.
+> ~~.pdf를 통해 확인하실 수 있습니다.
 
 ## <h2> Contributing <br/><br/></h2><br/>
-- Please contact us for details and the process for pull requests to us. <br/>
+> Please contact us for details and the process for pull requests to us. <br/>
 * **김도연** - (https://github.com/zaharod)
 * **정혜민** - (https://github.com/heyhmin)
 * **이현범** - (https://github.com/normal-beom)
