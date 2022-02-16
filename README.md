@@ -5,16 +5,16 @@
 - 기획 배경 (5p image)
 - 프로젝트 목적 (4p image)
 <br><br/>
-- 웹페이지 주소 : http://k8s-default-backendi-6566bc7d31-1508677127.ap-northeast-2.elb.amazonaws.com/
+- 웹페이지 주소 : http://k8s-default-backendi-6566bc7d31-1502049738.ap-northeast-2.elb.amazonaws.com
 <br/><br/>
-- github-action : https://github.com/heyhmin/cicdtest/actions
+- github-action : https://github.com/Goormi/Goormi_Web_CICD/actions
 <br/><br/>
-- k8s-ops-view : http://a8ebadd7e33244d6da39d5f8c53d9628-559750049.ap-northeast-2.elb.amazonaws.com
+- k8s-ops-view : http://http://aaa417015787f411d83389759dd299c5-2099455264.ap-northeast-2.elb.amazonaws.com/
 <br/><br/>
-- ArgoCD : http://a8a5f3cd6b7c448cca15ba576ab16cee-490234772.ap-northeast-2.elb.amazonaws.com
-> (ArgoCD-admin password : 5u8SES9U8T-zr5RE)
-- Grafana :  http://a0ece81781cff4af89d3a7be726b575e-1413899398.ap-northeast-2.elb.amazonaws.com
-> (Grafana-admin password : EKS!sAWSome)
+- ArgoCD : http://aa93b5fcd0be741f2bed689ab4d80d28-1175049485.ap-northeast-2.elb.amazonaws.com
+> (ArgoCD-admin password : IFCfdunSMAc1JyDa)
+- Grafana : http://a48a7539d5c32460dafa141bfe6edc80-873073777.ap-northeast-2.elb.amazonaws.com
+>(Grafana-admin password : EKS!sAWSome)
 
 
 ## <h1> Usage Examples <br/> <h3> with GoormyHomes You Can..</h3> <br/></h1><br/>
