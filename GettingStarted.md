@@ -113,7 +113,8 @@ cd ../
 git clone https://github.com/heyhmin/k8s-manifest-repo.git 
 ```
 .yaml 파일 생성
-해당 레포의 base에서 cloud9의 manifests로 deploy, fargate, hpa, ingress, service
+해당 레포의 base에서 cloud9의 manifests로 deploy, fargate, hpa, ingress, service 복사 </br>
+(deploy.yaml의 Account ID Number 수정해야 함)
 ```
 cd manifests/
 kubectl apply -f deploy.yaml
