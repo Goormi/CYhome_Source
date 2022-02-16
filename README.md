@@ -41,10 +41,10 @@
 <img width="459" alt="imgdb2" src="https://user-images.githubusercontent.com/59551613/154191722-7e3fc6ae-3269-440c-aa47-cb6da6f9fc53.png" />
 <br/>
 - 쿠버네티스 아키텍처
-<img width="833" alt="imgk8s" src="https://user-images.githubusercontent.com/59551613/154191724-797a3f6d-e748-4b80-9bf3-bc71b5097a39.png" />
+<img width="520" alt="imgk8s" src="https://user-images.githubusercontent.com/59551613/154191724-797a3f6d-e748-4b80-9bf3-bc71b5097a39.png" />
 <br/>
 - CI/CD 파이프라인
-<img width="802" alt="imgargo" src="https://user-images.githubusercontent.com/59551613/154191715-679ecba6-9299-4532-833a-7d8b91aa6fb3.png" />
+<img width="520" alt="imgargo" src="https://user-images.githubusercontent.com/59551613/154191715-679ecba6-9299-4532-833a-7d8b91aa6fb3.png" />
 
 ## <h2> Getting Started <br/><br/></h2><br/>
 > ~~.pdf를 통해 확인하실 수 있습니다.
