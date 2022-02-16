@@ -95,7 +95,7 @@ kubectl describe pod -n kube-system ${ALBPOD}
 ## 서비스 배포 Deployment
 ```
 cd /home/ec2-user/environment
-git clone https://github.com/heyhmin/cicdtest.git 
+git clone https://github.com/Goormi/CYhome_Source.git
 ```
 .env 파일 
 ```
@@ -106,11 +106,11 @@ rds_database=********
 ```
 ```
 aws ecr create-repository --repository-name goormi_web --image-scanning-configuration scanOnPush=true --region ${AWS_REGION}
-cd cicdtest/
+cd CYhome_Source/
 ```
 ```
 cd ../
-git clone https://github.com/heyhmin/k8s-manifest-repo.git 
+git clone https://github.com/Goormi/Goormi_Web_Manifest_Repo.git
 ```
 .yaml 파일 생성
 해당 레포의 base에서 cloud9의 manifests로 deploy, fargate, hpa, ingress, service 복사 </br>
@@ -131,7 +131,7 @@ echo http://$(kubectl get ingress/backend-ingress -o jsonpath='{.status.loadBala
 6. main.home.html			  84 line
 
 ```
-cd ../cicdtest/
+cd ../CYhome_Source/
 npm install
 docker build -t goormi_web .
 docker tag goormi_web:latest $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/goormi_web:latest
