@@ -5,7 +5,12 @@
 - text, image
 
 ## <h2> with GoormyHomes You Can <br/><br/></h2><br/>
-- text, image gif
+##회원가입, 로그인
+https://youtu.be/gHR2DFzMdKY
+##청약 신청
+https://youtu.be/J0Cb-XKhZwM
+##CI CD 과정
+https://youtu.be/Ac6_gXiE9Ps
 
 ## <h2> Done List <br/><br/></h2><br/>
 - text
