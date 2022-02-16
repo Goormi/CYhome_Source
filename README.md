@@ -38,6 +38,8 @@
 
 #
 <h2> Inspiration <br><br></h2><br>
-*AWS hands-on-Lab   -  Amazon EKS로 웹 애플리케이션 구축하기
+* AWS hands-on-Lab   -  Amazon EKS로 웹 애플리케이션 구축하기 <br/>
 https://catalog.us-east-1.prod.workshops.aws/v2/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/ 
-*EKS Workshop   -   MONITORING USING PROMETHEUS AND GRAFANA https://www.eksworkshop.com/intermediate/240_monitoring/ 
+  <br/><br/>
+* EKS Workshop   -   MONITORING USING PROMETHEUS AND GRAFANA <br/>
+  https://www.eksworkshop.com/intermediate/240_monitoring/ 
