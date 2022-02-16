@@ -44,7 +44,7 @@
 ## <h1> Getting Started <br/><br/></h1><br/>
 > ~~.pdf를 통해 확인하실 수 있습니다.
 
-## <h1> Contributing <br/><br/></h1><br/>
+## <h1> Contributors <br/><br/></h1><br/>
 > Please contact us for details and the process for pull requests to us. <br/>
 * **김도연** - (https://github.com/zaharod)
 * **정혜민** - (https://github.com/heyhmin)
