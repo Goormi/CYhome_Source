@@ -12,11 +12,8 @@
 - k8s-ops-view : http://a8ebadd7e33244d6da39d5f8c53d9628-559750049.ap-northeast-2.elb.amazonaws.com
 <br/><br/>
 - ArgoCD : http://a8a5f3cd6b7c448cca15ba576ab16cee-490234772.ap-northeast-2.elb.amazonaws.com
-<br><br/>
 > (ArgoCD-admin password : 5u8SES9U8T-zr5RE)
-<br/><br/>
 - Grafana :  http://a0ece81781cff4af89d3a7be726b575e-1413899398.ap-northeast-2.elb.amazonaws.com
-<br><br/>
 > (Grafana-admin password : EKS!sAWSome)
 
 
