@@ -17,7 +17,7 @@
 > (Grafana-admin password : EKS!sAWSome)
 
 
-## <h2> Usage Examples <br/> <h4> with GoormyHomes You Can..</h4> <br/></h2><br/>
+## <h1> Usage Examples <br/> <h3> with GoormyHomes You Can..</h3> <br/></h2><br/>
 서비스의 기능별 사용 방법입니다. 이미지 클릭 시 영상으로 확인하실 수 있습니다.<br/>
 ### 회원가입, 로그인  
 회원 가입 시 가점 계산기를 사용, 본인의 가점 입력 후 회원 가입 가능합니다. <br/>
@@ -27,10 +27,10 @@
 ### CI CD 과정  
 [![CI CD 과정](https://img.youtube.com/vi/Ac6_gXiE9Ps/0.jpg)](https://www.youtube.com/embed/Ac6_gXiE9Ps)
 
-## <h2> Done List <br/><br/></h2><br/>
+## <h1> Done List <br/><br/></h2><br/>
 - text
 
-## <h2> Project Architecture <br/><br/></h2><br/>
+## <h1> Project Architecture <br/><br/></h2><br/>
 #### 웹 어플리케이션 프레임워크
 <img width="508" alt="imgweb" src="https://user-images.githubusercontent.com/59551613/154191727-4ae9d73d-d43d-4674-8e58-b04d66b782a3.png" /> </img>
 #### 데이터베이스 설계
@@ -41,10 +41,10 @@
 #### CI/CD 파이프라인
 <img width="611" alt="imgargo" src="https://user-images.githubusercontent.com/59551613/154191715-679ecba6-9299-4532-833a-7d8b91aa6fb3.png" /> </img>
 
-## <h2> Getting Started <br/><br/></h2><br/>
+## <h1> Getting Started <br/><br/></h2><br/>
 > ~~.pdf를 통해 확인하실 수 있습니다.
 
-## <h2> Contributing <br/><br/></h2><br/>
+## <h1> Contributing <br/><br/></h2><br/>
 > Please contact us for details and the process for pull requests to us. <br/>
 * **김도연** - (https://github.com/zaharod)
 * **정혜민** - (https://github.com/heyhmin)
@@ -52,7 +52,7 @@
 * **_** - (_)
 * **_** - (_)
 
-## <h2> Inspiration <br/><br/></h2><br/>
+## <h1> Inspiration <br/><br/></h2><br/>
 * AWS hands-on-Lab   -  Amazon EKS로 웹 애플리케이션 구축하기 <br/>
 https://catalog.us-east-1.prod.workshops.aws/v2/workshops/9c0aa9ab-90a9-44a6-abe1-8dff360ae428/ko-KR/ 
   <br/><br/>
