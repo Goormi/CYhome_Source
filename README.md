@@ -20,7 +20,8 @@
 ## <h2> with GoormyHomes You Can <br/><br/></h2><br/>
 서비스의 기능별 사용 방법입니다.
 - 회원가입, 로그인  
-(https://www.youtube.com/embed/gHR2DFzMdKY)
+회원 가입 시 가점 계산기를 통해 가점을 확인하여 본인의 가점 입력 후 회원 가입 가능합니다.
+이미지 클릭 시 영상으로 확인하실 수 있습니다.
 [![회원가입-로그인](https://img.youtube.com/vi/gHR2DFzMdKY/0.jpg)](https://www.youtube.com/embed/gHR2DFzMdKY)
 - 청약 신청  
 (https://www.youtube.com/embed/J0Cb-XKhZwM)
