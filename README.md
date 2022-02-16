@@ -21,6 +21,7 @@
 서비스의 기능별 사용 방법입니다.
 - 회원가입, 로그인  
 (https://www.youtube.com/embed/gHR2DFzMdKY)
+[![회원가입-로그인](https://www.youtube.com/embed/gHR2DFzMdKY/1.jpg)](https://www.youtube.com/embed/gHR2DFzMdKY)
 - 청약 신청  
 (https://www.youtube.com/embed/J0Cb-XKhZwM)
 - CI CD 과정  
