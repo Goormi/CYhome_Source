@@ -17,7 +17,7 @@
 > (Grafana-admin password : EKS!sAWSome)
 
 
-## <h2> with GoormyHomes You Can <br/><br/></h2><br/>
+## <h2> Usage Examples (with GoormyHomes You Can..) <br/><br/></h2><br/>
 서비스의 기능별 사용 방법입니다. 이미지 클릭 시 영상으로 확인하실 수 있습니다.<br/>
 ### 회원가입, 로그인  
 회원 가입 시 가점 계산기를 사용, 본인의 가점 입력 후 회원 가입 가능합니다. <br/>
@@ -30,7 +30,7 @@
 ## <h2> Done List <br/><br/></h2><br/>
 - text
 
-## <h2> GoormyHomes Project Architecture <br/><br/></h2><br/>
+## <h2> Project Architecture <br/><br/></h2><br/>
 #### 웹 어플리케이션 프레임워크
 <img width="508" alt="imgweb" src="https://user-images.githubusercontent.com/59551613/154191727-4ae9d73d-d43d-4674-8e58-b04d66b782a3.png" /> </img>
 #### 데이터베이스 설계
