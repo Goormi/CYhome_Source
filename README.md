@@ -17,7 +17,7 @@
 > (Grafana-admin password : EKS!sAWSome)
 
 
-## <h2> Usage Examples <br/> <h3> with GoormyHomes You Can..</h3> <br/></h2><br/>
+## <h2> Usage Examples <br/> <h4> with GoormyHomes You Can..</h4> <br/></h2><br/>
 서비스의 기능별 사용 방법입니다. 이미지 클릭 시 영상으로 확인하실 수 있습니다.<br/>
 ### 회원가입, 로그인  
 회원 가입 시 가점 계산기를 사용, 본인의 가점 입력 후 회원 가입 가능합니다. <br/>
