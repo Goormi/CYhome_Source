@@ -4,7 +4,7 @@
 ## <h1>GoormyHomes Project </h1><br/>
 - 기획 배경<br/><br/>
 주택청약 사이트는 무순위 청약 시 사이트가 마비되어 청약 마감 시간을 늦추어야 했던 사례가 있었습니다. <br/>
-저희는 이러한 부분을 AWS와 쿠버네티스를 적용하여 해결하고자 해당 프로젝트 주제를 선정하였습니다. <br/>
+저희는 이러한 부분을 **AWS와 쿠버네티스**를 적용하여 해결하고자 해당 프로젝트 주제를 선정하였습니다. <br/>
     * [관련 기사](https://www.donga.com/news/Economy/article/all/20200205/99539951/1)
 <br><br/>
 - 웹페이지 주소 : http://k8s-default-backendi-6566bc7d31-1502049738.ap-northeast-2.elb.amazonaws.com/
