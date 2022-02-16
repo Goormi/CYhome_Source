@@ -15,13 +15,13 @@
 #
 <h2> GoormyHomes Project Architecture <br><br></h2><br>
 - 웹 어플리케이션 프레임워크
-<img src= url >
+<img src= url />
 - 데이터베이스 설계
-<img src= url >
+<img src= url />
 - 쿠버네티스 아키텍처
-<img src= url >
+<img src= url />
 - CI/CD 파이프라인
-<img src= url >
+<img src= url />
 
 #
 <h2> Getting Started <br><br></h2><br>
