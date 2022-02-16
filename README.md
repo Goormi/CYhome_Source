@@ -18,15 +18,14 @@
 
 
 ## <h2> with GoormyHomes You Can <br/><br/></h2><br/>
-서비스의 기능별 사용 방법입니다.
+서비스의 기능별 사용 방법입니다. 이미지 클릭 시 영상으로 확인하실 수 있습니다.<br/>
 - 회원가입, 로그인  
 회원 가입 시 가점 계산기를 사용, 본인의 가점 입력 후 회원 가입 가능합니다. <br/>
-이미지 클릭 시 영상으로 확인하실 수 있습니다.<br/>
 [![회원가입-로그인](https://img.youtube.com/vi/gHR2DFzMdKY/0.jpg)](https://www.youtube.com/embed/gHR2DFzMdKY)
 - 청약 신청  
-(https://www.youtube.com/embed/J0Cb-XKhZwM)
+[![청약 신청](https://img.youtube.com/vi/J0Cb-XKhZwM/0.jpg)](https://www.youtube.com/embed/J0Cb-XKhZwM)
 - CI CD 과정  
-(https://www.youtube.com/embed/Ac6_gXiE9Ps)
+[![CI CD 과정](https://img.youtube.com/vi/Ac6_gXiE9Ps/0.jpg)](https://www.youtube.com/embed/Ac6_gXiE9Ps)
 
 ## <h2> Done List <br/><br/></h2><br/>
 - text
