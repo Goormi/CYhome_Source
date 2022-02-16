@@ -1,5 +1,5 @@
-# CYhome_Source
-청약홈 청약연습(https://www.applyhome.co.kr/co/coz/prepareApplyHomeGuide.do)에서 가져온 소스를 저장하는 저장소입니다.
+# Goormy_ChungYak_Web
+'Goormy Homes' 주택 청약 신청 웹 서비스 프로젝트의 소스코드 저장소입니다.
 
 ## <h1>GoormyHomes Project </h1><br/>
 - 기획 배경 (5p image)
