@@ -2,7 +2,23 @@
 청약홈 청약연습(https://www.applyhome.co.kr/co/coz/prepareApplyHomeGuide.do)에서 가져온 소스를 저장하는 저장소입니다.
 
 ## <h1>GoormyHomes Project </h1><br/>
-- text, image
+- 기획 배경 (5p image)
+- 프로젝트 목적 (4p image)
+<br/>
+- 웹페이지 주소 : http://k8s-default-backendi-6566bc7d31-1508677127.ap-northeast-2.elb.amazonaws.com/
+<br/>
+- github-action : https://github.com/heyhmin/cicdtest/actions
+<br/>
+- k8s-ops-view : http://a8ebadd7e33244d6da39d5f8c53d9628-559750049.ap-northeast-2.elb.amazonaws.com
+<br/>
+- ArgoCD : http://a8a5f3cd6b7c448cca15ba576ab16cee-490234772.ap-northeast-2.elb.amazonaws.com
+- (ArgoCD-admin password : 5u8SES9U8T-zr5RE)
+<br/>
+- Prometheus : https://f156000c859547839e62e61dc6bbabe8.vfs.cloud9.ap-northeast-2.amazonaws.com/targets
+<br/>
+- Grafana :  http://a0ece81781cff4af89d3a7be726b575e-1413899398.ap-northeast-2.elb.amazonaws.com
+- (Grafana-admin password : EKS!sAWSome)
+
 
 ## <h2> with GoormyHomes You Can <br/><br/></h2><br/>
 서비스의 기능별 사용 방법입니다.
