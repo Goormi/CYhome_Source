@@ -74,7 +74,7 @@ Cloud 9으로 진행, EKS, github action, Argo 사용
 * **정혜민** - (https://github.com/heyhmin)
 * **이현범** - (https://github.com/normal-beom)
 * **황정환** - (https://github.com/hwangjeunghwan)
-* **_** - (_)
+* **전재일** - (https://github.com/JJY2021)
 
 ## <h1> Inspiration <br/><br/></h1><br/>
 * AWS hands-on-Lab   -  Amazon EKS로 웹 애플리케이션 구축하기 <br/>
