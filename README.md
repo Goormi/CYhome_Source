@@ -23,7 +23,7 @@
 ## <h2> with GoormyHomes You Can <br/><br/></h2><br/>
 서비스의 기능별 사용 방법입니다.
 - 회원가입, 로그인  
-![회원가입 로그인 (<img width="1079" alt="s1" src="https://user-images.githubusercontent.com/59551613/154200094-de04a5d3-860b-4037-85e7-41836c93188f.png">)](https://www.youtube.com/embed/gHR2DFzMdKY)
+(https://www.youtube.com/embed/gHR2DFzMdKY)
 - 청약 신청  
 (https://www.youtube.com/embed/J0Cb-XKhZwM)
 - CI CD 과정  
