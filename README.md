@@ -6,7 +6,7 @@
 
 ## <h2> with GoormyHomes You Can <br/><br/></h2><br/>
 - 회원가입, 로그인
-[![회원가입, 로그인]]("https://www.youtube.com/embed/gHR2DFzMdKY")
+[![회원가입, 로그인]](https://www.youtube.com/embed/gHR2DFzMdKY)
 <iframe width="798" height="432" src="https://www.youtube.com/embed/gHR2DFzMdKY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 - 청약 신청
 <iframe width="656" height="340" src="https://www.youtube.com/embed/J0Cb-XKhZwM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
