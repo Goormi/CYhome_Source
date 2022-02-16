@@ -9,7 +9,7 @@
 <br/><br/>
 - github-action : https://github.com/Goormi/Goormi_Web_CICD/actions
 <br/><br/>
-- k8s-ops-view : http://http://aaa417015787f411d83389759dd299c5-2099455264.ap-northeast-2.elb.amazonaws.com/
+- k8s-ops-view : http://aaa417015787f411d83389759dd299c5-2099455264.ap-northeast-2.elb.amazonaws.com/
 <br/><br/>
 - ArgoCD : http://aa93b5fcd0be741f2bed689ab4d80d28-1175049485.ap-northeast-2.elb.amazonaws.com
 > (ArgoCD-admin password : IFCfdunSMAc1JyDa)
