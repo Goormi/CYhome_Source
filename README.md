@@ -18,7 +18,7 @@
 
 
 ## <h1> Usage Examples <br/> <h3> with GoormyHomes You Can..</h3> <br/></h1><br/>
-서비스의 기능별 사용 방법입니다. 이미지 클릭 시 영상으로 확인하실 수 있습니다.<br/>
+서비스의 기능별 사용 방법입니다. 이미지 클릭 시 영상으로 확인하실 수 있습니다.<br/>  
 ### 회원가입, 로그인  
 회원 가입 시 가점 계산기를 사용, 본인의 가점 입력 후 회원 가입 가능합니다. <br/>
 [![회원가입-로그인](https://img.youtube.com/vi/gHR2DFzMdKY/0.jpg)](https://www.youtube.com/embed/gHR2DFzMdKY)
