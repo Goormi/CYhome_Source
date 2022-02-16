@@ -1,7 +1,7 @@
 # CYhome_Source
 청약홈 청약연습(https://www.applyhome.co.kr/co/coz/prepareApplyHomeGuide.do)에서 가져온 소스를 저장하는 저장소입니다.
 
-## <h1>GoormyHomes Project<br><br>
+## <h1>GoormyHomes Project </h1><br>
 - text, image
 
 #
