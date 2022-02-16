@@ -2,7 +2,7 @@
 'Goormy Homes' 주택 청약 신청 웹 서비스 프로젝트의 소스코드 저장소입니다.
 
 ## <h1>GoormyHomes Project </h1><br/>
-- 기획 배경, 프로젝트 목표<br/><br/>
+- 기획 배경<br/><br/>
 주택청약 사이트는 무순위 청약 시 사이트가 마비되어 청약 마감 시간을 늦추어야 했던 사례가 있었습니다. <br/>
 저희는 이러한 부분을 AWS와 쿠버네티스를 적용하여 해결하고자 해당 프로젝트 주제를 선정하였습니다. <br/>
     * [관련 기사](https://www.donga.com/news/Economy/article/all/20200205/99539951/1)
@@ -68,7 +68,7 @@ Cloud 9으로 진행, EKS, github action, Argo 사용
 <img width="611" alt="imgargo" src="https://user-images.githubusercontent.com/59551613/154191715-679ecba6-9299-4532-833a-7d8b91aa6fb3.png" /> </img>
 
 ## <h1> Getting Started <br/><br/></h1><br/>
-> GettingStarted.md 를 통해 확인하실 수 있습니다.
+> [GettingStarted.md](https://github.com/Goormi/CYhome_Source/blob/main/GettingStarted.md) 를 통해 확인하실 수 있습니다.
 
 ## <h1> Contributors <br/><br/></h1><br/>
 > Please contact us for details and the process for pull requests to us. <br/>
