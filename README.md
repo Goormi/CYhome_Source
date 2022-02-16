@@ -5,7 +5,7 @@
 - 기획 배경 (5p image)
 - 프로젝트 목적 (4p image)
 <br><br/>
-- 웹페이지 주소 : http://k8s-default-backendi-6566bc7d31-1502049738.ap-northeast-2.elb.amazonaws.com
+- 웹페이지 주소 : http://k8s-default-backendi-6566bc7d31-1502049738.ap-northeast-2.elb.amazonaws.com/
 <br/><br/>
 - github-action : https://github.com/Goormi/Goormi_Web_CICD/actions
 <br/><br/>
