@@ -73,7 +73,7 @@ Cloud 9으로 진행, EKS, github action, Argo 사용
 * **김도연** - (https://github.com/zaharod)
 * **정혜민** - (https://github.com/heyhmin)
 * **이현범** - (https://github.com/normal-beom)
-* **_** - (_)
+* **황정환** - (https://github.com/hwangjeunghwan)
 * **_** - (_)
 
 ## <h1> Inspiration <br/><br/></h1><br/>
