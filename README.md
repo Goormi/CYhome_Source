@@ -6,11 +6,11 @@
 
 ## <h2> with GoormyHomes You Can <br/><br/></h2><br/>
 - 회원가입, 로그인  
-[![회원가입, 로그인](http://img.youtube.com/embed/gHR2DFzMdKY/0.jpg)](https://www.youtube.com/embed/gHR2DFzMdKY)
+(https://www.youtube.com/embed/gHR2DFzMdKY)
 - 청약 신청  
-[![청약 신청]()](https://www.youtube.com/embed/J0Cb-XKhZwM)
+(https://www.youtube.com/embed/J0Cb-XKhZwM)
 - CI CD 과정  
-[![CI CD 과정]()](https://www.youtube.com/embed/Ac6_gXiE9Ps)
+(https://www.youtube.com/embed/Ac6_gXiE9Ps)
 
 ## <h2> Done List <br/><br/></h2><br/>
 - text
