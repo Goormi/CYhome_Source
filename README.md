@@ -7,6 +7,8 @@
 저희는 이러한 부분을 **AWS와 쿠버네티스**를 적용하여 해결하고자 해당 프로젝트 주제를 선정하였습니다. <br/>
     * [관련 기사](https://www.donga.com/news/Economy/article/all/20200205/99539951/1)
 <br><br/>
+<h4>비용문제로 페이지는 닫아놓았습니다.</h4>
+<br><br/>
 - 웹페이지 주소 : http://k8s-default-backendi-6566bc7d31-1502049738.ap-northeast-2.elb.amazonaws.com/
 <br/><br/>
 - github-action : https://github.com/Goormi/Goormi_Web_CICD/actions
